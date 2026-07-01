@@ -18,12 +18,13 @@ export const business = {
     link: "https://wa.me/34694200778?text=%C2%A1Hola%21%20Me%20gustar%C3%ADa%20reservar%20una%20cita%20en%20EduStyle.",
   },
   address: {
-    street: "TODO(edu): dirección exacta", // TODO(edu): calle y número
-    city: "Tenerife",
+    street: "TODO(edu): calle y número", // exact street still unconfirmed
+    city: "Golf del Sur",
+    region: "San Miguel de Abona, Tenerife",
     postalCode: "", // TODO(edu)
     country: "España",
     countryCode: "ES",
-    full: "Tenerife, España", // TODO(edu): dirección completa
+    full: "Golf del Sur, San Miguel de Abona, Tenerife",
   },
   geo: {
     // Coordenadas reales del pin de Google Maps (sur de Tenerife).
@@ -31,13 +32,13 @@ export const business = {
     longitude: -16.5941873,
   },
   hours: [
-    // TODO(edu): confirmar horario real (estos son de ejemplo).
-    { day: "Lunes", open: "10:00", close: "20:00" },
-    { day: "Martes", open: "10:00", close: "20:00" },
-    { day: "Miércoles", open: "10:00", close: "20:00" },
-    { day: "Jueves", open: "10:00", close: "20:00" },
-    { day: "Viernes", open: "10:00", close: "20:00" },
-    { day: "Sábado", open: "10:00", close: "15:00" },
+    // Horario confirmado (sesión previa con Edu).
+    { day: "Lunes", open: "10:00", close: "19:00" },
+    { day: "Martes", open: "10:00", close: "19:00" },
+    { day: "Miércoles", open: "10:00", close: "19:00" },
+    { day: "Jueves", open: "10:00", close: "19:00" },
+    { day: "Viernes", open: "10:00", close: "19:00" },
+    { day: "Sábado", open: "10:00", close: "16:00" },
     { day: "Domingo", open: null, close: null }, // Cerrado
   ],
   social: {

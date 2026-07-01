@@ -1,12 +1,12 @@
 // Price menu — single source of truth for the Precios section.
 //
-// ⚠️ TODO(edu): PRECIOS ORIENTATIVOS. Confirmar la lista y las tarifas reales
-// con Edu antes de publicar en el dominio final.
+// Prices confirmed with Edu in a previous session. Standalone "arreglo de
+// barba" / "afeitado a navaja" prices were not captured — TODO(edu): confirmar.
 
 export type PriceItem = {
   name: string;
   desc?: string;
-  price: string; // string so we can write "12 €" or "desde 15 €"
+  price: string; // string so we can write "13 €" or "15–40 €"
   highlight?: boolean;
 };
 
@@ -21,40 +21,35 @@ export const pricing: { groups: PriceGroup[]; note: string } = {
       title: "Cortes",
       items: [
         {
-          name: "Corte de pelo",
-          desc: "Tijera o máquina · incluye lavado y peinado",
-          price: "12 €",
-        },
-        {
-          name: "Corte + Barba",
-          desc: "El pack completo",
-          price: "18 €",
-          highlight: true,
+          name: "Corte caballero",
+          desc: "Corte a tijera o máquina, lavado y peinado",
+          price: "13 €",
         },
         {
           name: "Corte niño",
           desc: "Hasta 12 años",
           price: "10 €",
         },
-        {
-          name: "Diseños y líneas",
-          desc: "Detalles y diseños personalizados",
-          price: "desde 3 €",
-        },
       ],
     },
     {
-      title: "Barba y afeitado",
+      title: "Corte + Barba",
       items: [
         {
-          name: "Arreglo de barba",
-          desc: "Perfilado y toalla caliente",
-          price: "8 €",
+          name: "Corte + Barba",
+          desc: "El pack más pedido",
+          price: "20 €",
+          highlight: true,
         },
         {
-          name: "Afeitado a navaja",
-          desc: "Afeitado clásico con toalla caliente",
-          price: "12 €",
+          name: "Premium",
+          desc: "Corte y barba con acabado premium", // TODO(edu): detallar qué incluye
+          price: "25 €",
+        },
+        {
+          name: "Pack completo",
+          desc: "Corte, barba y cuidado facial", // TODO(edu): detallar qué incluye
+          price: "40 €",
         },
       ],
     },
@@ -62,14 +57,14 @@ export const pricing: { groups: PriceGroup[]; note: string } = {
       title: "Color",
       items: [
         {
-          name: "Tinte",
+          name: "Tinte y mechas",
           desc: "Color con acabado natural",
-          price: "desde 15 €",
+          price: "15–40 €",
         },
         {
           name: "Camuflaje de canas",
           desc: "Disimula las canas de forma natural",
-          price: "desde 12 €",
+          price: "desde 15 €",
         },
       ],
     },

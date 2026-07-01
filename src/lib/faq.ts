@@ -16,7 +16,7 @@ export const faqs = [
   {
     question: "¿Cuánto cuesta un corte?",
     answer:
-      "Un corte de pelo cuesta desde 12 € y el pack corte + barba desde 18 €. Tienes la lista completa en la sección de Precios. El precio final puede variar según el largo del pelo.",
+      "Un corte de caballero cuesta 13 € y el pack corte + barba 20 €. Los niños 10 €. Tienes la lista completa en la sección de Precios. El precio final puede variar según el largo del pelo.",
   },
   {
     question: "¿Cortáis a niños?",
@@ -36,7 +36,7 @@ export const faqs = [
   {
     question: "¿Dónde estáis y qué horario tenéis?",
     answer:
-      "Estamos en Tenerife. El horario es de Lunes a Viernes de 10:00 a 20:00 y Sábados de 10:00 a 15:00. Los Domingos permanecemos cerrados.",
+      "Estamos en la zona de Golf del Sur (San Miguel de Abona), en el sur de Tenerife. El horario es de Lunes a Viernes de 10:00 a 19:00 y Sábados de 10:00 a 16:00. Los Domingos permanecemos cerrados.",
   },
 ] as const;
 
