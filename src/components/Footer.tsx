@@ -1,0 +1,132 @@
+import { Instagram, MapPin, Phone, Mail } from "lucide-react";
+import { business } from "@/lib/business";
+
+export function Footer() {
+  return (
+    <footer className="bg-teal-900 text-cream-100">
+      <div className="container-tight py-12 sm:py-16">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Brand */}
+          <div>
+            <h3 className="font-serif text-2xl uppercase tracking-wide text-cream-50">
+              Edu<span className="text-terracotta-400">Style</span>
+            </h3>
+            <p className="mt-3 text-sm leading-relaxed text-cream-100/80">
+              Barbería en Tenerife. Cortes, barba y afeitado clásico, con la
+              atención que te mereces.
+            </p>
+          </div>
+
+          {/* Navigation */}
+          <div>
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-cream-50">
+              Navegación
+            </h4>
+            <ul className="mt-4 space-y-2 text-sm">
+              {[
+                { href: "#sobre", label: "Sobre nosotros" },
+                { href: "#servicios", label: "Servicios" },
+                { href: "#precios", label: "Precios" },
+                { href: "#opiniones", label: "Opiniones" },
+                { href: "#preguntas", label: "Preguntas" },
+                { href: "#ubicacion", label: "Ubicación" },
+                { href: "#contacto", label: "Contacto" },
+              ].map((l) => (
+                <li key={l.href}>
+                  <a
+                    href={l.href}
+                    className="text-cream-100/80 hover:text-cream-50"
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-cream-50">
+              Contacto
+            </h4>
+            <ul className="mt-4 space-y-3 text-sm">
+              <li className="flex gap-3">
+                <MapPin className="h-4 w-4 shrink-0 text-terracotta-400" />
+                <a
+                  href={business.social.googleMaps}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-cream-100/80 hover:text-cream-50"
+                >
+                  {business.address.city}
+                  <br />
+                  {business.address.country}
+                </a>
+              </li>
+              <li className="flex items-center gap-3">
+                <Phone className="h-4 w-4 shrink-0 text-terracotta-400" />
+                <a
+                  href={`tel:${business.phoneE164}`}
+                  className="text-cream-100/80 hover:text-cream-50"
+                >
+                  {business.phone}
+                </a>
+              </li>
+              <li className="flex items-center gap-3">
+                <Mail className="h-4 w-4 shrink-0 text-terracotta-400" />
+                <a
+                  href={`mailto:${business.email}`}
+                  className="text-cream-100/80 hover:text-cream-50"
+                >
+                  {business.email}
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Social */}
+          <div>
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-cream-50">
+              Síguenos
+            </h4>
+            <div className="mt-4 flex gap-3">
+              <a
+                href={business.social.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram EduStyle"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-cream-100/10 transition-colors hover:bg-terracotta-500"
+              >
+                <Instagram className="h-5 w-5" />
+              </a>
+              <a
+                href={business.social.googleMaps}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Google Maps EduStyle"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-cream-100/10 transition-colors hover:bg-terracotta-500"
+              >
+                <MapPin className="h-5 w-5" />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-cream-100/10 pt-6 text-xs text-cream-100/60 sm:flex-row">
+          <p>
+            &copy; {new Date().getFullYear()} {business.name}. Todos los derechos
+            reservados.
+          </p>
+          <div className="flex gap-6">
+            <a href="/politica-privacidad" className="hover:text-cream-50">
+              Política de privacidad
+            </a>
+            <a href="/aviso-legal" className="hover:text-cream-50">
+              Aviso legal
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
