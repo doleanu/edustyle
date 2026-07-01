@@ -14,8 +14,8 @@ export function Footer({ lang }: { lang: Lang }) {
             <Image
               src="/logo-light.png"
               alt="Eduardo Style Barber Shop"
-              width={752}
-              height={667}
+              width={1042}
+              height={844}
               className="h-24 w-auto"
             />
             <p className="mt-3 text-sm leading-relaxed text-cream-100/80">

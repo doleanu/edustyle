@@ -69,8 +69,8 @@ export function Header({ lang, minimal = false }: { lang: Lang; minimal?: boolea
           <Image
             src="/logo-dark.png"
             alt="Eduardo Style Barber Shop"
-            width={752}
-            height={667}
+            width={1042}
+            height={844}
             priority
             className="h-16 w-auto sm:h-20"
           />
