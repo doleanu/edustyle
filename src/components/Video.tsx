@@ -5,7 +5,7 @@ import { content, type Lang } from "@/lib/content";
 // Instagram Reel embed.
 // TODO(edu): pega aquí el código de un reel de @edustyle4.
 // De una URL tipo https://www.instagram.com/reel/DxAbC123/  ->  "DxAbC123"
-const REEL_SHORTCODE: string | null = null;
+const REEL_SHORTCODE: string | null = "DYan7xMo-00";
 
 export function Video({ lang }: { lang: Lang }) {
   const t = content[lang].video;
