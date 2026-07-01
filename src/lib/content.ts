@@ -32,11 +32,12 @@ export const content = {
       badges: ["Cortes y degradados", "Reserva por WhatsApp", "Valorado por sus clientes"],
     },
     video: {
-      eyebrow: "Bienvenido",
-      title: "Conoce EduStyle",
+      eyebrow: "En Instagram",
+      title: "Míranos en acción",
       subtitle:
-        "Échale un vistazo a la barbería y a cómo trabajamos: cortes, barba y ese ambiente de barrio en el que se está a gusto.",
-      hint: "Pulsa el vídeo para reproducirlo",
+        "Cortes, degradados y barba en vídeo. Echa un vistazo a nuestro Instagram y mira cómo trabajamos en el día a día.",
+      hint: "@edustyle4 en Instagram",
+      cta: "Ver en Instagram",
     },
     about: {
       eyebrow: "Sobre nosotros",
@@ -199,11 +200,12 @@ export const content = {
       badges: ["Cuts & fades", "Book on WhatsApp", "Loved by customers"],
     },
     video: {
-      eyebrow: "Welcome",
-      title: "Meet EduStyle",
+      eyebrow: "On Instagram",
+      title: "See us in action",
       subtitle:
-        "Take a look inside the barbershop and how we work: cuts, beard and that laid-back neighbourhood feel.",
-      hint: "Tap the video to play",
+        "Cuts, fades and beard work on video. Take a look at our Instagram and see how we work day to day.",
+      hint: "@edustyle4 on Instagram",
+      cta: "View on Instagram",
     },
     about: {
       eyebrow: "About us",
