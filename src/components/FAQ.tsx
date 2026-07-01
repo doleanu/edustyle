@@ -2,30 +2,26 @@
 
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
-import { faqs } from "@/lib/faq";
+import { content, type Lang } from "@/lib/content";
 import clsx from "clsx";
 
-export function FAQ() {
+export function FAQ({ lang }: { lang: Lang }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const t = content[lang].faq;
 
   return (
     <section id="preguntas" className="section bg-cream-100">
       <div className="container-tight">
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-xs font-semibold uppercase tracking-widest text-terracotta-500">
-            Preguntas frecuentes
+            {t.eyebrow}
           </span>
-          <h2 className="section-heading mt-3">
-            Preguntas frecuentes. Respuestas claras.
-          </h2>
-          <p className="section-subheading mx-auto">
-            Respuestas rápidas a lo que más nos preguntan. ¿No encuentras lo que
-            buscas? Escríbenos por WhatsApp.
-          </p>
+          <h2 className="section-heading mt-3">{t.title}</h2>
+          <p className="section-subheading mx-auto">{t.subtitle}</p>
         </div>
 
         <div className="mx-auto mt-12 max-w-3xl space-y-3">
-          {faqs.map((faq, index) => {
+          {t.items.map((faq, index) => {
             const isOpen = openIndex === index;
             const panelId = `faq-panel-${index}`;
             const buttonId = `faq-button-${index}`;

@@ -1,7 +1,9 @@
 import { Instagram, MapPin, Phone, Mail } from "lucide-react";
 import { business } from "@/lib/business";
+import { content, type Lang } from "@/lib/content";
 
-export function Footer() {
+export function Footer({ lang }: { lang: Lang }) {
+  const t = content[lang].footer;
   return (
     <footer className="bg-teal-900 text-cream-100">
       <div className="container-tight py-12 sm:py-16">
@@ -12,31 +14,19 @@ export function Footer() {
               Edu<span className="text-terracotta-400">Style</span>
             </h3>
             <p className="mt-3 text-sm leading-relaxed text-cream-100/80">
-              Barbería en Tenerife. Cortes, barba y afeitado clásico, con la
-              atención que te mereces.
+              {t.tagline}
             </p>
           </div>
 
           {/* Navigation */}
           <div>
             <h4 className="text-sm font-semibold uppercase tracking-wider text-cream-50">
-              Navegación
+              {t.navTitle}
             </h4>
             <ul className="mt-4 space-y-2 text-sm">
-              {[
-                { href: "#sobre", label: "Sobre nosotros" },
-                { href: "#servicios", label: "Servicios" },
-                { href: "#precios", label: "Precios" },
-                { href: "#opiniones", label: "Opiniones" },
-                { href: "#preguntas", label: "Preguntas" },
-                { href: "#ubicacion", label: "Ubicación" },
-                { href: "#contacto", label: "Contacto" },
-              ].map((l) => (
+              {t.nav.map((l) => (
                 <li key={l.href}>
-                  <a
-                    href={l.href}
-                    className="text-cream-100/80 hover:text-cream-50"
-                  >
+                  <a href={l.href} className="text-cream-100/80 hover:text-cream-50">
                     {l.label}
                   </a>
                 </li>
@@ -47,7 +37,7 @@ export function Footer() {
           {/* Contact */}
           <div>
             <h4 className="text-sm font-semibold uppercase tracking-wider text-cream-50">
-              Contacto
+              {t.contactTitle}
             </h4>
             <ul className="mt-4 space-y-3 text-sm">
               <li className="flex gap-3">
@@ -87,7 +77,7 @@ export function Footer() {
           {/* Social */}
           <div>
             <h4 className="text-sm font-semibold uppercase tracking-wider text-cream-50">
-              Síguenos
+              {t.followTitle}
             </h4>
             <div className="mt-4 flex gap-3">
               <a
@@ -114,15 +104,14 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-cream-100/10 pt-6 text-xs text-cream-100/60 sm:flex-row">
           <p>
-            &copy; {new Date().getFullYear()} {business.name}. Todos los derechos
-            reservados.
+            &copy; {new Date().getFullYear()} {business.name}. {t.rights}
           </p>
           <div className="flex gap-6">
             <a href="/politica-privacidad" className="hover:text-cream-50">
-              Política de privacidad
+              {t.privacy}
             </a>
             <a href="/aviso-legal" className="hover:text-cream-50">
-              Aviso legal
+              {t.legal}
             </a>
           </div>
         </div>

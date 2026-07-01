@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function PrivacyPolicy() {
   return (
     <>
-      <Header minimal />
+      <Header lang="es" minimal />
       <main className="pt-24 sm:pt-32">
         <article className="container-tight py-12 sm:py-16">
           <Link
@@ -123,7 +123,7 @@ export default function PrivacyPolicy() {
           </div>
         </article>
       </main>
-      <Footer />
+      <Footer lang="es" />
     </>
   );
 }

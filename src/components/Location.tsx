@@ -1,27 +1,27 @@
 import { MapPin, Phone, Clock, MessageCircle, Navigation } from "lucide-react";
 import { business } from "@/lib/business";
+import { content, type Lang } from "@/lib/content";
 
-export function Location() {
+export function Location({ lang }: { lang: Lang }) {
+  const t = content[lang].location;
+  const days = content[lang].days;
   return (
     <section id="ubicacion" className="section">
       <div className="container-tight">
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-xs font-semibold uppercase tracking-widest text-terracotta-500">
-            Cómo llegar
+            {t.eyebrow}
           </span>
-          <h2 className="section-heading mt-3">Ven a vernos</h2>
-          <p className="section-subheading mx-auto">
-            Estamos en Tenerife, fácil de encontrar. Pásate o reserva antes tu
-            cita para no esperar.
-          </p>
+          <h2 className="section-heading mt-3">{t.title}</h2>
+          <p className="section-subheading mx-auto">{t.subtitle}</p>
         </div>
 
         <div className="mt-12 grid gap-6 lg:grid-cols-5">
           {/* Map */}
           <div className="overflow-hidden rounded-3xl shadow-lg lg:col-span-3">
             <iframe
-              title="Ubicación de EduStyle en Google Maps"
-              src={`https://www.google.com/maps?q=${business.geo.latitude},${business.geo.longitude}&hl=es&z=16&output=embed`}
+              title="EduStyle · Google Maps"
+              src={`https://www.google.com/maps?q=${business.geo.latitude},${business.geo.longitude}&hl=${lang}&z=16&output=embed`}
               className="h-full min-h-[400px] w-full"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
@@ -34,7 +34,7 @@ export function Location() {
               <div className="flex gap-3">
                 <MapPin className="h-5 w-5 shrink-0 text-terracotta-500" />
                 <div>
-                  <h3 className="font-medium text-teal-900">Dirección</h3>
+                  <h3 className="font-medium text-teal-900">{t.addressLabel}</h3>
                   <p className="mt-1 text-sm text-teal-800/80">
                     {business.address.city}, {business.address.country}
                   </p>
@@ -46,7 +46,7 @@ export function Location() {
               <div className="flex gap-3">
                 <Phone className="h-5 w-5 shrink-0 text-terracotta-500" />
                 <div>
-                  <h3 className="font-medium text-teal-900">Teléfono</h3>
+                  <h3 className="font-medium text-teal-900">{t.phoneLabel}</h3>
                   <a
                     href={`tel:${business.phoneE164}`}
                     className="mt-1 block text-sm text-teal-800/80 hover:text-teal-700"
@@ -61,15 +61,13 @@ export function Location() {
               <div className="flex gap-3">
                 <Clock className="h-5 w-5 shrink-0 text-terracotta-500" />
                 <div className="flex-1">
-                  <h3 className="font-medium text-teal-900">Horario</h3>
+                  <h3 className="font-medium text-teal-900">{t.hoursLabel}</h3>
                   <ul className="mt-2 space-y-1 text-sm text-teal-800/80">
                     {business.hours.map((h) => (
                       <li key={h.day} className="flex justify-between gap-3">
-                        <span>{h.day}</span>
+                        <span>{days[h.day] ?? h.day}</span>
                         <span className="font-medium">
-                          {h.open && h.close
-                            ? `${h.open} - ${h.close}`
-                            : "Cerrado"}
+                          {h.open && h.close ? `${h.open} - ${h.close}` : t.closed}
                         </span>
                       </li>
                     ))}
@@ -86,14 +84,11 @@ export function Location() {
                 className="btn-accent flex-1"
               >
                 <MessageCircle className="h-4 w-4" />
-                WhatsApp
+                {t.whatsappBtn}
               </a>
-              <a
-                href={`tel:${business.phoneE164}`}
-                className="btn-primary flex-1"
-              >
+              <a href={`tel:${business.phoneE164}`} className="btn-primary flex-1">
                 <Phone className="h-4 w-4" />
-                Llamar
+                {t.callBtn}
               </a>
             </div>
 
@@ -104,7 +99,7 @@ export function Location() {
               className="btn-secondary"
             >
               <Navigation className="h-4 w-4" />
-              Abrir en Google Maps
+              {t.mapsBtn}
             </a>
           </div>
         </div>

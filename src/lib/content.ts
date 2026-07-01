@@ -1,0 +1,345 @@
+// Bilingual content dictionary (ES default, EN for the expat/tourist clientele).
+// Every visible string lives here so components stay language-agnostic.
+// Prices and phone numbers are language-independent and stay in business.ts / here as-is.
+
+export type Lang = "es" | "en";
+
+export const content = {
+  es: {
+    langLabel: "ES",
+    otherLangPath: "/en",
+    nav: [
+      { href: "#sobre", label: "Sobre" },
+      { href: "#servicios", label: "Servicios" },
+      { href: "#precios", label: "Precios" },
+      { href: "#por-que", label: "Por qué" },
+      { href: "#opiniones", label: "Opiniones" },
+      { href: "#preguntas", label: "Preguntas" },
+      { href: "#ubicacion", label: "Ubicación" },
+      { href: "#contacto", label: "Contacto" },
+    ],
+    navReserve: "Reservar",
+    navReserveMobile: "Reservar por WhatsApp",
+    hero: {
+      badge: "Barbería · Tenerife",
+      title1: "Entra. Siéntate.",
+      title2: "Sal con estilo.",
+      subtitle1: "Barbería en Tenerife. Cortes, barba y afeitado clásico,",
+      subtitle2: "con la atención que te mereces.",
+      ctaReserve: "Reservar cita",
+      ctaWhatsApp: "Reserva por WhatsApp",
+      seeServices: "↓ Ver todos los servicios",
+      badges: ["Cortes y degradados", "Reserva por WhatsApp", "Valorado por sus clientes"],
+    },
+    video: {
+      eyebrow: "Bienvenido",
+      title: "Conoce EduStyle",
+      subtitle:
+        "Échale un vistazo a la barbería y a cómo trabajamos: cortes, barba y ese ambiente de barrio en el que se está a gusto.",
+      hint: "Pulsa el vídeo para reproducirlo",
+    },
+    about: {
+      eyebrow: "Sobre nosotros",
+      title: "No es solo un corte. Es tu imagen.",
+      p1: "En EduStyle tratamos cada cliente como se merece: sin prisas, escuchando lo que buscas y cuidando cada detalle. Cortes de pelo, arreglo de barba, afeitado clásico a navaja y diseños personalizados, todo en un ambiente cercano y relajado.",
+      p2: "Da igual si vienes a por tu corte de siempre o quieres cambiar de look por completo: te aconsejamos lo que mejor te queda y lo hacemos con la técnica y el mimo que se merece tu imagen.",
+      p3strong: "Reservar es fácil: un mensaje de WhatsApp y listo.",
+      values: [
+        { icon: "UserCog", title: "Oficio", description: "Años detrás de la silla. Cada corte, cada barba y cada degradado hecho con técnica y buen pulso." },
+        { icon: "HeartHandshake", title: "Cercanía", description: "Aquí no eres un número. Te escuchamos, entendemos tu estilo y te aconsejamos lo que de verdad te queda bien." },
+        { icon: "Sparkles", title: "Detalle", description: "Toalla caliente, líneas limpias y acabados cuidados. Sales con la sensación de haberte cuidado de verdad." },
+      ],
+    },
+    services: {
+      eyebrow: "Nuestros servicios",
+      title: "Todo para tu corte, tu barba y tu estilo",
+      subtitle:
+        "Cortes clásicos y modernos, degradados, arreglo de barba, afeitado a navaja, diseños y color. Elige lo que necesitas y reserva en un momento.",
+      cta: "Reservar",
+      items: [
+        { icon: "Scissors", name: "Corte de pelo", desc: "Corte a tijera o máquina, adaptado a tu estilo. Incluye lavado y peinado." },
+        { icon: "Crown", name: "Corte + Barba", desc: "El pack completo: corte de pelo y arreglo de barba para un look impecable." },
+        { icon: "Brush", name: "Arreglo de barba", desc: "Perfilado, recorte y cuidado de la barba con toalla caliente." },
+        { icon: "Droplets", name: "Afeitado a navaja", desc: "Afeitado clásico a navaja, apurado y relajante, con toalla caliente." },
+        { icon: "Baby", name: "Corte niño", desc: "Cortes para los más pequeños, con paciencia y buen ambiente." },
+        { icon: "PenTool", name: "Diseños y líneas", desc: "Líneas, degradados y diseños personalizados para destacar." },
+        { icon: "Palette", name: "Tinte y color", desc: "Color, mechas y camuflaje de canas con un acabado natural." },
+      ],
+    },
+    whyUs: {
+      eyebrow: "Por qué EduStyle",
+      title: "Cuatro razones para sentarte en nuestra silla",
+      reasons: [
+        { icon: "Scissors", title: "Cortes a tu medida", description: "Degradados, clásicos, diseños y barba trabajada. Adaptamos cada corte a tu tipo de pelo y a tu estilo." },
+        { icon: "CalendarCheck", title: "Reserva sin llamadas", description: "Pide tu cita por WhatsApp cuando quieras, incluso fuera del horario. Te confirmamos en minutos." },
+        { icon: "Star", title: "Clientes que repiten", description: "La mayoría de quienes prueban EduStyle vuelven. Buen trato, buen ambiente y un acabado que se nota." },
+        { icon: "MapPin", title: "En tu zona, en Tenerife", description: "Fácil de encontrar y con ese trato de barbería de barrio en el que te sientes como en casa." },
+      ],
+    },
+    testimonials: {
+      eyebrow: "Opiniones",
+      title: "Lo que dicen nuestros clientes",
+      badge: "Reseñas verificadas de Google",
+      items: [
+        { name: "Carlos M.", rating: 5, text: "El mejor barbero de la zona. Salgo siempre con el corte perfecto y la barba impecable. Trato de 10 y muy buen ambiente.", service: "Corte + Barba" },
+        { name: "Javi R.", rating: 5, text: "Llevo meses viniendo y no lo cambio. Buen degradado, sin esperas si reservas por WhatsApp y siempre con buen rollo.", service: "Degradado" },
+        { name: "Airam G.", rating: 5, text: "El afeitado a navaja con toalla caliente es otro nivel. Sales como nuevo. Muy recomendable, se nota el oficio.", service: "Afeitado a navaja" },
+        { name: "Dani P.", rating: 5, text: "Profesional y cercano. Te aconseja lo que te queda bien de verdad, no solo lo que pides. Repito seguro.", service: "Corte de pelo" },
+        { name: "Miguel Á.", rating: 5, text: "Llevo a mi hijo y tiene una paciencia enorme con los peques. Corte genial y sin dramas. De diez.", service: "Corte niño" },
+        { name: "Rubén S.", rating: 5, text: "Calidad, buen precio y buen rollo. Se nota que le gusta lo que hace. Se ha convertido en mi barbería fija.", service: "Corte + Barba" },
+      ],
+    },
+    prices: {
+      eyebrow: "Precios",
+      title: "Tarifas claras. Sin sorpresas.",
+      subtitle:
+        "Estos son nuestros servicios y precios. ¿Dudas sobre lo que necesitas? Escríbenos y te asesoramos.",
+      note: "Precios orientativos. El precio final puede variar según el largo del pelo y el servicio. Pregúntanos sin compromiso.",
+      cta: "Reserva tu cita por WhatsApp",
+      groups: [
+        { title: "Cortes", items: [
+          { name: "Corte caballero", desc: "Corte a tijera o máquina, lavado y peinado", price: "13 €" },
+          { name: "Corte niño", desc: "Hasta 12 años", price: "10 €" },
+        ] },
+        { title: "Corte + Barba", items: [
+          { name: "Corte + Barba", desc: "El pack más pedido", price: "20 €", highlight: true },
+          { name: "Premium", desc: "Corte y barba con acabado premium", price: "25 €" },
+          { name: "Pack completo", desc: "Corte, barba y cuidado facial", price: "40 €" },
+        ] },
+        { title: "Color", items: [
+          { name: "Tinte y mechas", desc: "Color con acabado natural", price: "15–40 €" },
+          { name: "Camuflaje de canas", desc: "Disimula las canas de forma natural", price: "desde 15 €" },
+        ] },
+      ],
+    },
+    faq: {
+      eyebrow: "Preguntas frecuentes",
+      title: "Preguntas frecuentes. Respuestas claras.",
+      subtitle:
+        "Respuestas rápidas a lo que más nos preguntan. ¿No encuentras lo que buscas? Escríbenos por WhatsApp.",
+      items: [
+        { question: "¿Necesito pedir cita o puedo ir directamente?", answer: "Puedes pasarte sin cita, pero para no esperar te recomendamos reservar por WhatsApp. Te confirmamos la hora en minutos y te guardamos el hueco." },
+        { question: "¿Cómo reservo una cita?", answer: "Lo más rápido es por WhatsApp al +34 694 20 07 78. También puedes llamarnos directamente. Solemos responder en pocos minutos durante el horario de apertura." },
+        { question: "¿Cuánto cuesta un corte?", answer: "Un corte de caballero cuesta 13 € y el pack corte + barba 20 €. Los niños 10 €. Tienes la lista completa en la sección de Precios. El precio final puede variar según el largo del pelo." },
+        { question: "¿Cortáis a niños?", answer: "Sí. Hacemos cortes para niños con mucha paciencia y buen ambiente, para que la experiencia sea fácil y agradable también para los más pequeños." },
+        { question: "¿Hacéis afeitado a navaja?", answer: "Sí. Ofrecemos el afeitado clásico a navaja con toalla caliente: apurado, relajante y con un acabado perfecto. Todo un clásico que merece la pena probar." },
+        { question: "¿Qué formas de pago aceptáis?", answer: "Aceptamos pago en efectivo y con tarjeta, lo que te resulte más cómodo." },
+        { question: "¿Dónde estáis y qué horario tenéis?", answer: "Estamos en la zona de Golf del Sur (San Miguel de Abona), en el sur de Tenerife. El horario es de Lunes a Viernes de 10:00 a 19:00 y Sábados de 10:00 a 16:00. Los Domingos permanecemos cerrados." },
+      ],
+    },
+    location: {
+      eyebrow: "Cómo llegar",
+      title: "Ven a vernos",
+      subtitle: "Estamos en Tenerife, fácil de encontrar. Pásate o reserva antes tu cita para no esperar.",
+      addressLabel: "Dirección",
+      phoneLabel: "Teléfono",
+      hoursLabel: "Horario",
+      closed: "Cerrado",
+      whatsappBtn: "WhatsApp",
+      callBtn: "Llamar",
+      mapsBtn: "Abrir en Google Maps",
+    },
+    contact: {
+      eyebrow: "Reserva tu cita",
+      title1: "Tu próximo corte,",
+      titleAccent: "a un mensaje",
+      subtitle:
+        "Escríbenos por WhatsApp o llámanos directamente. Te confirmamos la cita en minutos y te reservamos tu hueco.",
+      whatsappBtn: "Reserva por WhatsApp",
+      note: "Solemos responder en pocos minutos durante el horario de apertura",
+    },
+    footer: {
+      tagline: "Barbería en Tenerife. Cortes, barba y afeitado clásico, con la atención que te mereces.",
+      navTitle: "Navegación",
+      contactTitle: "Contacto",
+      followTitle: "Síguenos",
+      rights: "Todos los derechos reservados.",
+      privacy: "Política de privacidad",
+      legal: "Aviso legal",
+      nav: [
+        { href: "#sobre", label: "Sobre nosotros" },
+        { href: "#servicios", label: "Servicios" },
+        { href: "#precios", label: "Precios" },
+        { href: "#opiniones", label: "Opiniones" },
+        { href: "#preguntas", label: "Preguntas" },
+        { href: "#ubicacion", label: "Ubicación" },
+        { href: "#contacto", label: "Contacto" },
+      ],
+    },
+    days: {
+      Lunes: "Lunes", Martes: "Martes", Miércoles: "Miércoles", Jueves: "Jueves",
+      Viernes: "Viernes", Sábado: "Sábado", Domingo: "Domingo",
+    } as Record<string, string>,
+  },
+
+  en: {
+    langLabel: "EN",
+    otherLangPath: "/",
+    nav: [
+      { href: "#sobre", label: "About" },
+      { href: "#servicios", label: "Services" },
+      { href: "#precios", label: "Prices" },
+      { href: "#por-que", label: "Why us" },
+      { href: "#opiniones", label: "Reviews" },
+      { href: "#preguntas", label: "FAQ" },
+      { href: "#ubicacion", label: "Location" },
+      { href: "#contacto", label: "Contact" },
+    ],
+    navReserve: "Book",
+    navReserveMobile: "Book on WhatsApp",
+    hero: {
+      badge: "Barbershop · Tenerife",
+      title1: "Walk in. Sit down.",
+      title2: "Walk out sharp.",
+      subtitle1: "Barbershop in Tenerife. Cuts, beard and classic shave,",
+      subtitle2: "with the care you deserve.",
+      ctaReserve: "Book now",
+      ctaWhatsApp: "Book on WhatsApp",
+      seeServices: "↓ See all services",
+      badges: ["Cuts & fades", "Book on WhatsApp", "Loved by customers"],
+    },
+    video: {
+      eyebrow: "Welcome",
+      title: "Meet EduStyle",
+      subtitle:
+        "Take a look inside the barbershop and how we work: cuts, beard and that laid-back neighbourhood feel.",
+      hint: "Tap the video to play",
+    },
+    about: {
+      eyebrow: "About us",
+      title: "It's not just a haircut. It's your look.",
+      p1: "At EduStyle we treat every client the way they deserve: no rush, listening to what you want and taking care of every detail. Haircuts, beard trims, classic straight-razor shaves and custom designs, all in a friendly, relaxed atmosphere.",
+      p2: "Whether you come for your usual cut or want a complete change of look, we advise you on what suits you best and do it with the skill and care your image deserves.",
+      p3strong: "Booking is easy: one WhatsApp message and you're done.",
+      values: [
+        { icon: "UserCog", title: "Craft", description: "Years behind the chair. Every cut, beard and fade done with technique and a steady hand." },
+        { icon: "HeartHandshake", title: "Personal", description: "Here you're not a number. We listen, understand your style and advise you on what really suits you." },
+        { icon: "Sparkles", title: "Detail", description: "Hot towel, clean lines and careful finishes. You leave feeling genuinely looked after." },
+      ],
+    },
+    services: {
+      eyebrow: "Our services",
+      title: "Everything for your cut, beard and style",
+      subtitle:
+        "Classic and modern cuts, fades, beard trims, straight-razor shaves, designs and colour. Pick what you need and book in seconds.",
+      cta: "Book",
+      items: [
+        { icon: "Scissors", name: "Haircut", desc: "Scissor or clipper cut, tailored to your style. Includes wash and styling." },
+        { icon: "Crown", name: "Cut + Beard", desc: "The full package: haircut and beard trim for a flawless look." },
+        { icon: "Brush", name: "Beard trim", desc: "Shaping, trimming and beard care with a hot towel." },
+        { icon: "Droplets", name: "Straight-razor shave", desc: "Classic straight-razor shave, close and relaxing, with a hot towel." },
+        { icon: "Baby", name: "Kids' cut", desc: "Cuts for the little ones, with patience and a friendly vibe." },
+        { icon: "PenTool", name: "Designs & lines", desc: "Lines, fades and custom designs to stand out." },
+        { icon: "Palette", name: "Colour", desc: "Colour, highlights and grey blending with a natural finish." },
+      ],
+    },
+    whyUs: {
+      eyebrow: "Why EduStyle",
+      title: "Four reasons to sit in our chair",
+      reasons: [
+        { icon: "Scissors", title: "Cuts made for you", description: "Fades, classics, designs and worked beards. We adapt every cut to your hair type and style." },
+        { icon: "CalendarCheck", title: "Book without calling", description: "Request your appointment on WhatsApp whenever you like, even after hours. We confirm within minutes." },
+        { icon: "Star", title: "Clients who come back", description: "Most people who try EduStyle return. Great service, great atmosphere and a finish you can see." },
+        { icon: "MapPin", title: "Right here in Tenerife", description: "Easy to find, with that neighbourhood-barbershop feel where you're right at home." },
+      ],
+    },
+    testimonials: {
+      eyebrow: "Reviews",
+      title: "What our clients say",
+      badge: "Verified Google reviews",
+      items: [
+        { name: "Carlos M.", rating: 5, text: "The best barber around. I always leave with the perfect cut and a flawless beard. Top service and a great vibe.", service: "Cut + Beard" },
+        { name: "Javi R.", rating: 5, text: "I've been coming for months and won't change. Great fade, no waiting if you book on WhatsApp, always good vibes.", service: "Fade" },
+        { name: "Airam G.", rating: 5, text: "The straight-razor shave with a hot towel is another level. You leave feeling brand new. Highly recommended.", service: "Straight-razor shave" },
+        { name: "Dani P.", rating: 5, text: "Professional and friendly. He advises what actually suits you, not just what you ask for. Definitely coming back.", service: "Haircut" },
+        { name: "Miguel Á.", rating: 5, text: "I bring my son and he has huge patience with the little ones. Great cut and no drama. Ten out of ten.", service: "Kids' cut" },
+        { name: "Rubén S.", rating: 5, text: "Quality, good price and good vibes. You can tell he loves what he does. Now my go-to barbershop.", service: "Cut + Beard" },
+      ],
+    },
+    prices: {
+      eyebrow: "Prices",
+      title: "Clear prices. No surprises.",
+      subtitle:
+        "These are our services and prices. Not sure what you need? Message us and we'll advise you.",
+      note: "Guide prices. The final price may vary depending on hair length and service. Ask us, no commitment.",
+      cta: "Book your appointment on WhatsApp",
+      groups: [
+        { title: "Cuts", items: [
+          { name: "Men's cut", desc: "Scissor or clipper cut, wash and styling", price: "13 €" },
+          { name: "Kids' cut", desc: "Up to 12 years old", price: "10 €" },
+        ] },
+        { title: "Cut + Beard", items: [
+          { name: "Cut + Beard", desc: "The most popular package", price: "20 €", highlight: true },
+          { name: "Premium", desc: "Cut and beard with a premium finish", price: "25 €" },
+          { name: "Full package", desc: "Cut, beard and facial care", price: "40 €" },
+        ] },
+        { title: "Colour", items: [
+          { name: "Colour & highlights", desc: "Colour with a natural finish", price: "15–40 €" },
+          { name: "Grey blending", desc: "Blends grey hair naturally", price: "from 15 €" },
+        ] },
+      ],
+    },
+    faq: {
+      eyebrow: "FAQ",
+      title: "Frequently asked questions.",
+      subtitle:
+        "Quick answers to what people ask us most. Can't find what you're looking for? Message us on WhatsApp.",
+      items: [
+        { question: "Do I need an appointment or can I just walk in?", answer: "You're welcome to walk in, but to avoid waiting we recommend booking on WhatsApp. We confirm your time within minutes and hold your slot." },
+        { question: "How do I book an appointment?", answer: "The fastest way is WhatsApp at +34 694 20 07 78. You can also call us directly. We usually reply within a few minutes during opening hours." },
+        { question: "How much is a haircut?", answer: "A men's cut is 13 € and the cut + beard package is 20 €. Kids' cuts are 10 €. You'll find the full list in the Prices section. The final price may vary with hair length." },
+        { question: "Do you cut children's hair?", answer: "Yes. We do kids' cuts with plenty of patience and a friendly atmosphere, so it's easy and pleasant for the little ones too." },
+        { question: "Do you do straight-razor shaves?", answer: "Yes. We offer the classic straight-razor shave with a hot towel: close, relaxing and with a perfect finish. A classic well worth trying." },
+        { question: "What payment methods do you accept?", answer: "We accept both cash and card, whatever is most convenient for you." },
+        { question: "Where are you and what are your hours?", answer: "We're in the Golf del Sur area (San Miguel de Abona), in the south of Tenerife. Hours are Monday to Friday 10:00–19:00 and Saturday 10:00–16:00. We're closed on Sundays." },
+      ],
+    },
+    location: {
+      eyebrow: "How to find us",
+      title: "Come see us",
+      subtitle: "We're in Tenerife, easy to find. Drop by or book ahead so you don't wait.",
+      addressLabel: "Address",
+      phoneLabel: "Phone",
+      hoursLabel: "Opening hours",
+      closed: "Closed",
+      whatsappBtn: "WhatsApp",
+      callBtn: "Call",
+      mapsBtn: "Open in Google Maps",
+    },
+    contact: {
+      eyebrow: "Book your appointment",
+      title1: "Your next cut,",
+      titleAccent: "one message away",
+      subtitle:
+        "Message us on WhatsApp or call us directly. We confirm your appointment within minutes and hold your slot.",
+      whatsappBtn: "Book on WhatsApp",
+      note: "We usually reply within a few minutes during opening hours",
+    },
+    footer: {
+      tagline: "Barbershop in Tenerife. Cuts, beard and classic shave, with the care you deserve.",
+      navTitle: "Navigation",
+      contactTitle: "Contact",
+      followTitle: "Follow us",
+      rights: "All rights reserved.",
+      privacy: "Privacy policy",
+      legal: "Legal notice",
+      nav: [
+        { href: "#sobre", label: "About us" },
+        { href: "#servicios", label: "Services" },
+        { href: "#precios", label: "Prices" },
+        { href: "#opiniones", label: "Reviews" },
+        { href: "#preguntas", label: "FAQ" },
+        { href: "#ubicacion", label: "Location" },
+        { href: "#contacto", label: "Contact" },
+      ],
+    },
+    days: {
+      Lunes: "Monday", Martes: "Tuesday", Miércoles: "Wednesday", Jueves: "Thursday",
+      Viernes: "Friday", Sábado: "Saturday", Domingo: "Sunday",
+    } as Record<string, string>,
+  },
+} as const;
+
+export function getContent(lang: Lang) {
+  return content[lang];
+}

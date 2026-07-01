@@ -1,7 +1,11 @@
 import { ArrowRight, MessageCircle, Scissors, CalendarCheck, Star } from "lucide-react";
 import { business } from "@/lib/business";
+import { content, type Lang } from "@/lib/content";
 
-export function Hero() {
+const badgeIcons = [Scissors, CalendarCheck, Star];
+
+export function Hero({ lang }: { lang: Lang }) {
+  const t = content[lang].hero;
   return (
     <section
       id="top"
@@ -25,22 +29,22 @@ export function Hero() {
         <div className="mx-auto max-w-3xl text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-teal-700/20 bg-cream-50/60 px-4 py-1.5 text-xs font-medium uppercase tracking-wider text-teal-700 backdrop-blur">
             <span className="h-2 w-2 rounded-full bg-terracotta-500" />
-            Barbería · Tenerife
+            {t.badge}
           </div>
 
           <h1 className="mt-6 font-serif text-5xl font-medium uppercase leading-[0.95] tracking-tight text-teal-900 sm:text-6xl lg:text-7xl">
-            Entra. Siéntate.<br />
-            <span className="text-terracotta-500">Sal con estilo.</span>
+            {t.title1}<br />
+            <span className="text-terracotta-500">{t.title2}</span>
           </h1>
 
           <p className="mt-6 text-lg text-teal-800/80 sm:text-xl">
-            Barbería en Tenerife. Cortes, barba y afeitado clásico,<br className="hidden sm:block" />
-            con la atención que te mereces.
+            {t.subtitle1}<br className="hidden sm:block" />
+            {" "}{t.subtitle2}
           </p>
 
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a href="#contacto" className="btn-primary w-full sm:w-auto">
-              Reservar cita
+              {t.ctaReserve}
               <ArrowRight className="h-4 w-4" />
             </a>
             <a
@@ -50,7 +54,7 @@ export function Hero() {
               className="btn-accent w-full sm:w-auto"
             >
               <MessageCircle className="h-4 w-4" />
-              Reserva por WhatsApp
+              {t.ctaWhatsApp}
             </a>
           </div>
 
@@ -58,25 +62,24 @@ export function Hero() {
             href="#servicios"
             className="mt-4 inline-block text-sm text-teal-700/80 underline-offset-4 hover:underline"
           >
-            ↓ Ver todos los servicios
+            {t.seeServices}
           </a>
         </div>
 
         {/* Trust badges */}
         <div className="mx-auto mt-16 grid max-w-3xl grid-cols-1 gap-4 sm:grid-cols-3">
-          {[
-            { icon: Scissors, label: "Cortes y degradados" },
-            { icon: CalendarCheck, label: "Reserva por WhatsApp" },
-            { icon: Star, label: "Valorado por sus clientes" },
-          ].map(({ icon: Icon, label }) => (
-            <div
-              key={label}
-              className="flex items-center justify-center gap-3 rounded-2xl border border-teal-700/10 bg-cream-50/70 px-4 py-3 text-sm font-medium text-teal-800 backdrop-blur"
-            >
-              <Icon className="h-5 w-5 text-terracotta-500" />
-              {label}
-            </div>
-          ))}
+          {t.badges.map((label, i) => {
+            const Icon = badgeIcons[i];
+            return (
+              <div
+                key={label}
+                className="flex items-center justify-center gap-3 rounded-2xl border border-teal-700/10 bg-cream-50/70 px-4 py-3 text-sm font-medium text-teal-800 backdrop-blur"
+              >
+                <Icon className="h-5 w-5 text-terracotta-500" />
+                {label}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
