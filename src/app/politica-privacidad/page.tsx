@@ -7,7 +7,7 @@ import { business } from "@/lib/business";
 export const metadata: Metadata = {
   title: "Política de privacidad",
   description:
-    "Política de privacidad de EduStyle: cómo recogemos, usamos y protegemos tus datos personales.",
+    "Política de privacidad de Eduardo Style: cómo recogemos, usamos y protegemos tus datos personales.",
   robots: { index: true, follow: true },
 };
 

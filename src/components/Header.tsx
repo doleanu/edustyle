@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Menu, X, MessageCircle } from "lucide-react";
 import { business } from "@/lib/business";
 import { content, type Lang } from "@/lib/content";
+import { Logo } from "@/components/Logo";
 import clsx from "clsx";
 
 function LangSwitch({ lang }: { lang: Lang }) {
@@ -63,12 +64,9 @@ export function Header({ lang, minimal = false }: { lang: Lang; minimal?: boolea
           href={home}
           onClick={handleLogoClick}
           className="flex items-center"
-          aria-label="EduStyle"
+          aria-label="Eduardo Style"
         >
-          {/* TODO(edu): sustituir por el logo real cuando esté disponible */}
-          <span className="font-serif text-2xl font-medium uppercase tracking-wider text-teal-900 sm:text-3xl">
-            Edu<span className="text-terracotta-500">Style</span>
-          </span>
+          <Logo />
         </a>
 
         {!minimal && (

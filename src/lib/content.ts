@@ -42,7 +42,7 @@ export const content = {
     about: {
       eyebrow: "Sobre nosotros",
       title: "No es solo un corte. Es tu imagen.",
-      p1: "En EduStyle tratamos cada cliente como se merece: sin prisas, escuchando lo que buscas y cuidando cada detalle. Cortes de pelo, arreglo de barba, afeitado clásico a navaja y diseños personalizados, todo en un ambiente cercano y relajado.",
+      p1: "En Eduardo Style tratamos cada cliente como se merece: sin prisas, escuchando lo que buscas y cuidando cada detalle. Cortes de pelo, arreglo de barba, afeitado clásico a navaja y diseños personalizados, todo en un ambiente cercano y relajado.",
       p2: "Da igual si vienes a por tu corte de siempre o quieres cambiar de look por completo: te aconsejamos lo que mejor te queda y lo hacemos con la técnica y el mimo que se merece tu imagen.",
       p3strong: "Reservar es fácil: un mensaje de WhatsApp y listo.",
       values: [
@@ -68,12 +68,12 @@ export const content = {
       ],
     },
     whyUs: {
-      eyebrow: "Por qué EduStyle",
+      eyebrow: "Por qué Eduardo Style",
       title: "Cuatro razones para sentarte en nuestra silla",
       reasons: [
         { icon: "Scissors", title: "Cortes a tu medida", description: "Degradados, clásicos, diseños y barba trabajada. Adaptamos cada corte a tu tipo de pelo y a tu estilo." },
         { icon: "CalendarCheck", title: "Reserva sin llamadas", description: "Pide tu cita por WhatsApp cuando quieras, incluso fuera del horario. Te confirmamos en minutos." },
-        { icon: "Star", title: "Clientes que repiten", description: "La mayoría de quienes prueban EduStyle vuelven. Buen trato, buen ambiente y un acabado que se nota." },
+        { icon: "Star", title: "Clientes que repiten", description: "La mayoría de quienes prueban Eduardo Style vuelven. Buen trato, buen ambiente y un acabado que se nota." },
         { icon: "MapPin", title: "En tu zona, en Tenerife", description: "Fácil de encontrar y con ese trato de barbería de barrio en el que te sientes como en casa." },
       ],
     },
@@ -210,7 +210,7 @@ export const content = {
     about: {
       eyebrow: "About us",
       title: "It's not just a haircut. It's your look.",
-      p1: "At EduStyle we treat every client the way they deserve: no rush, listening to what you want and taking care of every detail. Haircuts, beard trims, classic straight-razor shaves and custom designs, all in a friendly, relaxed atmosphere.",
+      p1: "At Eduardo Style we treat every client the way they deserve: no rush, listening to what you want and taking care of every detail. Haircuts, beard trims, classic straight-razor shaves and custom designs, all in a friendly, relaxed atmosphere.",
       p2: "Whether you come for your usual cut or want a complete change of look, we advise you on what suits you best and do it with the skill and care your image deserves.",
       p3strong: "Booking is easy: one WhatsApp message and you're done.",
       values: [
@@ -236,12 +236,12 @@ export const content = {
       ],
     },
     whyUs: {
-      eyebrow: "Why EduStyle",
+      eyebrow: "Why Eduardo Style",
       title: "Four reasons to sit in our chair",
       reasons: [
         { icon: "Scissors", title: "Cuts made for you", description: "Fades, classics, designs and worked beards. We adapt every cut to your hair type and style." },
         { icon: "CalendarCheck", title: "Book without calling", description: "Request your appointment on WhatsApp whenever you like, even after hours. We confirm within minutes." },
-        { icon: "Star", title: "Clients who come back", description: "Most people who try EduStyle return. Great service, great atmosphere and a finish you can see." },
+        { icon: "Star", title: "Clients who come back", description: "Most people who try Eduardo Style return. Great service, great atmosphere and a finish you can see." },
         { icon: "MapPin", title: "Right here in Tenerife", description: "Easy to find, with that neighbourhood-barbershop feel where you're right at home." },
       ],
     },

@@ -4,18 +4,18 @@
 // ⚠️ PLACEHOLDER DATA flagged with TODO(edu) — confirm with the client before launch.
 
 export const business = {
-  name: "EduStyle",
-  legalName: "EduStyle Barbería",
+  name: "Eduardo Style",
+  legalName: "Eduardo Style Barbería",
   description:
     "Barbería en Tenerife. Cortes de pelo, arreglo de barba y afeitado clásico a navaja. Reserva fácil por WhatsApp.",
   longDescription:
-    "En EduStyle cuidamos tu imagen como se merece. Cortes de pelo, arreglo de barba, afeitado clásico a navaja y diseños personalizados, en un ambiente cercano y relajado en Tenerife. Reserva tu cita por WhatsApp en segundos.",
+    "En Eduardo Style cuidamos tu imagen como se merece. Cortes de pelo, arreglo de barba, afeitado clásico a navaja y diseños personalizados, en un ambiente cercano y relajado en Tenerife. Reserva tu cita por WhatsApp en segundos.",
   email: "reservas.edustyle@gmail.com", // TODO(edu): confirmar email real (o quitar)
   phone: "+34 694 20 07 78",
   phoneE164: "+34694200778",
   whatsapp: {
     raw: "34694200778",
-    link: "https://wa.me/34694200778?text=%C2%A1Hola%21%20Me%20gustar%C3%ADa%20reservar%20una%20cita%20en%20EduStyle.",
+    link: "https://wa.me/34694200778?text=%C2%A1Hola%21%20Me%20gustar%C3%ADa%20reservar%20una%20cita%20en%20Eduardo%20Style.",
   },
   address: {
     street: "TODO(edu): calle y número", // exact street still unconfirmed

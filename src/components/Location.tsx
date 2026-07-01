@@ -20,7 +20,7 @@ export function Location({ lang }: { lang: Lang }) {
           {/* Map */}
           <div className="overflow-hidden rounded-3xl shadow-lg lg:col-span-3">
             <iframe
-              title="EduStyle · Google Maps"
+              title="Eduardo Style · Google Maps"
               src={`https://www.google.com/maps?q=${business.geo.latitude},${business.geo.longitude}&hl=${lang}&z=16&output=embed`}
               className="h-full min-h-[400px] w-full"
               loading="lazy"

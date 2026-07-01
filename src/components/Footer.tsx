@@ -1,6 +1,7 @@
 import { Instagram, MapPin, Phone, Mail } from "lucide-react";
 import { business } from "@/lib/business";
 import { content, type Lang } from "@/lib/content";
+import { Logo } from "@/components/Logo";
 
 export function Footer({ lang }: { lang: Lang }) {
   const t = content[lang].footer;
@@ -10,9 +11,7 @@ export function Footer({ lang }: { lang: Lang }) {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div>
-            <h3 className="font-serif text-2xl uppercase tracking-wide text-cream-50">
-              Edu<span className="text-terracotta-400">Style</span>
-            </h3>
+            <Logo tone="light" />
             <p className="mt-3 text-sm leading-relaxed text-cream-100/80">
               {t.tagline}
             </p>
@@ -84,7 +83,7 @@ export function Footer({ lang }: { lang: Lang }) {
                 href={business.social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Instagram EduStyle"
+                aria-label="Instagram Eduardo Style"
                 className="flex h-10 w-10 items-center justify-center rounded-full bg-cream-100/10 transition-colors hover:bg-terracotta-500"
               >
                 <Instagram className="h-5 w-5" />
@@ -93,7 +92,7 @@ export function Footer({ lang }: { lang: Lang }) {
                 href={business.social.googleMaps}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Google Maps EduStyle"
+                aria-label="Google Maps Eduardo Style"
                 className="flex h-10 w-10 items-center justify-center rounded-full bg-cream-100/10 transition-colors hover:bg-terracotta-500"
               >
                 <MapPin className="h-5 w-5" />

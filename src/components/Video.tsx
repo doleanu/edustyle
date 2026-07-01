@@ -37,7 +37,7 @@ export function Video({ lang }: { lang: Lang }) {
               {REEL_SHORTCODE ? (
                 <iframe
                   src={`https://www.instagram.com/reel/${REEL_SHORTCODE}/embed`}
-                  title="EduStyle en Instagram"
+                  title="Eduardo Style en Instagram"
                   className="absolute inset-0 h-full w-full"
                   loading="lazy"
                   allowFullScreen

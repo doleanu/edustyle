@@ -6,7 +6,7 @@ import { business } from "@/lib/business";
 
 export const metadata: Metadata = {
   title: "Aviso legal",
-  description: "Aviso legal y condiciones de uso del sitio web de EduStyle.",
+  description: "Aviso legal y condiciones de uso del sitio web de Eduardo Style.",
   robots: { index: true, follow: true },
 };
 
@@ -51,7 +51,7 @@ export default function LegalNotice() {
               </h2>
               <p className="mt-3 leading-relaxed">
                 Este sitio tiene carácter informativo sobre los servicios de
-                barbería de EduStyle (cortes de pelo, arreglo de barba, afeitado
+                barbería de Eduardo Style (cortes de pelo, arreglo de barba, afeitado
                 y otros servicios) y facilita la reserva de citas por WhatsApp o
                 teléfono.
               </p>

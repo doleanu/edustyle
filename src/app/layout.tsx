@@ -18,11 +18,11 @@ const oswald = Oswald({
 export const metadata: Metadata = {
   metadataBase: new URL(business.siteUrl),
   title: {
-    default: "EduStyle – Barbería en Tenerife | Cortes, Barba y Afeitado",
-    template: "%s | EduStyle",
+    default: "Eduardo Style – Barbería en Tenerife | Cortes, Barba y Afeitado",
+    template: "%s | Eduardo Style",
   },
   description:
-    "Barbería EduStyle en Tenerife: cortes de pelo, arreglo de barba, afeitado clásico a navaja y diseños. Reserva por WhatsApp: +34 694 20 07 78.",
+    "Barbería Eduardo Style en Tenerife: cortes de pelo, arreglo de barba, afeitado clásico a navaja y diseños. Reserva por WhatsApp: +34 694 20 07 78.",
   keywords: [
     "barbería Tenerife",
     "barbero Tenerife",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     "degradados",
     "corte hombre",
     "corte niño",
-    "EduStyle",
+    "Eduardo Style",
     "barber shop Tenerife",
   ],
   authors: [{ name: business.name }],
@@ -47,13 +47,13 @@ export const metadata: Metadata = {
     locale: "es_ES",
     url: business.siteUrl,
     siteName: business.name,
-    title: "EduStyle – Barbería en Tenerife | Cortes, Barba y Afeitado",
+    title: "Eduardo Style – Barbería en Tenerife | Cortes, Barba y Afeitado",
     description: business.description,
     // og image auto-generated from src/app/opengraph-image.png
   },
   twitter: {
     card: "summary_large_image",
-    title: "EduStyle – Barbería en Tenerife",
+    title: "Eduardo Style – Barbería en Tenerife",
     description: business.description,
   },
   robots: {

@@ -53,7 +53,7 @@ export function JsonLd() {
     ),
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: "Servicios EduStyle",
+      name: "Servicios Eduardo Style",
       itemListElement: services.map((s) => ({
         "@type": "Offer",
         itemOffered: {
