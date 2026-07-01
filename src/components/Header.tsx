@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { Menu, X, MessageCircle } from "lucide-react";
+import Image from "next/image";
 import { business } from "@/lib/business";
 import { content, type Lang } from "@/lib/content";
-import { Logo } from "@/components/Logo";
 import clsx from "clsx";
 
 function LangSwitch({ lang }: { lang: Lang }) {
@@ -66,7 +66,14 @@ export function Header({ lang, minimal = false }: { lang: Lang; minimal?: boolea
           className="flex items-center"
           aria-label="Eduardo Style"
         >
-          <Logo />
+          <Image
+            src="/logo-dark.png"
+            alt="Eduardo Style Barber Shop"
+            width={752}
+            height={667}
+            priority
+            className="h-16 w-auto sm:h-20"
+          />
         </a>
 
         {!minimal && (

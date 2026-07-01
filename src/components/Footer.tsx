@@ -1,7 +1,7 @@
+import Image from "next/image";
 import { Instagram, MapPin, Phone, Mail } from "lucide-react";
 import { business } from "@/lib/business";
 import { content, type Lang } from "@/lib/content";
-import { Logo } from "@/components/Logo";
 
 export function Footer({ lang }: { lang: Lang }) {
   const t = content[lang].footer;
@@ -11,7 +11,13 @@ export function Footer({ lang }: { lang: Lang }) {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div>
-            <Logo tone="light" />
+            <Image
+              src="/logo-light.png"
+              alt="Eduardo Style Barber Shop"
+              width={752}
+              height={667}
+              className="h-24 w-auto"
+            />
             <p className="mt-3 text-sm leading-relaxed text-cream-100/80">
               {t.tagline}
             </p>
