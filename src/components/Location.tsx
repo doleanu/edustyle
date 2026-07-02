@@ -36,7 +36,9 @@ export function Location({ lang }: { lang: Lang }) {
                 <div>
                   <h3 className="font-medium text-teal-900">{t.addressLabel}</h3>
                   <p className="mt-1 text-sm text-teal-800/80">
-                    {business.address.city}, {business.address.country}
+                    {business.address.street}
+                    <br />
+                    {business.address.postalCode} {business.address.city}
                   </p>
                 </div>
               </div>

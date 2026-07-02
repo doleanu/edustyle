@@ -18,13 +18,13 @@ export const business = {
     link: "https://wa.me/34694200778?text=%C2%A1Hola%21%20Me%20gustar%C3%ADa%20reservar%20una%20cita%20en%20Eduardo%20Style.",
   },
   address: {
-    street: "TODO(edu): calle y número", // exact street still unconfirmed
-    city: "Golf del Sur",
-    region: "San Miguel de Abona, Tenerife",
-    postalCode: "", // TODO(edu)
+    street: "Calle La Marina, Local 1",
+    city: "Los Abrigos",
+    region: "Santa Cruz de Tenerife",
+    postalCode: "38618",
     country: "España",
     countryCode: "ES",
-    full: "Golf del Sur, San Miguel de Abona, Tenerife",
+    full: "Calle La Marina, Local 1, 38618 Los Abrigos, Santa Cruz de Tenerife",
   },
   geo: {
     // Coordenadas reales del pin de Google Maps (sur de Tenerife).

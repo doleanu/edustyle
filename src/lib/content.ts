@@ -95,21 +95,31 @@ export const content = {
       title: "Tarifas claras. Sin sorpresas.",
       subtitle:
         "Estos son nuestros servicios y precios. ¿Dudas sobre lo que necesitas? Escríbenos y te asesoramos.",
-      note: "Precios orientativos. El precio final puede variar según el largo del pelo y el servicio. Pregúntanos sin compromiso.",
+      note: "Los precios pueden variar según el largo y el tipo de pelo. ¿Dudas sobre lo que necesitas? Pregúntanos sin compromiso.",
       cta: "Reserva tu cita por WhatsApp",
       groups: [
         { title: "Cortes", items: [
-          { name: "Corte caballero", desc: "Corte a tijera o máquina, lavado y peinado", price: "13 €" },
-          { name: "Corte niño", desc: "Hasta 12 años", price: "10 €" },
+          { name: "Corte de niño", desc: "Hasta 8 años", price: "10 €" },
+          { name: "Corte de caballero", desc: "A tijera o máquina", price: "13 €" },
+          { name: "Corte + lavado", desc: "Con lavado y peinado", price: "15 €" },
         ] },
-        { title: "Corte + Barba", items: [
-          { name: "Corte + Barba", desc: "El pack más pedido", price: "20 €", highlight: true },
-          { name: "Premium", desc: "Corte y barba con acabado premium", price: "25 €" },
-          { name: "Pack completo", desc: "Corte, barba y cuidado facial", price: "40 €" },
+        { title: "Corte y barba", items: [
+          { name: "Barba a máquina", desc: "Repaso rápido", price: "5 €" },
+          { name: "Barba: afeitado o perfilado", desc: "Con toalla caliente", price: "10 €" },
+          { name: "Corte + barba", desc: "El más pedido", price: "20 €", highlight: true },
+          { name: "Corte + barba + lavado", desc: "Con lavado incluido", price: "23 €" },
+          { name: "Corte + barba premium", desc: "Con color, mechas o extras", price: "25 €" },
+          { name: "Pack completo", desc: "Corte, barba, cera nariz y orejas, lavado, limpieza facial y masaje", price: "40 €" },
         ] },
-        { title: "Color", items: [
-          { name: "Tinte y mechas", desc: "Color con acabado natural", price: "15–40 €" },
-          { name: "Camuflaje de canas", desc: "Disimula las canas de forma natural", price: "desde 15 €" },
+        { title: "Color, mechas y extras", items: [
+          { name: "Color de barba", desc: "", price: "15 €" },
+          { name: "Color de cabello", desc: "", price: "20 €" },
+          { name: "Mechas", desc: "", price: "25 €" },
+          { name: "Mechas + color", desc: "", price: "35 €" },
+          { name: "Decoloración + matiz", desc: "", price: "30 €" },
+          { name: "Doble decoloración + matiz", desc: "", price: "40 €" },
+          { name: "Cera nariz y orejas", desc: "", price: "5 €" },
+          { name: "Lavado", desc: "", price: "3 €" },
         ] },
       ],
     },
@@ -125,7 +135,7 @@ export const content = {
         { question: "¿Cortáis a niños?", answer: "Sí. Hacemos cortes para niños con mucha paciencia y buen ambiente, para que la experiencia sea fácil y agradable también para los más pequeños." },
         { question: "¿Hacéis afeitado a navaja?", answer: "Sí. Ofrecemos el afeitado clásico a navaja con toalla caliente: apurado, relajante y con un acabado perfecto. Todo un clásico que merece la pena probar." },
         { question: "¿Qué formas de pago aceptáis?", answer: "Aceptamos pago en efectivo y con tarjeta, lo que te resulte más cómodo." },
-        { question: "¿Dónde estáis y qué horario tenéis?", answer: "Estamos en la zona de Golf del Sur (San Miguel de Abona), en el sur de Tenerife. El horario es de Lunes a Viernes de 10:00 a 19:00 y Sábados de 10:00 a 16:00. Los Domingos permanecemos cerrados." },
+        { question: "¿Dónde estáis y qué horario tenéis?", answer: "Estamos en Los Abrigos, en el sur de Tenerife, en la Calle La Marina, Local 1 (38618). El horario es de Lunes a Viernes de 10:00 a 19:00 y Sábados de 10:00 a 16:00. Los Domingos permanecemos cerrados." },
       ],
     },
     location: {
@@ -263,21 +273,31 @@ export const content = {
       title: "Clear prices. No surprises.",
       subtitle:
         "These are our services and prices. Not sure what you need? Message us and we'll advise you.",
-      note: "Guide prices. The final price may vary depending on hair length and service. Ask us, no commitment.",
+      note: "Prices may vary depending on hair length and type. Not sure what you need? Just ask us, no commitment.",
       cta: "Book your appointment on WhatsApp",
       groups: [
-        { title: "Cuts", items: [
-          { name: "Men's cut", desc: "Scissor or clipper cut, wash and styling", price: "13 €" },
-          { name: "Kids' cut", desc: "Up to 12 years old", price: "10 €" },
+        { title: "Haircuts", items: [
+          { name: "Kids' cut", desc: "Up to 8 years old", price: "10 €" },
+          { name: "Men's cut", desc: "Scissor or clipper", price: "13 €" },
+          { name: "Cut + wash", desc: "With wash and styling", price: "15 €" },
         ] },
-        { title: "Cut + Beard", items: [
-          { name: "Cut + Beard", desc: "The most popular package", price: "20 €", highlight: true },
-          { name: "Premium", desc: "Cut and beard with a premium finish", price: "25 €" },
-          { name: "Full package", desc: "Cut, beard and facial care", price: "40 €" },
+        { title: "Cut & beard", items: [
+          { name: "Beard (clipper)", desc: "Quick clipper tidy-up", price: "5 €" },
+          { name: "Beard: shave or line-up", desc: "With a hot towel", price: "10 €" },
+          { name: "Cut + beard", desc: "The most popular", price: "20 €", highlight: true },
+          { name: "Cut + beard + wash", desc: "Wash included", price: "23 €" },
+          { name: "Premium cut + beard", desc: "With colour, highlights or extras", price: "25 €" },
+          { name: "Full package", desc: "Cut, beard, nose & ear wax, wash, facial cleanse and massage", price: "40 €" },
         ] },
-        { title: "Colour", items: [
-          { name: "Colour & highlights", desc: "Colour with a natural finish", price: "15–40 €" },
-          { name: "Grey blending", desc: "Blends grey hair naturally", price: "from 15 €" },
+        { title: "Colour, highlights & extras", items: [
+          { name: "Beard colour", desc: "", price: "15 €" },
+          { name: "Hair colour", desc: "", price: "20 €" },
+          { name: "Highlights", desc: "", price: "25 €" },
+          { name: "Highlights + colour", desc: "", price: "35 €" },
+          { name: "Bleach + toner", desc: "", price: "30 €" },
+          { name: "Double bleach + toner", desc: "", price: "40 €" },
+          { name: "Nose & ear wax", desc: "", price: "5 €" },
+          { name: "Wash", desc: "", price: "3 €" },
         ] },
       ],
     },
@@ -293,7 +313,7 @@ export const content = {
         { question: "Do you cut children's hair?", answer: "Yes. We do kids' cuts with plenty of patience and a friendly atmosphere, so it's easy and pleasant for the little ones too." },
         { question: "Do you do straight-razor shaves?", answer: "Yes. We offer the classic straight-razor shave with a hot towel: close, relaxing and with a perfect finish. A classic well worth trying." },
         { question: "What payment methods do you accept?", answer: "We accept both cash and card, whatever is most convenient for you." },
-        { question: "Where are you and what are your hours?", answer: "We're in the Golf del Sur area (San Miguel de Abona), in the south of Tenerife. Hours are Monday to Friday 10:00–19:00 and Saturday 10:00–16:00. We're closed on Sundays." },
+        { question: "Where are you and what are your hours?", answer: "We're in Los Abrigos, in the south of Tenerife, at Calle La Marina, Local 1 (38618). Hours are Monday to Friday 10:00–19:00 and Saturday 10:00–16:00. We're closed on Sundays." },
       ],
     },
     location: {

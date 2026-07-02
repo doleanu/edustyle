@@ -53,9 +53,9 @@ export function Footer({ lang }: { lang: Lang }) {
                   rel="noopener noreferrer"
                   className="text-cream-100/80 hover:text-cream-50"
                 >
-                  {business.address.city}
+                  {business.address.street}
                   <br />
-                  {business.address.country}
+                  {business.address.postalCode} {business.address.city}
                 </a>
               </li>
               <li className="flex items-center gap-3">
