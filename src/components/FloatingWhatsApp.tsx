@@ -1,10 +1,10 @@
 import { MessageCircle } from "lucide-react";
 import { business } from "@/lib/business";
-import { type Lang } from "@/lib/content";
+import { content, type Lang } from "@/lib/content";
 
 // Floating WhatsApp button: appears on all viewports, easy to reach.
 export function FloatingWhatsApp({ lang }: { lang: Lang }) {
-  const label = lang === "en" ? "Message us on WhatsApp" : "Escríbenos por WhatsApp";
+  const label = content[lang].floatingWhatsappLabel;
   return (
     <a
       href={business.whatsapp.link}

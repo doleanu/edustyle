@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     "Eduardo Style barbershop in Tenerife: haircuts, beard trims, classic straight-razor shave and designs. Book on WhatsApp: +34 694 20 07 78.",
   alternates: {
     canonical: "/en",
-    languages: { es: "/", en: "/en" },
+    languages: { es: "/", en: "/en", fr: "/fr", de: "/de" },
   },
   openGraph: {
     type: "website",

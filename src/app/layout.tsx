@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   publisher: business.name,
   alternates: {
     canonical: "/",
-    languages: { es: "/", en: "/en" },
+    languages: { es: "/", en: "/en", fr: "/fr", de: "/de" },
   },
   openGraph: {
     type: "website",

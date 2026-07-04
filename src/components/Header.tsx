@@ -4,32 +4,28 @@ import { useState, useEffect } from "react";
 import { Menu, X, MessageCircle } from "lucide-react";
 import Image from "next/image";
 import { business } from "@/lib/business";
-import { content, type Lang } from "@/lib/content";
+import { content, LANG_LABELS, LANG_PATHS, type Lang } from "@/lib/content";
 import clsx from "clsx";
+
+const LANGS = Object.keys(LANG_PATHS) as Lang[];
 
 function LangSwitch({ lang }: { lang: Lang }) {
   const base =
-    "px-2.5 py-1 text-xs font-semibold uppercase transition-colors rounded-full";
+    "px-2 py-1 text-[11px] font-semibold uppercase transition-colors rounded-full";
   return (
-    <div className="flex items-center rounded-full border border-teal-700/20 bg-cream-50/60 p-0.5 backdrop-blur">
-      <a
-        href="/"
-        className={clsx(
-          base,
-          lang === "es" ? "bg-teal-800 text-cream-50" : "text-teal-800/70 hover:text-teal-900"
-        )}
-      >
-        ES
-      </a>
-      <a
-        href="/en"
-        className={clsx(
-          base,
-          lang === "en" ? "bg-teal-800 text-cream-50" : "text-teal-800/70 hover:text-teal-900"
-        )}
-      >
-        EN
-      </a>
+    <div className="flex items-center gap-0.5 rounded-full border border-teal-700/20 bg-cream-50/60 p-0.5 backdrop-blur">
+      {LANGS.map((code) => (
+        <a
+          key={code}
+          href={LANG_PATHS[code]}
+          className={clsx(
+            base,
+            lang === code ? "bg-teal-800 text-cream-50" : "text-teal-800/70 hover:text-teal-900"
+          )}
+        >
+          {LANG_LABELS[code]}
+        </a>
+      ))}
     </div>
   );
 }
@@ -38,7 +34,7 @@ export function Header({ lang, minimal = false }: { lang: Lang; minimal?: boolea
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const t = content[lang];
-  const home = lang === "en" ? "/en" : "/";
+  const home = LANG_PATHS[lang];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);

@@ -2,12 +2,24 @@
 // Every visible string lives here so components stay language-agnostic.
 // Prices and phone numbers are language-independent and stay in business.ts / here as-is.
 
-export type Lang = "es" | "en";
+export type Lang = "es" | "en" | "fr" | "de";
+
+export const LANG_PATHS: Record<Lang, string> = {
+  es: "/",
+  en: "/en",
+  fr: "/fr",
+  de: "/de",
+};
+
+export const LANG_LABELS: Record<Lang, string> = {
+  es: "ES",
+  en: "EN",
+  fr: "FR",
+  de: "DE",
+};
 
 export const content = {
   es: {
-    langLabel: "ES",
-    otherLangPath: "/en",
     nav: [
       { href: "#sobre", label: "Sobre" },
       { href: "#servicios", label: "Servicios" },
@@ -20,6 +32,7 @@ export const content = {
     ],
     navReserve: "Reservar",
     navReserveMobile: "Reservar por WhatsApp",
+    floatingWhatsappLabel: "Escríbenos por WhatsApp",
     hero: {
       badge: "Barbería · Tenerife",
       title1: "Entra. Siéntate.",
@@ -184,8 +197,6 @@ export const content = {
   },
 
   en: {
-    langLabel: "EN",
-    otherLangPath: "/",
     nav: [
       { href: "#sobre", label: "About" },
       { href: "#servicios", label: "Services" },
@@ -198,6 +209,7 @@ export const content = {
     ],
     navReserve: "Book",
     navReserveMobile: "Book on WhatsApp",
+    floatingWhatsappLabel: "Message us on WhatsApp",
     hero: {
       badge: "Barbershop · Tenerife",
       title1: "Walk in. Sit down.",
@@ -358,6 +370,360 @@ export const content = {
     days: {
       Lunes: "Monday", Martes: "Tuesday", Miércoles: "Wednesday", Jueves: "Thursday",
       Viernes: "Friday", Sábado: "Saturday", Domingo: "Sunday",
+    } as Record<string, string>,
+  },
+
+  fr: {
+    nav: [
+      { href: "#sobre", label: "À propos" },
+      { href: "#servicios", label: "Services" },
+      { href: "#precios", label: "Tarifs" },
+      { href: "#por-que", label: "Pourquoi nous" },
+      { href: "#opiniones", label: "Avis" },
+      { href: "#preguntas", label: "FAQ" },
+      { href: "#ubicacion", label: "Accès" },
+      { href: "#contacto", label: "Contact" },
+    ],
+    navReserve: "Réserver",
+    navReserveMobile: "Réserver sur WhatsApp",
+    floatingWhatsappLabel: "Écrivez-nous sur WhatsApp",
+    hero: {
+      badge: "Barbier · Tenerife",
+      title1: "Entrez. Asseyez-vous.",
+      title2: "Ressortez stylé.",
+      subtitle1: "Barbier à Tenerife. Coupes, barbe et rasage classique,",
+      subtitle2: "avec le soin que vous méritez.",
+      ctaReserve: "Réserver",
+      ctaWhatsApp: "Réserver sur WhatsApp",
+      seeServices: "↓ Voir tous les services",
+      badges: ["Coupes et dégradés", "Réservation sur WhatsApp", "Apprécié par nos clients"],
+    },
+    video: {
+      eyebrow: "Sur Instagram",
+      title: "Voyez-nous à l'œuvre",
+      subtitle:
+        "Coupes, dégradés et barbe en vidéo. Jetez un œil à notre Instagram pour voir notre travail au quotidien.",
+      hint: "@edustyle4 sur Instagram",
+      cta: "Voir sur Instagram",
+    },
+    about: {
+      eyebrow: "À propos de nous",
+      title: "Ce n'est pas qu'une coupe. C'est votre image.",
+      p1: "Chez Eduardo Style, chaque client est traité comme il le mérite : sans précipitation, en écoutant ce que vous recherchez et en soignant chaque détail. Coupes de cheveux, taille de barbe, rasage classique au coupe-chou et dessins personnalisés, le tout dans une ambiance conviviale et détendue.",
+      p2: "Que vous veniez pour votre coupe habituelle ou pour changer complètement de style, nous vous conseillons ce qui vous va le mieux et le réalisons avec la technique et le soin que mérite votre image.",
+      p3strong: "Réserver est simple : un message WhatsApp suffit.",
+      values: [
+        { icon: "UserCog", title: "Savoir-faire", description: "Des années derrière le fauteuil. Chaque coupe, chaque barbe et chaque dégradé réalisés avec technique et précision." },
+        { icon: "HeartHandshake", title: "Proximité", description: "Ici, vous n'êtes pas un numéro. Nous vous écoutons, comprenons votre style et vous conseillons ce qui vous va vraiment bien." },
+        { icon: "Sparkles", title: "Le détail", description: "Serviette chaude, lignes nettes et finitions soignées. Vous repartez avec la sensation d'avoir été vraiment pris en charge." },
+      ],
+    },
+    services: {
+      eyebrow: "Nos services",
+      title: "Tout pour votre coupe, votre barbe et votre style",
+      subtitle:
+        "Coupes classiques et modernes, dégradés, taille de barbe, rasage au coupe-chou, dessins et couleur. Choisissez ce qu'il vous faut et réservez en un instant.",
+      cta: "Réserver",
+      items: [
+        { icon: "Scissors", name: "Coupe de cheveux", desc: "Coupe aux ciseaux ou à la tondeuse, adaptée à votre style. Shampoing et coiffage inclus." },
+        { icon: "Crown", name: "Coupe + Barbe", desc: "La formule complète : coupe de cheveux et taille de barbe pour un look impeccable." },
+        { icon: "Brush", name: "Taille de barbe", desc: "Mise en forme, taille et soin de la barbe avec serviette chaude." },
+        { icon: "Droplets", name: "Rasage au coupe-chou", desc: "Rasage classique au coupe-chou, net et relaxant, avec serviette chaude." },
+        { icon: "Baby", name: "Coupe enfant", desc: "Coupes pour les plus petits, avec patience et bonne ambiance." },
+        { icon: "PenTool", name: "Dessins et lignes", desc: "Lignes, dégradés et dessins personnalisés pour vous démarquer." },
+        { icon: "Palette", name: "Couleur", desc: "Couleur, mèches et camouflage des cheveux blancs avec un rendu naturel." },
+      ],
+    },
+    whyUs: {
+      eyebrow: "Pourquoi Eduardo Style",
+      title: "Quatre raisons de vous asseoir dans notre fauteuil",
+      reasons: [
+        { icon: "Scissors", title: "Des coupes sur mesure", description: "Dégradés, classiques, dessins et barbe travaillée. Nous adaptons chaque coupe à votre type de cheveux et à votre style." },
+        { icon: "CalendarCheck", title: "Réservez sans appeler", description: "Demandez votre rendez-vous sur WhatsApp quand vous voulez, même en dehors des horaires. Confirmation en quelques minutes." },
+        { icon: "Star", title: "Des clients fidèles", description: "La plupart de ceux qui essaient Eduardo Style reviennent. Bon accueil, bonne ambiance et un résultat qui se voit." },
+        { icon: "MapPin", title: "À Tenerife, près de chez vous", description: "Facile à trouver, avec cette ambiance de barbier de quartier où l'on se sent comme à la maison." },
+      ],
+    },
+    testimonials: {
+      eyebrow: "Avis",
+      title: "Ce que disent nos clients",
+      badge: "Avis vérifiés Google",
+      items: [
+        { name: "Carlos M.", rating: 5, text: "Le meilleur barbier du coin. Je repars toujours avec la coupe parfaite et une barbe impeccable. Accueil top et très bonne ambiance.", service: "Coupe + Barbe" },
+        { name: "Javi R.", rating: 5, text: "Je viens ici depuis des mois et je ne changerai pas. Bon dégradé, pas d'attente si on réserve sur WhatsApp, toujours bonne humeur.", service: "Dégradé" },
+        { name: "Airam G.", rating: 5, text: "Le rasage au coupe-chou avec serviette chaude, c'est un autre niveau. On ressort comme neuf. Vivement recommandé, ça se voit que c'est du métier.", service: "Rasage au coupe-chou" },
+        { name: "Dani P.", rating: 5, text: "Professionnel et chaleureux. Il conseille vraiment ce qui vous va, pas seulement ce qu'on demande. Je reviendrai c'est sûr.", service: "Coupe de cheveux" },
+        { name: "Miguel Á.", rating: 5, text: "J'y amène mon fils, il a une patience énorme avec les petits. Coupe top et sans drame. Un dix sur dix.", service: "Coupe enfant" },
+        { name: "Rubén S.", rating: 5, text: "Qualité, bon prix et bonne ambiance. On sent qu'il aime ce qu'il fait. C'est devenu mon barbier attitré.", service: "Coupe + Barbe" },
+      ],
+    },
+    prices: {
+      eyebrow: "Tarifs",
+      title: "Des prix clairs. Sans surprise.",
+      subtitle:
+        "Voici nos services et nos tarifs. Un doute sur ce dont vous avez besoin ? Écrivez-nous, on vous conseille.",
+      note: "Les prix peuvent varier selon la longueur et le type de cheveux. Un doute ? Demandez-nous sans engagement.",
+      cta: "Réservez votre rendez-vous sur WhatsApp",
+      groups: [
+        { title: "Coupes", items: [
+          { name: "Coupe enfant", desc: "Jusqu'à 8 ans", price: "10 €" },
+          { name: "Coupe homme", desc: "Aux ciseaux ou à la tondeuse", price: "13 €" },
+          { name: "Coupe + shampoing", desc: "Avec shampoing et coiffage", price: "15 €" },
+        ] },
+        { title: "Coupe et barbe", items: [
+          { name: "Barbe à la tondeuse", desc: "Entretien rapide", price: "5 €" },
+          { name: "Barbe : rasage ou contour", desc: "Avec serviette chaude", price: "10 €" },
+          { name: "Coupe + barbe", desc: "La plus demandée", price: "20 €", highlight: true },
+          { name: "Coupe + barbe + shampoing", desc: "Shampoing inclus", price: "23 €" },
+          { name: "Coupe + barbe premium", desc: "Avec couleur, mèches ou extras", price: "25 €" },
+          { name: "Formule complète", desc: "Coupe, barbe, cire nez et oreilles, shampoing, nettoyage du visage et massage", price: "40 €" },
+        ] },
+        { title: "Couleur, mèches et extras", items: [
+          { name: "Couleur de barbe", desc: "", price: "15 €" },
+          { name: "Couleur de cheveux", desc: "", price: "20 €" },
+          { name: "Mèches", desc: "", price: "25 €" },
+          { name: "Mèches + couleur", desc: "", price: "35 €" },
+          { name: "Décoloration + nuance", desc: "", price: "30 €" },
+          { name: "Double décoloration + nuance", desc: "", price: "40 €" },
+          { name: "Cire nez et oreilles", desc: "", price: "5 €" },
+          { name: "Shampoing", desc: "", price: "3 €" },
+        ] },
+      ],
+    },
+    faq: {
+      eyebrow: "Questions fréquentes",
+      title: "Questions fréquentes. Réponses claires.",
+      subtitle:
+        "Réponses rapides aux questions les plus posées. Vous ne trouvez pas ce que vous cherchez ? Écrivez-nous sur WhatsApp.",
+      items: [
+        { question: "Dois-je prendre rendez-vous ou puis-je venir directement ?", answer: "Vous pouvez venir sans rendez-vous, mais pour éviter l'attente nous vous recommandons de réserver sur WhatsApp. Nous confirmons l'heure en quelques minutes et vous gardons votre créneau." },
+        { question: "Comment réserver un rendez-vous ?", answer: "Le plus rapide est WhatsApp au +34 694 20 07 78. Vous pouvez aussi nous appeler directement. Nous répondons généralement en quelques minutes pendant les horaires d'ouverture." },
+        { question: "Combien coûte une coupe ?", answer: "Une coupe homme coûte 13 € et la formule coupe + barbe 20 €. Pour les enfants, 10 €. Retrouvez la liste complète dans la section Tarifs. Le prix final peut varier selon la longueur des cheveux." },
+        { question: "Faites-vous les coupes pour enfants ?", answer: "Oui. Nous coupons les cheveux des enfants avec beaucoup de patience et de bonne humeur, pour que ce soit facile et agréable aussi pour les plus petits." },
+        { question: "Faites-vous le rasage au coupe-chou ?", answer: "Oui. Nous proposons le rasage classique au coupe-chou avec serviette chaude : net, relaxant et avec une finition parfaite. Un classique qui vaut vraiment le détour." },
+        { question: "Quels moyens de paiement acceptez-vous ?", answer: "Nous acceptons les paiements en espèces et par carte, selon ce qui vous arrange le mieux." },
+        { question: "Où êtes-vous situés et quels sont vos horaires ?", answer: "Nous sommes à Los Abrigos, dans le sud de Tenerife, Calle La Marina, Local 1 (38618). Horaires : du lundi au vendredi de 10h00 à 19h00, le samedi de 10h00 à 16h00. Fermé le dimanche." },
+      ],
+    },
+    location: {
+      eyebrow: "Comment venir",
+      title: "Venez nous voir",
+      subtitle: "Nous sommes à Tenerife, facile à trouver. Passez nous voir ou réservez à l'avance pour ne pas attendre.",
+      addressLabel: "Adresse",
+      phoneLabel: "Téléphone",
+      hoursLabel: "Horaires",
+      closed: "Fermé",
+      whatsappBtn: "WhatsApp",
+      callBtn: "Appeler",
+      mapsBtn: "Ouvrir dans Google Maps",
+    },
+    contact: {
+      eyebrow: "Réservez votre rendez-vous",
+      title1: "Votre prochaine coupe,",
+      titleAccent: "à un message près",
+      subtitle:
+        "Écrivez-nous sur WhatsApp ou appelez-nous directement. Nous confirmons votre rendez-vous en quelques minutes et réservons votre créneau.",
+      whatsappBtn: "Réserver sur WhatsApp",
+      note: "Nous répondons généralement en quelques minutes pendant les horaires d'ouverture",
+    },
+    footer: {
+      tagline: "Barbier à Tenerife. Coupes, barbe et rasage classique, avec le soin que vous méritez.",
+      navTitle: "Navigation",
+      contactTitle: "Contact",
+      followTitle: "Suivez-nous",
+      rights: "Tous droits réservés.",
+      privacy: "Politique de confidentialité",
+      legal: "Mentions légales",
+      nav: [
+        { href: "#sobre", label: "À propos" },
+        { href: "#servicios", label: "Services" },
+        { href: "#precios", label: "Tarifs" },
+        { href: "#opiniones", label: "Avis" },
+        { href: "#preguntas", label: "FAQ" },
+        { href: "#ubicacion", label: "Accès" },
+        { href: "#contacto", label: "Contact" },
+      ],
+    },
+    days: {
+      Lunes: "Lundi", Martes: "Mardi", Miércoles: "Mercredi", Jueves: "Jeudi",
+      Viernes: "Vendredi", Sábado: "Samedi", Domingo: "Dimanche",
+    } as Record<string, string>,
+  },
+
+  de: {
+    nav: [
+      { href: "#sobre", label: "Über uns" },
+      { href: "#servicios", label: "Leistungen" },
+      { href: "#precios", label: "Preise" },
+      { href: "#por-que", label: "Warum wir" },
+      { href: "#opiniones", label: "Bewertungen" },
+      { href: "#preguntas", label: "FAQ" },
+      { href: "#ubicacion", label: "Anfahrt" },
+      { href: "#contacto", label: "Kontakt" },
+    ],
+    navReserve: "Termin buchen",
+    navReserveMobile: "Per WhatsApp buchen",
+    floatingWhatsappLabel: "Schreiben Sie uns auf WhatsApp",
+    hero: {
+      badge: "Barbershop · Teneriffa",
+      title1: "Reinkommen. Platz nehmen.",
+      title2: "Gestylt rausgehen.",
+      subtitle1: "Barbershop auf Teneriffa. Haarschnitt, Bart und klassische Rasur,",
+      subtitle2: "mit der Sorgfalt, die Sie verdienen.",
+      ctaReserve: "Jetzt buchen",
+      ctaWhatsApp: "Per WhatsApp buchen",
+      seeServices: "↓ Alle Leistungen ansehen",
+      badges: ["Schnitte & Fades", "Buchung per WhatsApp", "Von Kunden geschätzt"],
+    },
+    video: {
+      eyebrow: "Auf Instagram",
+      title: "Sehen Sie uns bei der Arbeit",
+      subtitle:
+        "Schnitte, Fades und Bartpflege im Video. Schauen Sie auf unserem Instagram vorbei und sehen Sie, wie wir arbeiten.",
+      hint: "@edustyle4 auf Instagram",
+      cta: "Auf Instagram ansehen",
+    },
+    about: {
+      eyebrow: "Über uns",
+      title: "Es ist nicht nur ein Haarschnitt. Es ist Ihr Look.",
+      p1: "Bei Eduardo Style wird jeder Kunde so behandelt, wie er es verdient: ohne Eile, mit einem offenen Ohr für Ihre Wünsche und mit Liebe zum Detail. Haarschnitte, Bartpflege, klassische Rasur mit dem Rasiermesser und individuelle Designs, alles in entspannter, familiärer Atmosphäre.",
+      p2: "Ob Sie für Ihren gewohnten Schnitt kommen oder komplett neu aussehen möchten: Wir beraten Sie, was am besten zu Ihnen passt, und setzen es mit der Technik und Sorgfalt um, die Ihr Look verdient.",
+      p3strong: "Buchen ist einfach: eine WhatsApp-Nachricht genügt.",
+      values: [
+        { icon: "UserCog", title: "Handwerk", description: "Jahrelange Erfahrung auf dem Stuhl. Jeder Schnitt, jeder Bart und jeder Fade mit Technik und ruhiger Hand." },
+        { icon: "HeartHandshake", title: "Nähe", description: "Hier sind Sie keine Nummer. Wir hören zu, verstehen Ihren Stil und beraten Sie ehrlich, was wirklich zu Ihnen passt." },
+        { icon: "Sparkles", title: "Liebe zum Detail", description: "Warmes Handtuch, saubere Linien und sorgfältige Finishes. Sie gehen mit dem Gefühl, wirklich umsorgt worden zu sein." },
+      ],
+    },
+    services: {
+      eyebrow: "Unsere Leistungen",
+      title: "Alles für Ihren Schnitt, Bart und Style",
+      subtitle:
+        "Klassische und moderne Schnitte, Fades, Bartpflege, Rasur mit dem Rasiermesser, Designs und Farbe. Wählen Sie, was Sie brauchen, und buchen Sie in Sekunden.",
+      cta: "Termin buchen",
+      items: [
+        { icon: "Scissors", name: "Haarschnitt", desc: "Schnitt mit Schere oder Maschine, angepasst an Ihren Stil. Inklusive Waschen und Styling." },
+        { icon: "Crown", name: "Schnitt + Bart", desc: "Das Komplettpaket: Haarschnitt und Bartpflege für einen makellosen Look." },
+        { icon: "Brush", name: "Bartpflege", desc: "Formen, Trimmen und Pflege des Barts mit warmem Handtuch." },
+        { icon: "Droplets", name: "Rasur mit dem Rasiermesser", desc: "Klassische Rasur mit dem Rasiermesser, gründlich und entspannend, mit warmem Handtuch." },
+        { icon: "Baby", name: "Kinderhaarschnitt", desc: "Schnitte für die Kleinsten, mit Geduld und guter Atmosphäre." },
+        { icon: "PenTool", name: "Designs & Linien", desc: "Linien, Fades und individuelle Designs, um aufzufallen." },
+        { icon: "Palette", name: "Farbe", desc: "Farbe, Strähnen und graue Haare kaschieren mit natürlichem Finish." },
+      ],
+    },
+    whyUs: {
+      eyebrow: "Warum Eduardo Style",
+      title: "Vier Gründe, bei uns Platz zu nehmen",
+      reasons: [
+        { icon: "Scissors", title: "Schnitte nach Maß", description: "Fades, Klassiker, Designs und ausgearbeiteter Bart. Wir passen jeden Schnitt an Ihren Haartyp und Stil an." },
+        { icon: "CalendarCheck", title: "Buchen ohne Anruf", description: "Fordern Sie Ihren Termin jederzeit per WhatsApp an, auch außerhalb der Öffnungszeiten. Bestätigung in wenigen Minuten." },
+        { icon: "Star", title: "Kunden, die wiederkommen", description: "Die meisten, die Eduardo Style ausprobieren, kommen wieder. Guter Service, gute Atmosphäre und ein Ergebnis, das man sieht." },
+        { icon: "MapPin", title: "Direkt hier auf Teneriffa", description: "Leicht zu finden, mit dem Gefühl eines Barbershops von nebenan, in dem man sich wie zuhause fühlt." },
+      ],
+    },
+    testimonials: {
+      eyebrow: "Bewertungen",
+      title: "Was unsere Kunden sagen",
+      badge: "Verifizierte Google-Bewertungen",
+      items: [
+        { name: "Carlos M.", rating: 5, text: "Der beste Barbier der Gegend. Ich gehe immer mit dem perfekten Schnitt und makellosem Bart. Top Service und tolle Atmosphäre.", service: "Schnitt + Bart" },
+        { name: "Javi R.", rating: 5, text: "Ich komme seit Monaten hierher und wechsle nicht mehr. Toller Fade, keine Wartezeit bei Buchung per WhatsApp, immer gute Stimmung.", service: "Fade" },
+        { name: "Airam G.", rating: 5, text: "Die Rasur mit dem Rasiermesser und warmem Handtuch ist nochmal eine andere Liga. Man fühlt sich wie neu. Sehr empfehlenswert, man merkt das Handwerk.", service: "Rasur mit dem Rasiermesser" },
+        { name: "Dani P.", rating: 5, text: "Professionell und freundlich. Er berät, was wirklich zu einem passt, nicht nur, was man verlangt. Komme auf jeden Fall wieder.", service: "Haarschnitt" },
+        { name: "Miguel Á.", rating: 5, text: "Ich bringe meinen Sohn mit, und er hat unglaublich viel Geduld mit den Kleinen. Toller Schnitt, ohne Drama. Zehn von zehn Punkten.", service: "Kinderhaarschnitt" },
+        { name: "Rubén S.", rating: 5, text: "Qualität, guter Preis und gute Stimmung. Man merkt, dass er seine Arbeit liebt. Jetzt mein Stammbarbier.", service: "Schnitt + Bart" },
+      ],
+    },
+    prices: {
+      eyebrow: "Preise",
+      title: "Klare Preise. Keine Überraschungen.",
+      subtitle:
+        "Das sind unsere Leistungen und Preise. Nicht sicher, was Sie brauchen? Schreiben Sie uns, wir beraten Sie.",
+      note: "Die Preise können je nach Haarlänge und -typ variieren. Unsicher? Fragen Sie uns einfach, ganz unverbindlich.",
+      cta: "Termin per WhatsApp buchen",
+      groups: [
+        { title: "Haarschnitte", items: [
+          { name: "Kinderhaarschnitt", desc: "Bis 8 Jahre", price: "10 €" },
+          { name: "Herrenhaarschnitt", desc: "Mit Schere oder Maschine", price: "13 €" },
+          { name: "Schnitt + Waschen", desc: "Mit Waschen und Styling", price: "15 €" },
+        ] },
+        { title: "Schnitt & Bart", items: [
+          { name: "Bart mit Maschine", desc: "Schnelle Auffrischung", price: "5 €" },
+          { name: "Bart: Rasur oder Konturen", desc: "Mit warmem Handtuch", price: "10 €" },
+          { name: "Schnitt + Bart", desc: "Am meisten gebucht", price: "20 €", highlight: true },
+          { name: "Schnitt + Bart + Waschen", desc: "Inklusive Waschen", price: "23 €" },
+          { name: "Premium Schnitt + Bart", desc: "Mit Farbe, Strähnen oder Extras", price: "25 €" },
+          { name: "Komplettpaket", desc: "Schnitt, Bart, Nasen- und Ohrenwachs, Waschen, Gesichtsreinigung und Massage", price: "40 €" },
+        ] },
+        { title: "Farbe, Strähnen & Extras", items: [
+          { name: "Bartfarbe", desc: "", price: "15 €" },
+          { name: "Haarfarbe", desc: "", price: "20 €" },
+          { name: "Strähnen", desc: "", price: "25 €" },
+          { name: "Strähnen + Farbe", desc: "", price: "35 €" },
+          { name: "Blondierung + Tönung", desc: "", price: "30 €" },
+          { name: "Doppelte Blondierung + Tönung", desc: "", price: "40 €" },
+          { name: "Nasen- und Ohrenwachs", desc: "", price: "5 €" },
+          { name: "Waschen", desc: "", price: "3 €" },
+        ] },
+      ],
+    },
+    faq: {
+      eyebrow: "Häufige Fragen",
+      title: "Häufige Fragen. Klare Antworten.",
+      subtitle:
+        "Schnelle Antworten auf die häufigsten Fragen. Nicht gefunden, was Sie suchen? Schreiben Sie uns per WhatsApp.",
+      items: [
+        { question: "Brauche ich einen Termin oder kann ich einfach vorbeikommen?", answer: "Sie können gerne ohne Termin vorbeikommen, aber um Wartezeit zu vermeiden, empfehlen wir eine Buchung per WhatsApp. Wir bestätigen Ihre Zeit innerhalb von Minuten und reservieren Ihren Platz." },
+        { question: "Wie buche ich einen Termin?", answer: "Am schnellsten geht es per WhatsApp unter +34 694 20 07 78. Sie können uns auch direkt anrufen. Wir antworten während der Öffnungszeiten meist innerhalb weniger Minuten." },
+        { question: "Was kostet ein Haarschnitt?", answer: "Ein Herrenhaarschnitt kostet 13 € und das Paket Schnitt + Bart 20 €. Für Kinder 10 €. Die vollständige Liste finden Sie im Bereich Preise. Der Endpreis kann je nach Haarlänge variieren." },
+        { question: "Schneiden Sie auch Kinderhaare?", answer: "Ja. Wir schneiden Kinderhaare mit viel Geduld und guter Atmosphäre, damit es auch für die Kleinsten einfach und angenehm ist." },
+        { question: "Bieten Sie Rasur mit dem Rasiermesser an?", answer: "Ja. Wir bieten die klassische Rasur mit dem Rasiermesser und warmem Handtuch: gründlich, entspannend und mit perfektem Finish. Ein Klassiker, den man ausprobiert haben sollte." },
+        { question: "Welche Zahlungsmethoden akzeptieren Sie?", answer: "Wir akzeptieren Barzahlung und Kartenzahlung, ganz wie es Ihnen am liebsten ist." },
+        { question: "Wo befindet ihr euch und welche Öffnungszeiten habt ihr?", answer: "Wir befinden uns in Los Abrigos, im Süden von Teneriffa, Calle La Marina, Local 1 (38618). Öffnungszeiten: Montag bis Freitag 10:00–19:00 Uhr, Samstag 10:00–16:00 Uhr. Sonntags geschlossen." },
+      ],
+    },
+    location: {
+      eyebrow: "Anfahrt",
+      title: "Besuchen Sie uns",
+      subtitle: "Wir sind auf Teneriffa, leicht zu finden. Kommen Sie vorbei oder buchen Sie vorab, damit Sie nicht warten müssen.",
+      addressLabel: "Adresse",
+      phoneLabel: "Telefon",
+      hoursLabel: "Öffnungszeiten",
+      closed: "Geschlossen",
+      whatsappBtn: "WhatsApp",
+      callBtn: "Anrufen",
+      mapsBtn: "In Google Maps öffnen",
+    },
+    contact: {
+      eyebrow: "Termin buchen",
+      title1: "Ihr nächster Schnitt,",
+      titleAccent: "nur eine Nachricht entfernt",
+      subtitle:
+        "Schreiben Sie uns per WhatsApp oder rufen Sie uns direkt an. Wir bestätigen Ihren Termin innerhalb weniger Minuten und reservieren Ihren Platz.",
+      whatsappBtn: "Per WhatsApp buchen",
+      note: "Wir antworten während der Öffnungszeiten meist innerhalb weniger Minuten",
+    },
+    footer: {
+      tagline: "Barbershop auf Teneriffa. Haarschnitt, Bart und klassische Rasur, mit der Sorgfalt, die Sie verdienen.",
+      navTitle: "Navigation",
+      contactTitle: "Kontakt",
+      followTitle: "Folgen Sie uns",
+      rights: "Alle Rechte vorbehalten.",
+      privacy: "Datenschutzerklärung",
+      legal: "Impressum",
+      nav: [
+        { href: "#sobre", label: "Über uns" },
+        { href: "#servicios", label: "Leistungen" },
+        { href: "#precios", label: "Preise" },
+        { href: "#opiniones", label: "Bewertungen" },
+        { href: "#preguntas", label: "FAQ" },
+        { href: "#ubicacion", label: "Anfahrt" },
+        { href: "#contacto", label: "Kontakt" },
+      ],
+    },
+    days: {
+      Lunes: "Montag", Martes: "Dienstag", Miércoles: "Mittwoch", Jueves: "Donnerstag",
+      Viernes: "Freitag", Sábado: "Samstag", Domingo: "Sonntag",
     } as Record<string, string>,
   },
 } as const;
