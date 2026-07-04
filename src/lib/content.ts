@@ -22,7 +22,6 @@ export const content = {
   es: {
     nav: [
       { href: "#sobre", label: "Sobre" },
-      { href: "#servicios", label: "Servicios" },
       { href: "#precios", label: "Precios" },
       { href: "#por-que", label: "Por qué" },
       { href: "#opiniones", label: "Opiniones" },
@@ -41,7 +40,7 @@ export const content = {
       subtitle2: "con la atención que te mereces.",
       ctaReserve: "Reservar cita",
       ctaWhatsApp: "Reserva por WhatsApp",
-      seeServices: "↓ Ver todos los servicios",
+      seePrices: "↓ Ver todos los precios",
       badges: ["Cortes y degradados", "Reserva por WhatsApp", "Valorado por sus clientes"],
     },
     video: {
@@ -62,22 +61,6 @@ export const content = {
         { icon: "UserCog", title: "Oficio", description: "Años detrás de la silla. Cada corte, cada barba y cada degradado hecho con técnica y buen pulso." },
         { icon: "HeartHandshake", title: "Cercanía", description: "Aquí no eres un número. Te escuchamos, entendemos tu estilo y te aconsejamos lo que de verdad te queda bien." },
         { icon: "Sparkles", title: "Detalle", description: "Toalla caliente, líneas limpias y acabados cuidados. Sales con la sensación de haberte cuidado de verdad." },
-      ],
-    },
-    services: {
-      eyebrow: "Nuestros servicios",
-      title: "Todo para tu corte, tu barba y tu estilo",
-      subtitle:
-        "Cortes clásicos y modernos, degradados, arreglo de barba, afeitado a navaja, diseños y color. Elige lo que necesitas y reserva en un momento.",
-      cta: "Reservar",
-      items: [
-        { icon: "Scissors", name: "Corte de pelo", desc: "Corte a tijera o máquina, adaptado a tu estilo. Incluye lavado y peinado." },
-        { icon: "Crown", name: "Corte + Barba", desc: "El pack completo: corte de pelo y arreglo de barba para un look impecable." },
-        { icon: "Brush", name: "Arreglo de barba", desc: "Perfilado, recorte y cuidado de la barba con toalla caliente." },
-        { icon: "Droplets", name: "Afeitado a navaja", desc: "Afeitado clásico a navaja, apurado y relajante, con toalla caliente." },
-        { icon: "Baby", name: "Corte niño", desc: "Cortes para los más pequeños, con paciencia y buen ambiente." },
-        { icon: "PenTool", name: "Diseños y líneas", desc: "Líneas, degradados y diseños personalizados para destacar." },
-        { icon: "Palette", name: "Tinte y color", desc: "Color, mechas y camuflaje de canas con un acabado natural." },
       ],
     },
     whyUs: {
@@ -182,7 +165,6 @@ export const content = {
       legal: "Aviso legal",
       nav: [
         { href: "#sobre", label: "Sobre nosotros" },
-        { href: "#servicios", label: "Servicios" },
         { href: "#precios", label: "Precios" },
         { href: "#opiniones", label: "Opiniones" },
         { href: "#preguntas", label: "Preguntas" },
@@ -199,7 +181,6 @@ export const content = {
   en: {
     nav: [
       { href: "#sobre", label: "About" },
-      { href: "#servicios", label: "Services" },
       { href: "#precios", label: "Prices" },
       { href: "#por-que", label: "Why us" },
       { href: "#opiniones", label: "Reviews" },
@@ -218,7 +199,7 @@ export const content = {
       subtitle2: "with the care you deserve.",
       ctaReserve: "Book now",
       ctaWhatsApp: "Book on WhatsApp",
-      seeServices: "↓ See all services",
+      seePrices: "↓ See all prices",
       badges: ["Cuts & fades", "Book on WhatsApp", "Loved by customers"],
     },
     video: {
@@ -239,22 +220,6 @@ export const content = {
         { icon: "UserCog", title: "Craft", description: "Years behind the chair. Every cut, beard and fade done with technique and a steady hand." },
         { icon: "HeartHandshake", title: "Personal", description: "Here you're not a number. We listen, understand your style and advise you on what really suits you." },
         { icon: "Sparkles", title: "Detail", description: "Hot towel, clean lines and careful finishes. You leave feeling genuinely looked after." },
-      ],
-    },
-    services: {
-      eyebrow: "Our services",
-      title: "Everything for your cut, beard and style",
-      subtitle:
-        "Classic and modern cuts, fades, beard trims, straight-razor shaves, designs and colour. Pick what you need and book in seconds.",
-      cta: "Book",
-      items: [
-        { icon: "Scissors", name: "Haircut", desc: "Scissor or clipper cut, tailored to your style. Includes wash and styling." },
-        { icon: "Crown", name: "Cut + Beard", desc: "The full package: haircut and beard trim for a flawless look." },
-        { icon: "Brush", name: "Beard trim", desc: "Shaping, trimming and beard care with a hot towel." },
-        { icon: "Droplets", name: "Straight-razor shave", desc: "Classic straight-razor shave, close and relaxing, with a hot towel." },
-        { icon: "Baby", name: "Kids' cut", desc: "Cuts for the little ones, with patience and a friendly vibe." },
-        { icon: "PenTool", name: "Designs & lines", desc: "Lines, fades and custom designs to stand out." },
-        { icon: "Palette", name: "Colour", desc: "Colour, highlights and grey blending with a natural finish." },
       ],
     },
     whyUs: {
@@ -359,7 +324,6 @@ export const content = {
       legal: "Legal notice",
       nav: [
         { href: "#sobre", label: "About us" },
-        { href: "#servicios", label: "Services" },
         { href: "#precios", label: "Prices" },
         { href: "#opiniones", label: "Reviews" },
         { href: "#preguntas", label: "FAQ" },
@@ -376,7 +340,6 @@ export const content = {
   fr: {
     nav: [
       { href: "#sobre", label: "À propos" },
-      { href: "#servicios", label: "Services" },
       { href: "#precios", label: "Tarifs" },
       { href: "#por-que", label: "Pourquoi nous" },
       { href: "#opiniones", label: "Avis" },
@@ -395,7 +358,7 @@ export const content = {
       subtitle2: "avec le soin que vous méritez.",
       ctaReserve: "Réserver",
       ctaWhatsApp: "Réserver sur WhatsApp",
-      seeServices: "↓ Voir tous les services",
+      seePrices: "↓ Voir tous les tarifs",
       badges: ["Coupes et dégradés", "Réservation sur WhatsApp", "Apprécié par nos clients"],
     },
     video: {
@@ -416,22 +379,6 @@ export const content = {
         { icon: "UserCog", title: "Savoir-faire", description: "Des années derrière le fauteuil. Chaque coupe, chaque barbe et chaque dégradé réalisés avec technique et précision." },
         { icon: "HeartHandshake", title: "Proximité", description: "Ici, vous n'êtes pas un numéro. Nous vous écoutons, comprenons votre style et vous conseillons ce qui vous va vraiment bien." },
         { icon: "Sparkles", title: "Le détail", description: "Serviette chaude, lignes nettes et finitions soignées. Vous repartez avec la sensation d'avoir été vraiment pris en charge." },
-      ],
-    },
-    services: {
-      eyebrow: "Nos services",
-      title: "Tout pour votre coupe, votre barbe et votre style",
-      subtitle:
-        "Coupes classiques et modernes, dégradés, taille de barbe, rasage au coupe-chou, dessins et couleur. Choisissez ce qu'il vous faut et réservez en un instant.",
-      cta: "Réserver",
-      items: [
-        { icon: "Scissors", name: "Coupe de cheveux", desc: "Coupe aux ciseaux ou à la tondeuse, adaptée à votre style. Shampoing et coiffage inclus." },
-        { icon: "Crown", name: "Coupe + Barbe", desc: "La formule complète : coupe de cheveux et taille de barbe pour un look impeccable." },
-        { icon: "Brush", name: "Taille de barbe", desc: "Mise en forme, taille et soin de la barbe avec serviette chaude." },
-        { icon: "Droplets", name: "Rasage au coupe-chou", desc: "Rasage classique au coupe-chou, net et relaxant, avec serviette chaude." },
-        { icon: "Baby", name: "Coupe enfant", desc: "Coupes pour les plus petits, avec patience et bonne ambiance." },
-        { icon: "PenTool", name: "Dessins et lignes", desc: "Lignes, dégradés et dessins personnalisés pour vous démarquer." },
-        { icon: "Palette", name: "Couleur", desc: "Couleur, mèches et camouflage des cheveux blancs avec un rendu naturel." },
       ],
     },
     whyUs: {
@@ -536,7 +483,6 @@ export const content = {
       legal: "Mentions légales",
       nav: [
         { href: "#sobre", label: "À propos" },
-        { href: "#servicios", label: "Services" },
         { href: "#precios", label: "Tarifs" },
         { href: "#opiniones", label: "Avis" },
         { href: "#preguntas", label: "FAQ" },
@@ -553,7 +499,6 @@ export const content = {
   de: {
     nav: [
       { href: "#sobre", label: "Über uns" },
-      { href: "#servicios", label: "Leistungen" },
       { href: "#precios", label: "Preise" },
       { href: "#por-que", label: "Warum wir" },
       { href: "#opiniones", label: "Bewertungen" },
@@ -572,7 +517,7 @@ export const content = {
       subtitle2: "mit der Sorgfalt, die Sie verdienen.",
       ctaReserve: "Jetzt buchen",
       ctaWhatsApp: "Per WhatsApp buchen",
-      seeServices: "↓ Alle Leistungen ansehen",
+      seePrices: "↓ Alle Preise ansehen",
       badges: ["Schnitte & Fades", "Buchung per WhatsApp", "Von Kunden geschätzt"],
     },
     video: {
@@ -593,22 +538,6 @@ export const content = {
         { icon: "UserCog", title: "Handwerk", description: "Jahrelange Erfahrung auf dem Stuhl. Jeder Schnitt, jeder Bart und jeder Fade mit Technik und ruhiger Hand." },
         { icon: "HeartHandshake", title: "Nähe", description: "Hier sind Sie keine Nummer. Wir hören zu, verstehen Ihren Stil und beraten Sie ehrlich, was wirklich zu Ihnen passt." },
         { icon: "Sparkles", title: "Liebe zum Detail", description: "Warmes Handtuch, saubere Linien und sorgfältige Finishes. Sie gehen mit dem Gefühl, wirklich umsorgt worden zu sein." },
-      ],
-    },
-    services: {
-      eyebrow: "Unsere Leistungen",
-      title: "Alles für Ihren Schnitt, Bart und Style",
-      subtitle:
-        "Klassische und moderne Schnitte, Fades, Bartpflege, Rasur mit dem Rasiermesser, Designs und Farbe. Wählen Sie, was Sie brauchen, und buchen Sie in Sekunden.",
-      cta: "Termin buchen",
-      items: [
-        { icon: "Scissors", name: "Haarschnitt", desc: "Schnitt mit Schere oder Maschine, angepasst an Ihren Stil. Inklusive Waschen und Styling." },
-        { icon: "Crown", name: "Schnitt + Bart", desc: "Das Komplettpaket: Haarschnitt und Bartpflege für einen makellosen Look." },
-        { icon: "Brush", name: "Bartpflege", desc: "Formen, Trimmen und Pflege des Barts mit warmem Handtuch." },
-        { icon: "Droplets", name: "Rasur mit dem Rasiermesser", desc: "Klassische Rasur mit dem Rasiermesser, gründlich und entspannend, mit warmem Handtuch." },
-        { icon: "Baby", name: "Kinderhaarschnitt", desc: "Schnitte für die Kleinsten, mit Geduld und guter Atmosphäre." },
-        { icon: "PenTool", name: "Designs & Linien", desc: "Linien, Fades und individuelle Designs, um aufzufallen." },
-        { icon: "Palette", name: "Farbe", desc: "Farbe, Strähnen und graue Haare kaschieren mit natürlichem Finish." },
       ],
     },
     whyUs: {
@@ -713,7 +642,6 @@ export const content = {
       legal: "Impressum",
       nav: [
         { href: "#sobre", label: "Über uns" },
-        { href: "#servicios", label: "Leistungen" },
         { href: "#precios", label: "Preise" },
         { href: "#opiniones", label: "Bewertungen" },
         { href: "#preguntas", label: "FAQ" },

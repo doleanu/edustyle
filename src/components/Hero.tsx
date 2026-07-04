@@ -59,10 +59,10 @@ export function Hero({ lang }: { lang: Lang }) {
           </div>
 
           <a
-            href="#servicios"
+            href="#precios"
             className="mt-4 inline-block text-sm text-teal-700/80 underline-offset-4 hover:underline"
           >
-            {t.seeServices}
+            {t.seePrices}
           </a>
         </div>
 
