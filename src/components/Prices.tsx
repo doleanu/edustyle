@@ -1,5 +1,4 @@
 import { MessageCircle } from "lucide-react";
-import { business } from "@/lib/business";
 import { content, type Lang } from "@/lib/content";
 import clsx from "clsx";
 
@@ -60,12 +59,7 @@ export function Prices({ lang }: { lang: Lang }) {
             <p className="text-sm italic text-teal-800/85">{t.note}</p>
           </div>
           <div className="mt-6 text-center">
-            <a
-              href={business.whatsapp.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-accent"
-            >
+            <a href="#reserva" className="btn-accent">
               <MessageCircle className="h-4 w-4" />
               {t.cta}
             </a>

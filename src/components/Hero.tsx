@@ -43,7 +43,7 @@ export function Hero({ lang }: { lang: Lang }) {
           </p>
 
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a href="#contacto" className="btn-primary w-full sm:w-auto">
+            <a href="#reserva" className="btn-primary w-full sm:w-auto">
               {t.ctaReserve}
               <ArrowRight className="h-4 w-4" />
             </a>

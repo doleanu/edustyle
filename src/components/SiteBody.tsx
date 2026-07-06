@@ -5,6 +5,7 @@ import { About } from "@/components/About";
 import { WhyUs } from "@/components/WhyUs";
 import { Testimonials } from "@/components/Testimonials";
 import { Prices } from "@/components/Prices";
+import { Booking } from "@/components/Booking";
 import { FAQ } from "@/components/FAQ";
 import { Location } from "@/components/Location";
 import { Contact } from "@/components/Contact";
@@ -24,6 +25,7 @@ export function SiteBody({ lang }: { lang: Lang }) {
         <Video lang={lang} />
         <About lang={lang} />
         <Prices lang={lang} />
+        <Booking lang={lang} />
         <WhyUs lang={lang} />
         <Testimonials lang={lang} />
         <FAQ lang={lang} />

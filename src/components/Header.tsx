@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X, MessageCircle } from "lucide-react";
 import Image from "next/image";
-import { business } from "@/lib/business";
 import { content, LANG_LABELS, LANG_PATHS, type Lang } from "@/lib/content";
 import clsx from "clsx";
 
@@ -85,12 +84,7 @@ export function Header({ lang, minimal = false }: { lang: Lang; minimal?: boolea
                 </a>
               ))}
               <LangSwitch lang={lang} />
-              <a
-                href={business.whatsapp.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary"
-              >
+              <a href="#reserva" className="btn-primary">
                 <MessageCircle className="h-4 w-4" />
                 {t.navReserve}
               </a>
@@ -128,9 +122,8 @@ export function Header({ lang, minimal = false }: { lang: Lang; minimal?: boolea
               </a>
             ))}
             <a
-              href={business.whatsapp.link}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#reserva"
+              onClick={() => setOpen(false)}
               className="btn-primary mt-3"
             >
               <MessageCircle className="h-4 w-4" />
