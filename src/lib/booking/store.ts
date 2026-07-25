@@ -17,8 +17,9 @@ function redis(): Redis | null {
   return client;
 }
 
-const TOKEN_KEY = "owner:refresh_token";
-const SETTINGS_KEY = "owner:settings";
+// Namespaced so this can safely share an Upstash database with other projects.
+const TOKEN_KEY = "edustyle:owner:refresh_token";
+const SETTINGS_KEY = "edustyle:owner:settings";
 
 export async function saveRefreshToken(token: string) {
   const r = redis();
