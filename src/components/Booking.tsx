@@ -1,10 +1,19 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { MessageCircle } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { MessageCircle, Check, Loader2 } from "lucide-react";
 import clsx from "clsx";
 import { business } from "@/lib/business";
 import { content, type Lang } from "@/lib/content";
+
+// This section progressively enhances:
+//   • If the calendar backend is configured (see src/lib/booking), it shows REAL
+//     availability from Google Calendar, takes the client's name + phone, and
+//     creates a real appointment via /api/book.
+//   • If not (backend env vars absent, or /api/availability says configured:false),
+//     it falls back to the original behaviour: derive slots from business hours
+//     and open a prewritten WhatsApp message. This keeps the live site working
+//     at all times, before and after the Google setup is wired up.
 
 // Maps JS Date#getDay() (0 = Sunday) to the Spanish day keys used in business.hours.
 const DAY_KEYS = [
@@ -25,11 +34,18 @@ const LOCALES: Record<Lang, string> = {
 };
 
 type DayOption = {
-  key: string;
+  iso: string; // YYYY-MM-DD
   label: string;
   open: string;
   close: string;
 };
+
+function isoOf(date: Date): string {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const d = String(date.getDate()).padStart(2, "0");
+  return `${y}-${m}-${d}`;
+}
 
 function buildOpenDays(lang: Lang): DayOption[] {
   const locale = LOCALES[lang];
@@ -46,7 +62,7 @@ function buildOpenDays(lang: Lang): DayOption[] {
       month: "short",
     });
     days.push({
-      key: date.toDateString(),
+      iso: isoOf(date),
       label: rawLabel.charAt(0).toUpperCase() + rawLabel.slice(1),
       open: hours.open,
       close: hours.close,
@@ -55,6 +71,7 @@ function buildOpenDays(lang: Lang): DayOption[] {
   return days;
 }
 
+// Client-side fallback slots (used only in WhatsApp mode).
 function buildSlots(open: string, close: string): string[] {
   const [openH, openM] = open.split(":").map(Number);
   const [closeH, closeM] = close.split(":").map(Number);
@@ -73,6 +90,8 @@ function buildSlots(open: string, close: string): string[] {
   return slots;
 }
 
+type SubmitState = "idle" | "submitting" | "success" | "error" | "taken";
+
 export function Booking({ lang }: { lang: Lang }) {
   const t = content[lang].booking;
   const services = useMemo(
@@ -81,16 +100,68 @@ export function Booking({ lang }: { lang: Lang }) {
   );
   const days = useMemo(() => buildOpenDays(lang), [lang]);
 
-  const [service, setService] = useState("");
-  const [dayKey, setDayKey] = useState("");
-  const [time, setTime] = useState("");
+  // null while probing; true = real calendar backend; false = WhatsApp fallback.
+  const [backend, setBackend] = useState<boolean | null>(null);
 
-  const selectedDay = days.find((d) => d.key === dayKey);
-  const slots = selectedDay ? buildSlots(selectedDay.open, selectedDay.close) : [];
-  const isComplete = Boolean(service && selectedDay && time);
+  const [service, setService] = useState("");
+  const [dayIso, setDayIso] = useState("");
+  const [time, setTime] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [company, setCompany] = useState(""); // honeypot
+
+  const [apiSlots, setApiSlots] = useState<string[]>([]);
+  const [slotsLoading, setSlotsLoading] = useState(false);
+  const [submit, setSubmit] = useState<SubmitState>("idle");
+
+  const selectedDay = days.find((d) => d.iso === dayIso);
+
+  // Probe once on mount to decide backend vs fallback.
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/availability")
+      .then((r) => r.json())
+      .then((d) => {
+        if (!cancelled) setBackend(Boolean(d?.configured));
+      })
+      .catch(() => {
+        if (!cancelled) setBackend(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  // In backend mode, load real slots whenever the day changes.
+  useEffect(() => {
+    if (backend !== true || !dayIso) {
+      setApiSlots([]);
+      return;
+    }
+    let cancelled = false;
+    setSlotsLoading(true);
+    setTime("");
+    fetch(`/api/availability?date=${dayIso}`)
+      .then((r) => r.json())
+      .then((d) => {
+        if (!cancelled) setApiSlots(Array.isArray(d?.slots) ? d.slots : []);
+      })
+      .catch(() => {
+        if (!cancelled) setApiSlots([]);
+      })
+      .finally(() => {
+        if (!cancelled) setSlotsLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [backend, dayIso]);
+
+  const fallbackSlots = selectedDay ? buildSlots(selectedDay.open, selectedDay.close) : [];
+  const slots = backend === true ? apiSlots : fallbackSlots;
 
   const whatsappHref = useMemo(() => {
-    if (!isComplete || !selectedDay) return business.whatsapp.link;
+    if (!service || !selectedDay || !time) return business.whatsapp.link;
     const message = [
       t.messageIntro,
       `${t.messageService} ${service}`,
@@ -98,7 +169,47 @@ export function Booking({ lang }: { lang: Lang }) {
       t.messageClosing,
     ].join("\n");
     return `https://wa.me/${business.whatsapp.raw}?text=${encodeURIComponent(message)}`;
-  }, [isComplete, selectedDay, service, time, t]);
+  }, [service, selectedDay, time, t]);
+
+  const baseComplete = Boolean(service && selectedDay && time);
+  const bookingComplete = baseComplete && Boolean(name.trim() && phone.trim());
+
+  async function handleBook() {
+    if (!bookingComplete || !selectedDay) return;
+    setSubmit("submitting");
+    try {
+      const res = await fetch("/api/book", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, phone, service, date: selectedDay.iso, time, company }),
+      });
+      if (res.ok) {
+        setSubmit("success");
+      } else if (res.status === 409) {
+        setSubmit("taken");
+        // refresh availability so the taken slot disappears
+        const d = await fetch(`/api/availability?date=${selectedDay.iso}`).then((r) => r.json());
+        setApiSlots(Array.isArray(d?.slots) ? d.slots : []);
+        setTime("");
+      } else {
+        setSubmit("error");
+      }
+    } catch {
+      setSubmit("error");
+    }
+  }
+
+  function reset() {
+    setSubmit("idle");
+    setService("");
+    setDayIso("");
+    setTime("");
+    setName("");
+    setPhone("");
+  }
+
+  const selectClass =
+    "rounded-xl border border-teal-100 bg-cream-50 px-3 py-2.5 text-sm text-teal-900 focus:border-terracotta-400 focus:outline-none focus:ring-2 focus:ring-terracotta-400/30 disabled:opacity-50";
 
   return (
     <section id="reserva" className="section bg-cream-50">
@@ -112,80 +223,185 @@ export function Booking({ lang }: { lang: Lang }) {
         </div>
 
         <div className="mx-auto mt-10 max-w-2xl rounded-3xl bg-cream-100 p-6 shadow-sm sm:p-8">
-          <div className="grid gap-5 sm:grid-cols-3">
-            <label className="flex flex-col gap-2 text-sm font-medium text-teal-900">
-              {t.serviceLabel}
-              <select
-                value={service}
-                onChange={(e) => setService(e.target.value)}
-                className="rounded-xl border border-teal-100 bg-cream-50 px-3 py-2.5 text-sm text-teal-900 focus:border-terracotta-400 focus:outline-none focus:ring-2 focus:ring-terracotta-400/30"
-              >
-                <option value="">{t.servicePlaceholder}</option>
-                {services.map((name) => (
-                  <option key={name} value={name}>
-                    {name}
-                  </option>
-                ))}
-              </select>
-            </label>
+          {submit === "success" ? (
+            <div className="text-center">
+              <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-green-100 text-green-700">
+                <Check className="h-7 w-7" />
+              </span>
+              <h3 className="mt-4 font-serif text-2xl uppercase tracking-wide text-teal-900">
+                {t.successTitle}
+              </h3>
+              <p className="mt-2 text-teal-800/80">
+                {t.successBody
+                  .replace("{day}", selectedDay?.label ?? "")
+                  .replace("{time}", time)}
+              </p>
+              <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+                <a
+                  href={whatsappHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-sm font-medium text-white transition-all hover:shadow-lg"
+                >
+                  <MessageCircle className="h-4 w-4" />
+                  {t.whatsappConfirm}
+                </a>
+                <button
+                  onClick={reset}
+                  className="text-sm text-teal-700 underline-offset-4 hover:underline"
+                >
+                  {t.againBtn}
+                </button>
+              </div>
+            </div>
+          ) : (
+            <>
+              <div className="grid gap-5 sm:grid-cols-3">
+                <label className="flex flex-col gap-2 text-sm font-medium text-teal-900">
+                  {t.serviceLabel}
+                  <select
+                    value={service}
+                    onChange={(e) => setService(e.target.value)}
+                    className={selectClass}
+                  >
+                    <option value="">{t.servicePlaceholder}</option>
+                    {services.map((n) => (
+                      <option key={n} value={n}>
+                        {n}
+                      </option>
+                    ))}
+                  </select>
+                </label>
 
-            <label className="flex flex-col gap-2 text-sm font-medium text-teal-900">
-              {t.dayLabel}
-              <select
-                value={dayKey}
-                onChange={(e) => {
-                  setDayKey(e.target.value);
-                  setTime("");
-                }}
-                className="rounded-xl border border-teal-100 bg-cream-50 px-3 py-2.5 text-sm text-teal-900 focus:border-terracotta-400 focus:outline-none focus:ring-2 focus:ring-terracotta-400/30"
-              >
-                <option value="">{t.dayPlaceholder}</option>
-                {days.map((d) => (
-                  <option key={d.key} value={d.key}>
-                    {d.label}
-                  </option>
-                ))}
-              </select>
-            </label>
+                <label className="flex flex-col gap-2 text-sm font-medium text-teal-900">
+                  {t.dayLabel}
+                  <select
+                    value={dayIso}
+                    onChange={(e) => {
+                      setDayIso(e.target.value);
+                      setTime("");
+                    }}
+                    className={selectClass}
+                  >
+                    <option value="">{t.dayPlaceholder}</option>
+                    {days.map((d) => (
+                      <option key={d.iso} value={d.iso}>
+                        {d.label}
+                      </option>
+                    ))}
+                  </select>
+                </label>
 
-            <label className="flex flex-col gap-2 text-sm font-medium text-teal-900">
-              {t.timeLabel}
-              <select
-                value={time}
-                onChange={(e) => setTime(e.target.value)}
-                disabled={!selectedDay}
-                className="rounded-xl border border-teal-100 bg-cream-50 px-3 py-2.5 text-sm text-teal-900 focus:border-terracotta-400 focus:outline-none focus:ring-2 focus:ring-terracotta-400/30 disabled:opacity-50"
-              >
-                <option value="">{t.timePlaceholder}</option>
-                {slots.map((slot) => (
-                  <option key={slot} value={slot}>
-                    {slot}
-                  </option>
-                ))}
-              </select>
-            </label>
-          </div>
+                <label className="flex flex-col gap-2 text-sm font-medium text-teal-900">
+                  {t.timeLabel}
+                  <select
+                    value={time}
+                    onChange={(e) => setTime(e.target.value)}
+                    disabled={!selectedDay || slotsLoading}
+                    className={selectClass}
+                  >
+                    <option value="">
+                      {slotsLoading ? t.loadingSlots : t.timePlaceholder}
+                    </option>
+                    {slots.map((s) => (
+                      <option key={s} value={s}>
+                        {s}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              </div>
 
-          <a
-            href={whatsappHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => {
-              if (!isComplete) e.preventDefault();
-            }}
-            aria-disabled={!isComplete}
-            className={clsx(
-              "mt-6 flex w-full items-center justify-center gap-3 rounded-full px-8 py-4 text-base font-medium text-white transition-all",
-              isComplete
-                ? "bg-terracotta-500 hover:bg-terracotta-600 hover:shadow-xl active:scale-95"
-                : "cursor-not-allowed bg-teal-400/40"
-            )}
-          >
-            <MessageCircle className="h-5 w-5" />
-            {t.submitBtn}
-          </a>
-          {!isComplete && (
-            <p className="mt-3 text-center text-xs text-teal-700/60">{t.incompleteHint}</p>
+              {/* No-slots hint (backend mode) */}
+              {backend === true && selectedDay && !slotsLoading && slots.length === 0 && (
+                <p className="mt-4 text-center text-sm text-teal-800/70">{t.noSlots}</p>
+              )}
+
+              {/* Name + phone appear only in real-booking mode */}
+              {backend === true && (
+                <div className="mt-5 grid gap-5 sm:grid-cols-2">
+                  <label className="flex flex-col gap-2 text-sm font-medium text-teal-900">
+                    {t.nameLabel}
+                    <input
+                      type="text"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder={t.namePlaceholder}
+                      className={selectClass}
+                    />
+                  </label>
+                  <label className="flex flex-col gap-2 text-sm font-medium text-teal-900">
+                    {t.phoneLabel}
+                    <input
+                      type="tel"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      placeholder={t.phonePlaceholder}
+                      className={selectClass}
+                    />
+                  </label>
+                  {/* Honeypot — hidden from humans, catches bots */}
+                  <input
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={company}
+                    onChange={(e) => setCompany(e.target.value)}
+                    className="hidden"
+                    aria-hidden="true"
+                  />
+                </div>
+              )}
+
+              {(submit === "taken" || submit === "error") && (
+                <p className="mt-4 rounded-xl bg-terracotta-500/10 px-4 py-3 text-center text-sm text-terracotta-700">
+                  {submit === "taken" ? t.takenMsg : t.errorMsg}
+                </p>
+              )}
+
+              {backend === true ? (
+                <button
+                  onClick={handleBook}
+                  disabled={!bookingComplete || submit === "submitting"}
+                  className={clsx(
+                    "mt-6 flex w-full items-center justify-center gap-3 rounded-full px-8 py-4 text-base font-medium text-white transition-all",
+                    bookingComplete && submit !== "submitting"
+                      ? "bg-terracotta-500 hover:bg-terracotta-600 hover:shadow-xl active:scale-95"
+                      : "cursor-not-allowed bg-teal-400/40"
+                  )}
+                >
+                  {submit === "submitting" ? (
+                    <Loader2 className="h-5 w-5 animate-spin" />
+                  ) : (
+                    <Check className="h-5 w-5" />
+                  )}
+                  {t.confirmBtn}
+                </button>
+              ) : (
+                <a
+                  href={whatsappHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => {
+                    if (!baseComplete) e.preventDefault();
+                  }}
+                  aria-disabled={!baseComplete}
+                  className={clsx(
+                    "mt-6 flex w-full items-center justify-center gap-3 rounded-full px-8 py-4 text-base font-medium text-white transition-all",
+                    baseComplete
+                      ? "bg-terracotta-500 hover:bg-terracotta-600 hover:shadow-xl active:scale-95"
+                      : "cursor-not-allowed bg-teal-400/40"
+                  )}
+                >
+                  <MessageCircle className="h-5 w-5" />
+                  {t.submitBtn}
+                </a>
+              )}
+
+              {!baseComplete && (
+                <p className="mt-3 text-center text-xs text-teal-700/60">{t.incompleteHint}</p>
+              )}
+            </>
           )}
         </div>
       </div>
