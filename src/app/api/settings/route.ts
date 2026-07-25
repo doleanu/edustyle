@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { readSession, SESSION_COOKIE } from "@/lib/booking/session";
 import { OWNER_EMAIL, hasBookingBackend } from "@/lib/booking/config";
 import { getSettings, saveSettings, getRefreshToken } from "@/lib/booking/store";
-import { DEFAULT_SETTINGS, type Settings } from "@/lib/booking/settings";
+import { DEFAULT_SETTINGS, normalizeSettings, type Settings } from "@/lib/booking/settings";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -50,6 +50,7 @@ export async function PUT(req: NextRequest) {
   ) {
     return NextResponse.json({ error: "invalid" }, { status: 400 });
   }
-  await saveSettings(body);
+  // Normalize before persisting so the stored shape is always clean/current.
+  await saveSettings(normalizeSettings(body));
   return NextResponse.json({ ok: true });
 }

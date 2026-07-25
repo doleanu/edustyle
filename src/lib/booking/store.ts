@@ -1,6 +1,6 @@
 import { Redis } from "@upstash/redis";
 import { kvConfig } from "./config";
-import type { Settings } from "./settings";
+import { normalizeSettings, type Settings } from "./settings";
 
 // Single-tenant persistence (Upstash Redis / Vercel KV). Two keys:
 //   owner:refresh_token  -> the barber's Google refresh token, obtained once at
@@ -49,8 +49,10 @@ export async function getSettings(): Promise<Settings | null> {
   const r = redis();
   if (!r) return null;
   // Upstash may return the value already parsed or as a string depending on how
-  // it was stored — handle both.
-  const raw = await r.get<string | Settings>(SETTINGS_KEY);
+  // it was stored — handle both, then normalize (migrates the pre-split-shift
+  // single-range shape to the current multi-range shape transparently).
+  const raw = await r.get<unknown>(SETTINGS_KEY);
   if (!raw) return null;
-  return typeof raw === "string" ? (JSON.parse(raw) as Settings) : (raw as Settings);
+  const parsed = typeof raw === "string" ? JSON.parse(raw) : raw;
+  return normalizeSettings(parsed);
 }

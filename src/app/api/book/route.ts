@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { DateTime } from "luxon";
 import { hasBookingBackend } from "@/lib/booking/config";
 import { getSettings, getRefreshToken } from "@/lib/booking/store";
-import { DEFAULT_SETTINGS, slotInstants } from "@/lib/booking/settings";
+import { DEFAULT_SETTINGS, candidateSlots, slotInstants } from "@/lib/booking/settings";
 import { getBusy, createEvent } from "@/lib/booking/google";
 
 export const runtime = "nodejs";
@@ -52,6 +52,11 @@ export async function POST(req: NextRequest) {
   }
 
   const settings = (await getSettings()) ?? DEFAULT_SETTINGS;
+  // The posted time must be a real bookable slot for that date (inside the
+  // day's working ranges, on the slot grid) — blocks booking during a break.
+  if (!candidateSlots(date, settings).includes(time)) {
+    return NextResponse.json({ error: "invalid_slot" }, { status: 400 });
+  }
   const { start, end } = slotInstants(date, time, settings.slotMinutes);
   if (!start.isValid || start.toUTC() <= DateTime.utc()) {
     return NextResponse.json({ error: "past" }, { status: 400 });

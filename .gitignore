@@ -11,3 +11,5 @@ build/
 .idea/
 next-env.d.ts
 *.tsbuildinfo
+.vercel
+.env*
