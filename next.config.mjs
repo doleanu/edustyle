@@ -7,27 +7,23 @@ const nextConfig = {
       { protocol: "https", hostname: "maps.googleapis.com" },
     ],
   },
-  // Next.js Multi Zones: /bold and /bold2 are separate Next.js apps
-  // (each with basePath set to match) deployed as their own Vercel
-  // projects, transparently proxied in here so every design lives
-  // under one domain. See ~/code/edustyle-bold and ~/code/edustyle-bold2.
+  // Next.js Multi Zones: /bold is a separate Next.js app (basePath set to
+  // match) deployed as its own Vercel project, transparently proxied in
+  // here so it lives under this domain. See ~/code/edustyle-bold2 (the
+  // "ink & vermilion" design — this now owns /bold).
+  //
+  // The old neon-noir design (~/code/edustyle-bold, previously also at
+  // /bold) is unrouted, not deleted: its Vercel project is still live at
+  // edustyle-bold.vercel.app/bold directly, just no longer linked from here.
   async rewrites() {
     return [
       {
         source: "/bold",
-        destination: "https://edustyle-bold.vercel.app/bold",
+        destination: "https://edustyle-bold2.vercel.app/bold",
       },
       {
         source: "/bold/:path*",
-        destination: "https://edustyle-bold.vercel.app/bold/:path*",
-      },
-      {
-        source: "/bold2",
-        destination: "https://edustyle-bold2.vercel.app/bold2",
-      },
-      {
-        source: "/bold2/:path*",
-        destination: "https://edustyle-bold2.vercel.app/bold2/:path*",
+        destination: "https://edustyle-bold2.vercel.app/bold/:path*",
       },
     ];
   },
