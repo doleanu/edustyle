@@ -6,14 +6,12 @@ import clsx from "clsx";
 import { business } from "@/lib/business";
 import { content, type Lang } from "@/lib/content";
 
-// This section progressively enhances:
-//   • If the calendar backend is configured (see src/lib/booking), it shows REAL
-//     availability from Google Calendar, takes the client's name + phone, and
-//     creates a real appointment via /api/book.
-//   • If not (backend env vars absent, or /api/availability says configured:false),
-//     it falls back to the original behaviour: derive slots from business hours
-//     and open a prewritten WhatsApp message. This keeps the live site working
-//     at all times, before and after the Google setup is wired up.
+// The calendar backend (see src/lib/booking) is the only booking path now —
+// it shows REAL availability from Google Calendar, takes the client's name +
+// phone, and creates a real appointment via /api/book. If the backend probe
+// ever comes back false (env vars missing, API blip), this shows a plain
+// "unavailable, message us" note rather than a parallel WhatsApp booking flow —
+// clients only ever see the one real way to book.
 
 // Maps JS Date#getDay() (0 = Sunday) to the Spanish day keys used in business.hours.
 const DAY_KEYS = [
@@ -69,25 +67,6 @@ function buildOpenDays(lang: Lang): DayOption[] {
     });
   }
   return days;
-}
-
-// Client-side fallback slots (used only in WhatsApp mode).
-function buildSlots(open: string, close: string): string[] {
-  const [openH, openM] = open.split(":").map(Number);
-  const [closeH, closeM] = close.split(":").map(Number);
-  const closeMinutes = closeH * 60 + closeM;
-  const slots: string[] = [];
-  let h = openH;
-  let m = openM;
-  while (h * 60 + m < closeMinutes) {
-    slots.push(`${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`);
-    m += 30;
-    if (m >= 60) {
-      m -= 60;
-      h += 1;
-    }
-  }
-  return slots;
 }
 
 type SubmitState = "idle" | "submitting" | "success" | "error" | "taken";
@@ -157,9 +136,9 @@ export function Booking({ lang }: { lang: Lang }) {
     };
   }, [backend, dayIso]);
 
-  const fallbackSlots = selectedDay ? buildSlots(selectedDay.open, selectedDay.close) : [];
-  const slots = backend === true ? apiSlots : fallbackSlots;
+  const slots = apiSlots;
 
+  // Still used for the post-success "Confirm on WhatsApp" nudge.
   const whatsappHref = useMemo(() => {
     if (!service || !selectedDay || !time) return business.whatsapp.link;
     const message = [
@@ -254,6 +233,23 @@ export function Booking({ lang }: { lang: Lang }) {
                 </button>
               </div>
             </div>
+          ) : backend === null ? (
+            <div className="flex justify-center py-10">
+              <Loader2 className="h-6 w-6 animate-spin text-teal-700/40" />
+            </div>
+          ) : backend === false ? (
+            <div className="text-center">
+              <p className="text-teal-800/80">{t.unavailableMsg}</p>
+              <a
+                href={business.whatsapp.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-5 inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-sm font-medium text-white transition-all hover:shadow-lg"
+              >
+                <MessageCircle className="h-4 w-4" />
+                {t.whatsappConfirm}
+              </a>
+            </div>
           ) : (
             <>
               <div className="grid gap-5 sm:grid-cols-3">
@@ -312,46 +308,42 @@ export function Booking({ lang }: { lang: Lang }) {
                 </label>
               </div>
 
-              {/* No-slots hint (backend mode) */}
-              {backend === true && selectedDay && !slotsLoading && slots.length === 0 && (
+              {selectedDay && !slotsLoading && slots.length === 0 && (
                 <p className="mt-4 text-center text-sm text-teal-800/70">{t.noSlots}</p>
               )}
 
-              {/* Name + phone appear only in real-booking mode */}
-              {backend === true && (
-                <div className="mt-5 grid gap-5 sm:grid-cols-2">
-                  <label className="flex flex-col gap-2 text-sm font-medium text-teal-900">
-                    {t.nameLabel}
-                    <input
-                      type="text"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      placeholder={t.namePlaceholder}
-                      className={selectClass}
-                    />
-                  </label>
-                  <label className="flex flex-col gap-2 text-sm font-medium text-teal-900">
-                    {t.phoneLabel}
-                    <input
-                      type="tel"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      placeholder={t.phonePlaceholder}
-                      className={selectClass}
-                    />
-                  </label>
-                  {/* Honeypot — hidden from humans, catches bots */}
+              <div className="mt-5 grid gap-5 sm:grid-cols-2">
+                <label className="flex flex-col gap-2 text-sm font-medium text-teal-900">
+                  {t.nameLabel}
                   <input
                     type="text"
-                    tabIndex={-1}
-                    autoComplete="off"
-                    value={company}
-                    onChange={(e) => setCompany(e.target.value)}
-                    className="hidden"
-                    aria-hidden="true"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder={t.namePlaceholder}
+                    className={selectClass}
                   />
-                </div>
-              )}
+                </label>
+                <label className="flex flex-col gap-2 text-sm font-medium text-teal-900">
+                  {t.phoneLabel}
+                  <input
+                    type="tel"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder={t.phonePlaceholder}
+                    className={selectClass}
+                  />
+                </label>
+                {/* Honeypot — hidden from humans, catches bots */}
+                <input
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={company}
+                  onChange={(e) => setCompany(e.target.value)}
+                  className="hidden"
+                  aria-hidden="true"
+                />
+              </div>
 
               {(submit === "taken" || submit === "error") && (
                 <p className="mt-4 rounded-xl bg-terracotta-500/10 px-4 py-3 text-center text-sm text-terracotta-700">
@@ -359,46 +351,25 @@ export function Booking({ lang }: { lang: Lang }) {
                 </p>
               )}
 
-              {backend === true ? (
-                <button
-                  onClick={handleBook}
-                  disabled={!bookingComplete || submit === "submitting"}
-                  className={clsx(
-                    "mt-6 flex w-full items-center justify-center gap-3 rounded-full px-8 py-4 text-base font-medium text-white transition-all",
-                    bookingComplete && submit !== "submitting"
-                      ? "bg-terracotta-500 hover:bg-terracotta-600 hover:shadow-xl active:scale-95"
-                      : "cursor-not-allowed bg-teal-400/40"
-                  )}
-                >
-                  {submit === "submitting" ? (
-                    <Loader2 className="h-5 w-5 animate-spin" />
-                  ) : (
-                    <Check className="h-5 w-5" />
-                  )}
-                  {t.confirmBtn}
-                </button>
-              ) : (
-                <a
-                  href={whatsappHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => {
-                    if (!baseComplete) e.preventDefault();
-                  }}
-                  aria-disabled={!baseComplete}
-                  className={clsx(
-                    "mt-6 flex w-full items-center justify-center gap-3 rounded-full px-8 py-4 text-base font-medium text-white transition-all",
-                    baseComplete
-                      ? "bg-terracotta-500 hover:bg-terracotta-600 hover:shadow-xl active:scale-95"
-                      : "cursor-not-allowed bg-teal-400/40"
-                  )}
-                >
-                  <MessageCircle className="h-5 w-5" />
-                  {t.submitBtn}
-                </a>
-              )}
+              <button
+                onClick={handleBook}
+                disabled={!bookingComplete || submit === "submitting"}
+                className={clsx(
+                  "mt-6 flex w-full items-center justify-center gap-3 rounded-full px-8 py-4 text-base font-medium text-white transition-all",
+                  bookingComplete && submit !== "submitting"
+                    ? "bg-terracotta-500 hover:bg-terracotta-600 hover:shadow-xl active:scale-95"
+                    : "cursor-not-allowed bg-teal-400/40"
+                )}
+              >
+                {submit === "submitting" ? (
+                  <Loader2 className="h-5 w-5 animate-spin" />
+                ) : (
+                  <Check className="h-5 w-5" />
+                )}
+                {t.confirmBtn}
+              </button>
 
-              {!baseComplete && (
+              {!bookingComplete && (
                 <p className="mt-3 text-center text-xs text-teal-700/60">{t.incompleteHint}</p>
               )}
             </>
