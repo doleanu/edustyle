@@ -1,5 +1,4 @@
-import { ArrowRight, MessageCircle, Scissors, CalendarCheck, Star } from "lucide-react";
-import { business } from "@/lib/business";
+import { ArrowRight, Scissors, CalendarCheck, Star } from "lucide-react";
 import { content, type Lang } from "@/lib/content";
 
 const badgeIcons = [Scissors, CalendarCheck, Star];
@@ -42,19 +41,10 @@ export function Hero({ lang }: { lang: Lang }) {
             {" "}{t.subtitle2}
           </p>
 
-          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <div className="mt-10 flex justify-center">
             <a href="#reserva" className="btn-primary w-full sm:w-auto">
               {t.ctaReserve}
               <ArrowRight className="h-4 w-4" />
-            </a>
-            <a
-              href={business.whatsapp.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-accent w-full sm:w-auto"
-            >
-              <MessageCircle className="h-4 w-4" />
-              {t.ctaWhatsApp}
             </a>
           </div>
 

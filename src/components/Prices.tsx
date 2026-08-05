@@ -1,4 +1,4 @@
-import { MessageCircle } from "lucide-react";
+import { CalendarCheck } from "lucide-react";
 import { content, type Lang } from "@/lib/content";
 import clsx from "clsx";
 
@@ -60,7 +60,7 @@ export function Prices({ lang }: { lang: Lang }) {
           </div>
           <div className="mt-6 text-center">
             <a href="#reserva" className="btn-accent">
-              <MessageCircle className="h-4 w-4" />
+              <CalendarCheck className="h-4 w-4" />
               {t.cta}
             </a>
           </div>

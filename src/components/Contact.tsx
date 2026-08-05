@@ -1,4 +1,4 @@
-import { Phone, MessageCircle, Clock } from "lucide-react";
+import { Phone, CalendarCheck, Clock } from "lucide-react";
 import { business } from "@/lib/business";
 import { content, type Lang } from "@/lib/content";
 
@@ -33,13 +33,11 @@ export function Contact({ lang }: { lang: Lang }) {
 
           <div className="mt-10 flex flex-col items-stretch justify-center gap-3 sm:flex-row">
             <a
-              href={business.whatsapp.link}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#reserva"
               className="group inline-flex items-center justify-center gap-3 rounded-full bg-terracotta-500 px-8 py-4 text-base font-medium text-white transition-all hover:bg-terracotta-600 hover:shadow-xl active:scale-95"
             >
-              <MessageCircle className="h-5 w-5 transition-transform group-hover:scale-110" />
-              <span>{t.whatsappBtn}</span>
+              <CalendarCheck className="h-5 w-5 transition-transform group-hover:scale-110" />
+              <span>{t.reserveBtn}</span>
             </a>
             <a
               href={`tel:${business.phoneE164}`}

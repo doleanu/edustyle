@@ -31,8 +31,6 @@ export const content = {
       { href: "#contacto", label: "Contacto" },
     ],
     navReserve: "Reservar",
-    navReserveMobile: "Reservar por WhatsApp",
-    floatingWhatsappLabel: "Escríbenos por WhatsApp",
     hero: {
       badge: "Barbería · Tenerife",
       title1: "Entra. Siéntate.",
@@ -40,9 +38,8 @@ export const content = {
       subtitle1: "Barbería en Tenerife. Cortes, barba y afeitado clásico,",
       subtitle2: "con la atención que te mereces.",
       ctaReserve: "Reservar cita",
-      ctaWhatsApp: "Reserva por WhatsApp",
       seePrices: "↓ Ver todos los precios",
-      badges: ["Cortes y degradados", "Reserva por WhatsApp", "Valorado por sus clientes"],
+      badges: ["Cortes y degradados", "Reserva online", "Valorado por sus clientes"],
     },
     video: {
       eyebrow: "En Instagram",
@@ -93,7 +90,7 @@ export const content = {
       subtitle:
         "Estos son nuestros servicios y precios. ¿Dudas sobre lo que necesitas? Escríbenos y te asesoramos.",
       note: "Los precios pueden variar según el largo y el tipo de pelo. ¿Dudas sobre lo que necesitas? Pregúntanos sin compromiso.",
-      cta: "Reserva tu cita por WhatsApp",
+      cta: "Reservar cita",
       groups: [
         { title: "Cortes", items: [
           { name: "Corte de niño", desc: "Hasta 8 años", price: "10 €" },
@@ -131,12 +128,8 @@ export const content = {
       dayPlaceholder: "Elige un día",
       timeLabel: "Hora",
       timePlaceholder: "Elige una hora",
-      unavailableMsg: "La reserva online no está disponible en este momento. Escríbenos por WhatsApp.",
+      unavailableMsg: "La reserva online no está disponible en este momento. Inténtalo de nuevo más tarde.",
       incompleteHint: "Elige servicio, día y hora para continuar.",
-      messageIntro: "¡Hola! Me gustaría reservar cita:",
-      messageService: "Servicio:",
-      messageWhen: "Cuándo:",
-      messageClosing: "¿Tenéis hueco? ¡Gracias!",
       // Real (calendar-backed) booking flow
       nameLabel: "Tu nombre",
       namePlaceholder: "Nombre y apellido",
@@ -144,13 +137,12 @@ export const content = {
       phonePlaceholder: "Tu número",
       confirmBtn: "Reservar cita",
       loadingSlots: "Buscando huecos…",
-      noSlots: "No quedan huecos ese día. Prueba otro día o escríbenos por WhatsApp.",
+      noSlots: "No quedan huecos ese día. Prueba otro día.",
       successTitle: "¡Cita reservada!",
       successBody: "Te esperamos el {day} a las {time}.",
-      whatsappConfirm: "Confirmar por WhatsApp",
       againBtn: "Reservar otra cita",
       takenMsg: "Ese hueco se acaba de ocupar. Elige otra hora, por favor.",
-      errorMsg: "No se pudo completar la reserva. Inténtalo de nuevo o escríbenos por WhatsApp.",
+      errorMsg: "No se pudo completar la reserva. Inténtalo de nuevo.",
     },
     faq: {
       eyebrow: "Preguntas frecuentes",
@@ -175,17 +167,17 @@ export const content = {
       phoneLabel: "Teléfono",
       hoursLabel: "Horario",
       closed: "Cerrado",
-      whatsappBtn: "WhatsApp",
+      reserveBtn: "Reservar cita",
       callBtn: "Llamar",
       mapsBtn: "Abrir en Google Maps",
     },
     contact: {
       eyebrow: "Reserva tu cita",
       title1: "Tu próximo corte,",
-      titleAccent: "a un mensaje",
+      titleAccent: "a un clic",
       subtitle:
-        "Escríbenos por WhatsApp o llámanos directamente. Te confirmamos la cita en minutos y te reservamos tu hueco.",
-      whatsappBtn: "Reserva por WhatsApp",
+        "Reserva tu cita online o llámanos directamente. Confirmamos tu hueco al instante.",
+      reserveBtn: "Reservar cita",
       note: "Solemos responder en pocos minutos durante el horario de apertura",
     },
     footer: {
@@ -223,8 +215,6 @@ export const content = {
       { href: "#contacto", label: "Contact" },
     ],
     navReserve: "Book",
-    navReserveMobile: "Book on WhatsApp",
-    floatingWhatsappLabel: "Message us on WhatsApp",
     hero: {
       badge: "Barbershop · Tenerife",
       title1: "Walk in. Sit down.",
@@ -232,9 +222,8 @@ export const content = {
       subtitle1: "Barbershop in Tenerife. Cuts, beard and classic shave,",
       subtitle2: "with the care you deserve.",
       ctaReserve: "Book now",
-      ctaWhatsApp: "Book on WhatsApp",
       seePrices: "↓ See all prices",
-      badges: ["Cuts & fades", "Book on WhatsApp", "Loved by customers"],
+      badges: ["Cuts & fades", "Book online", "Loved by customers"],
     },
     video: {
       eyebrow: "On Instagram",
@@ -285,7 +274,7 @@ export const content = {
       subtitle:
         "These are our services and prices. Not sure what you need? Message us and we'll advise you.",
       note: "Prices may vary depending on hair length and type. Not sure what you need? Just ask us, no commitment.",
-      cta: "Book your appointment on WhatsApp",
+      cta: "Book your appointment",
       groups: [
         { title: "Haircuts", items: [
           { name: "Kids' cut", desc: "Up to 8 years old", price: "10 €" },
@@ -323,12 +312,8 @@ export const content = {
       dayPlaceholder: "Choose a day",
       timeLabel: "Time",
       timePlaceholder: "Choose a time",
-      unavailableMsg: "Online booking isn't available right now. Message us on WhatsApp.",
+      unavailableMsg: "Online booking isn't available right now. Please try again later.",
       incompleteHint: "Choose a service, day and time to continue.",
-      messageIntro: "Hi! I'd like to book an appointment:",
-      messageService: "Service:",
-      messageWhen: "When:",
-      messageClosing: "Do you have availability? Thanks!",
       // Real (calendar-backed) booking flow
       nameLabel: "Your name",
       namePlaceholder: "First and last name",
@@ -336,13 +321,12 @@ export const content = {
       phonePlaceholder: "Your number",
       confirmBtn: "Book appointment",
       loadingSlots: "Finding open slots…",
-      noSlots: "No slots left that day. Try another day or message us on WhatsApp.",
+      noSlots: "No slots left that day. Try another day.",
       successTitle: "Appointment booked!",
       successBody: "See you on {day} at {time}.",
-      whatsappConfirm: "Confirm on WhatsApp",
       againBtn: "Book another appointment",
       takenMsg: "That slot was just taken. Please pick another time.",
-      errorMsg: "We couldn't complete the booking. Try again or message us on WhatsApp.",
+      errorMsg: "We couldn't complete the booking. Please try again.",
     },
     faq: {
       eyebrow: "FAQ",
@@ -367,17 +351,17 @@ export const content = {
       phoneLabel: "Phone",
       hoursLabel: "Opening hours",
       closed: "Closed",
-      whatsappBtn: "WhatsApp",
+      reserveBtn: "Book appointment",
       callBtn: "Call",
       mapsBtn: "Open in Google Maps",
     },
     contact: {
       eyebrow: "Book your appointment",
       title1: "Your next cut,",
-      titleAccent: "one message away",
+      titleAccent: "one click away",
       subtitle:
-        "Message us on WhatsApp or call us directly. We confirm your appointment within minutes and hold your slot.",
-      whatsappBtn: "Book on WhatsApp",
+        "Book your appointment online or call us directly. We confirm your slot instantly.",
+      reserveBtn: "Book appointment",
       note: "We usually reply within a few minutes during opening hours",
     },
     footer: {
@@ -415,8 +399,6 @@ export const content = {
       { href: "#contacto", label: "Contact" },
     ],
     navReserve: "Réserver",
-    navReserveMobile: "Réserver sur WhatsApp",
-    floatingWhatsappLabel: "Écrivez-nous sur WhatsApp",
     hero: {
       badge: "Barbier · Tenerife",
       title1: "Entrez. Asseyez-vous.",
@@ -424,9 +406,8 @@ export const content = {
       subtitle1: "Barbier à Tenerife. Coupes, barbe et rasage classique,",
       subtitle2: "avec le soin que vous méritez.",
       ctaReserve: "Réserver",
-      ctaWhatsApp: "Réserver sur WhatsApp",
       seePrices: "↓ Voir tous les tarifs",
-      badges: ["Coupes et dégradés", "Réservation sur WhatsApp", "Apprécié par nos clients"],
+      badges: ["Coupes et dégradés", "Réservation en ligne", "Apprécié par nos clients"],
     },
     video: {
       eyebrow: "Sur Instagram",
@@ -477,7 +458,7 @@ export const content = {
       subtitle:
         "Voici nos services et nos tarifs. Un doute sur ce dont vous avez besoin ? Écrivez-nous, on vous conseille.",
       note: "Les prix peuvent varier selon la longueur et le type de cheveux. Un doute ? Demandez-nous sans engagement.",
-      cta: "Réservez votre rendez-vous sur WhatsApp",
+      cta: "Réserver votre rendez-vous",
       groups: [
         { title: "Coupes", items: [
           { name: "Coupe enfant", desc: "Jusqu'à 8 ans", price: "10 €" },
@@ -515,12 +496,8 @@ export const content = {
       dayPlaceholder: "Choisissez un jour",
       timeLabel: "Heure",
       timePlaceholder: "Choisissez une heure",
-      unavailableMsg: "La réservation en ligne n'est pas disponible pour le moment. Écrivez-nous sur WhatsApp.",
+      unavailableMsg: "La réservation en ligne n'est pas disponible pour le moment. Réessayez plus tard.",
       incompleteHint: "Choisissez un service, un jour et une heure pour continuer.",
-      messageIntro: "Bonjour ! Je souhaiterais réserver un rendez-vous :",
-      messageService: "Service :",
-      messageWhen: "Quand :",
-      messageClosing: "Avez-vous un créneau disponible ? Merci !",
       // Real (calendar-backed) booking flow
       nameLabel: "Votre nom",
       namePlaceholder: "Nom et prénom",
@@ -528,13 +505,12 @@ export const content = {
       phonePlaceholder: "Votre numéro",
       confirmBtn: "Réserver le rendez-vous",
       loadingSlots: "Recherche de créneaux…",
-      noSlots: "Plus de créneaux ce jour-là. Essayez un autre jour ou écrivez-nous sur WhatsApp.",
+      noSlots: "Plus de créneaux ce jour-là. Essayez un autre jour.",
       successTitle: "Rendez-vous réservé !",
       successBody: "On vous attend le {day} à {time}.",
-      whatsappConfirm: "Confirmer sur WhatsApp",
       againBtn: "Réserver un autre rendez-vous",
       takenMsg: "Ce créneau vient d'être pris. Choisissez une autre heure, s'il vous plaît.",
-      errorMsg: "La réservation n'a pas pu aboutir. Réessayez ou écrivez-nous sur WhatsApp.",
+      errorMsg: "La réservation n'a pas pu aboutir. Veuillez réessayer.",
     },
     faq: {
       eyebrow: "Questions fréquentes",
@@ -559,17 +535,17 @@ export const content = {
       phoneLabel: "Téléphone",
       hoursLabel: "Horaires",
       closed: "Fermé",
-      whatsappBtn: "WhatsApp",
+      reserveBtn: "Réserver",
       callBtn: "Appeler",
       mapsBtn: "Ouvrir dans Google Maps",
     },
     contact: {
       eyebrow: "Réservez votre rendez-vous",
       title1: "Votre prochaine coupe,",
-      titleAccent: "à un message près",
+      titleAccent: "à un clic près",
       subtitle:
-        "Écrivez-nous sur WhatsApp ou appelez-nous directement. Nous confirmons votre rendez-vous en quelques minutes et réservons votre créneau.",
-      whatsappBtn: "Réserver sur WhatsApp",
+        "Réservez votre rendez-vous en ligne ou appelez-nous directement. Nous confirmons votre créneau à l'instant.",
+      reserveBtn: "Réserver",
       note: "Nous répondons généralement en quelques minutes pendant les horaires d'ouverture",
     },
     footer: {
@@ -607,8 +583,6 @@ export const content = {
       { href: "#contacto", label: "Kontakt" },
     ],
     navReserve: "Termin buchen",
-    navReserveMobile: "Per WhatsApp buchen",
-    floatingWhatsappLabel: "Schreiben Sie uns auf WhatsApp",
     hero: {
       badge: "Barbershop · Teneriffa",
       title1: "Reinkommen. Platz nehmen.",
@@ -616,9 +590,8 @@ export const content = {
       subtitle1: "Barbershop auf Teneriffa. Haarschnitt, Bart und klassische Rasur,",
       subtitle2: "mit der Sorgfalt, die Sie verdienen.",
       ctaReserve: "Jetzt buchen",
-      ctaWhatsApp: "Per WhatsApp buchen",
       seePrices: "↓ Alle Preise ansehen",
-      badges: ["Schnitte & Fades", "Buchung per WhatsApp", "Von Kunden geschätzt"],
+      badges: ["Schnitte & Fades", "Online buchen", "Von Kunden geschätzt"],
     },
     video: {
       eyebrow: "Auf Instagram",
@@ -669,7 +642,7 @@ export const content = {
       subtitle:
         "Das sind unsere Leistungen und Preise. Nicht sicher, was Sie brauchen? Schreiben Sie uns, wir beraten Sie.",
       note: "Die Preise können je nach Haarlänge und -typ variieren. Unsicher? Fragen Sie uns einfach, ganz unverbindlich.",
-      cta: "Termin per WhatsApp buchen",
+      cta: "Termin buchen",
       groups: [
         { title: "Haarschnitte", items: [
           { name: "Kinderhaarschnitt", desc: "Bis 8 Jahre", price: "10 €" },
@@ -707,12 +680,8 @@ export const content = {
       dayPlaceholder: "Tag wählen",
       timeLabel: "Uhrzeit",
       timePlaceholder: "Uhrzeit wählen",
-      unavailableMsg: "Die Online-Buchung ist gerade nicht verfügbar. Schreiben Sie uns per WhatsApp.",
+      unavailableMsg: "Die Online-Buchung ist gerade nicht verfügbar. Bitte versuchen Sie es später erneut.",
       incompleteHint: "Wählen Sie Leistung, Tag und Uhrzeit, um fortzufahren.",
-      messageIntro: "Hallo! Ich möchte gerne einen Termin buchen:",
-      messageService: "Leistung:",
-      messageWhen: "Wann:",
-      messageClosing: "Habt ihr einen freien Termin? Danke!",
       // Real (calendar-backed) booking flow
       nameLabel: "Dein Name",
       namePlaceholder: "Vor- und Nachname",
@@ -720,13 +689,12 @@ export const content = {
       phonePlaceholder: "Deine Nummer",
       confirmBtn: "Termin buchen",
       loadingSlots: "Freie Zeiten werden gesucht…",
-      noSlots: "An dem Tag sind keine Zeiten mehr frei. Probier einen anderen Tag oder schreib uns per WhatsApp.",
+      noSlots: "An dem Tag sind keine Zeiten mehr frei. Probier einen anderen Tag.",
       successTitle: "Termin gebucht!",
       successBody: "Wir sehen uns am {day} um {time}.",
-      whatsappConfirm: "Per WhatsApp bestätigen",
       againBtn: "Weiteren Termin buchen",
       takenMsg: "Diese Zeit wurde gerade vergeben. Bitte wähl eine andere Uhrzeit.",
-      errorMsg: "Die Buchung hat nicht geklappt. Versuch es erneut oder schreib uns per WhatsApp.",
+      errorMsg: "Die Buchung hat nicht geklappt. Bitte versuch es erneut.",
     },
     faq: {
       eyebrow: "Häufige Fragen",
@@ -751,17 +719,17 @@ export const content = {
       phoneLabel: "Telefon",
       hoursLabel: "Öffnungszeiten",
       closed: "Geschlossen",
-      whatsappBtn: "WhatsApp",
+      reserveBtn: "Termin buchen",
       callBtn: "Anrufen",
       mapsBtn: "In Google Maps öffnen",
     },
     contact: {
       eyebrow: "Termin buchen",
       title1: "Ihr nächster Schnitt,",
-      titleAccent: "nur eine Nachricht entfernt",
+      titleAccent: "nur einen Klick entfernt",
       subtitle:
-        "Schreiben Sie uns per WhatsApp oder rufen Sie uns direkt an. Wir bestätigen Ihren Termin innerhalb weniger Minuten und reservieren Ihren Platz.",
-      whatsappBtn: "Per WhatsApp buchen",
+        "Buchen Sie Ihren Termin online oder rufen Sie uns direkt an. Wir bestätigen Ihren Platz sofort.",
+      reserveBtn: "Termin buchen",
       note: "Wir antworten während der Öffnungszeiten meist innerhalb weniger Minuten",
     },
     footer: {

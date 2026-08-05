@@ -10,7 +10,6 @@ import { FAQ } from "@/components/FAQ";
 import { Location } from "@/components/Location";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
-import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { JsonLd } from "@/components/JsonLd";
 import { type Lang } from "@/lib/content";
 
@@ -33,7 +32,6 @@ export function SiteBody({ lang }: { lang: Lang }) {
         <Contact lang={lang} />
       </main>
       <Footer lang={lang} />
-      <FloatingWhatsApp lang={lang} />
     </>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, MessageCircle } from "lucide-react";
+import { Menu, X, CalendarCheck } from "lucide-react";
 import Image from "next/image";
 import { content, LANG_LABELS, LANG_PATHS, type Lang } from "@/lib/content";
 import clsx from "clsx";
@@ -85,7 +85,7 @@ export function Header({ lang, minimal = false }: { lang: Lang; minimal?: boolea
               ))}
               <LangSwitch lang={lang} />
               <a href="#reserva" className="btn-primary">
-                <MessageCircle className="h-4 w-4" />
+                <CalendarCheck className="h-4 w-4" />
                 {t.navReserve}
               </a>
             </nav>
@@ -126,8 +126,8 @@ export function Header({ lang, minimal = false }: { lang: Lang; minimal?: boolea
               onClick={() => setOpen(false)}
               className="btn-primary mt-3"
             >
-              <MessageCircle className="h-4 w-4" />
-              {t.navReserveMobile}
+              <CalendarCheck className="h-4 w-4" />
+              {t.navReserve}
             </a>
           </nav>
         </div>

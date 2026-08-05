@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { MessageCircle, Check, Loader2 } from "lucide-react";
+import { Check, Loader2 } from "lucide-react";
 import clsx from "clsx";
 import { business } from "@/lib/business";
 import { content, type Lang } from "@/lib/content";
@@ -138,20 +138,7 @@ export function Booking({ lang }: { lang: Lang }) {
 
   const slots = apiSlots;
 
-  // Still used for the post-success "Confirm on WhatsApp" nudge.
-  const whatsappHref = useMemo(() => {
-    if (!service || !selectedDay || !time) return business.whatsapp.link;
-    const message = [
-      t.messageIntro,
-      `${t.messageService} ${service}`,
-      `${t.messageWhen} ${selectedDay.label}, ${time}`,
-      t.messageClosing,
-    ].join("\n");
-    return `https://wa.me/${business.whatsapp.raw}?text=${encodeURIComponent(message)}`;
-  }, [service, selectedDay, time, t]);
-
-  const baseComplete = Boolean(service && selectedDay && time);
-  const bookingComplete = baseComplete && Boolean(name.trim() && phone.trim());
+  const bookingComplete = Boolean(service && selectedDay && time && name.trim() && phone.trim());
 
   async function handleBook() {
     if (!bookingComplete || !selectedDay) return;
@@ -215,16 +202,7 @@ export function Booking({ lang }: { lang: Lang }) {
                   .replace("{day}", selectedDay?.label ?? "")
                   .replace("{time}", time)}
               </p>
-              <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-                <a
-                  href={whatsappHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-sm font-medium text-white transition-all hover:shadow-lg"
-                >
-                  <MessageCircle className="h-4 w-4" />
-                  {t.whatsappConfirm}
-                </a>
+              <div className="mt-6 flex justify-center">
                 <button
                   onClick={reset}
                   className="text-sm text-teal-700 underline-offset-4 hover:underline"
@@ -240,15 +218,6 @@ export function Booking({ lang }: { lang: Lang }) {
           ) : backend === false ? (
             <div className="text-center">
               <p className="text-teal-800/80">{t.unavailableMsg}</p>
-              <a
-                href={business.whatsapp.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-5 inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-sm font-medium text-white transition-all hover:shadow-lg"
-              >
-                <MessageCircle className="h-4 w-4" />
-                {t.whatsappConfirm}
-              </a>
             </div>
           ) : (
             <>

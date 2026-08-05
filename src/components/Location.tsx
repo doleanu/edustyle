@@ -1,4 +1,4 @@
-import { MapPin, Phone, Clock, MessageCircle, Navigation } from "lucide-react";
+import { MapPin, Phone, Clock, CalendarCheck, Navigation } from "lucide-react";
 import { business } from "@/lib/business";
 import { content, type Lang } from "@/lib/content";
 
@@ -79,14 +79,9 @@ export function Location({ lang }: { lang: Lang }) {
             </div>
 
             <div className="flex flex-col gap-3 sm:flex-row">
-              <a
-                href={business.whatsapp.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-accent flex-1"
-              >
-                <MessageCircle className="h-4 w-4" />
-                {t.whatsappBtn}
+              <a href="#reserva" className="btn-accent flex-1">
+                <CalendarCheck className="h-4 w-4" />
+                {t.reserveBtn}
               </a>
               <a href={`tel:${business.phoneE164}`} className="btn-primary flex-1">
                 <Phone className="h-4 w-4" />
