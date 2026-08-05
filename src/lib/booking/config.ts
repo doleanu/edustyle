@@ -64,12 +64,39 @@ export function hasBookingBackend() {
 // just no-ops (503), it never blocks a booking from being created.
 // ─────────────────────────────────────────────────────────────────────────────
 
+// The account itself (starts "AC…") — every Twilio API call is scoped under
+// /Accounts/{this}/…, regardless of which credential pair authenticates it.
 export function twilioAccountSid() {
   return process.env.TWILIO_ACCOUNT_SID ?? "";
 }
 
+// Two ways to authenticate the REST call — either works:
+//  1. The master Auth Token (Console home, next to the Account SID).
+//  2. An API Key SID ("SK…") + Secret (Console → Account → API keys & tokens
+//     → Create API key). Twilio's own recommended approach, since a key can
+//     be revoked individually without rotating the master token. If both are
+//     set, the API Key takes precedence.
 export function twilioAuthToken() {
   return process.env.TWILIO_AUTH_TOKEN ?? "";
+}
+
+export function twilioApiKeySid() {
+  return process.env.TWILIO_API_KEY_SID ?? "";
+}
+
+export function twilioApiKeySecret() {
+  return process.env.TWILIO_API_KEY_SECRET ?? "";
+}
+
+// The Basic Auth pair to actually send with the request.
+export function twilioAuthPair(): { user: string; pass: string } | null {
+  const keySid = twilioApiKeySid();
+  const keySecret = twilioApiKeySecret();
+  if (keySid && keySecret) return { user: keySid, pass: keySecret };
+  const accountSid = twilioAccountSid();
+  const authToken = twilioAuthToken();
+  if (accountSid && authToken) return { user: accountSid, pass: authToken };
+  return null;
 }
 
 // E.164 sender, e.g. "+15017122661", or a Messaging Service SID (starts "MG…").
@@ -88,7 +115,7 @@ export function hasReminders() {
   return Boolean(
     hasBookingBackend() &&
       twilioAccountSid() &&
-      twilioAuthToken() &&
+      twilioAuthPair() &&
       twilioFrom() &&
       cronSecret()
   );
