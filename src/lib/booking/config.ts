@@ -57,3 +57,39 @@ export function hasBookingBackend() {
       kvConfig()
   );
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SMS reminders (Twilio). Optional on top of the booking backend — same
+// progressive pattern: if any of these is missing, the reminder cron endpoint
+// just no-ops (503), it never blocks a booking from being created.
+// ─────────────────────────────────────────────────────────────────────────────
+
+export function twilioAccountSid() {
+  return process.env.TWILIO_ACCOUNT_SID ?? "";
+}
+
+export function twilioAuthToken() {
+  return process.env.TWILIO_AUTH_TOKEN ?? "";
+}
+
+// E.164 sender, e.g. "+15017122661", or a Messaging Service SID (starts "MG…").
+export function twilioFrom() {
+  return process.env.TWILIO_FROM_NUMBER ?? "";
+}
+
+// Shared secret the external scheduler (GitHub Actions cron) presents as
+// `Authorization: Bearer <secret>` so the reminder endpoint can't be triggered
+// by randoms hitting the URL.
+export function cronSecret() {
+  return process.env.CRON_SECRET ?? "";
+}
+
+export function hasReminders() {
+  return Boolean(
+    hasBookingBackend() &&
+      twilioAccountSid() &&
+      twilioAuthToken() &&
+      twilioFrom() &&
+      cronSecret()
+  );
+}

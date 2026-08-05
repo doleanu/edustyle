@@ -78,6 +78,8 @@ export async function POST(req: NextRequest) {
     description: `Reserva online\nCliente: ${name}\nTeléfono: ${phone}\nServicio: ${service}`,
     startWall,
     endWall,
+    clientName: name,
+    clientPhone: phone,
   });
   if (!ok) return NextResponse.json({ error: "failed" }, { status: 500 });
   return NextResponse.json({ ok: true });

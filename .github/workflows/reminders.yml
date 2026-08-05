@@ -1,0 +1,22 @@
+name: Booking reminders
+
+# Vercel's own Cron Jobs only run once a day on the Hobby plan, which isn't
+# tight enough for a "1 hour before" SMS. GitHub Actions' free cron runs as
+# often as every few minutes, so it's used as the external scheduler instead —
+# this job's only work is to ping the app's protected reminder endpoint; all
+# the actual logic (which events are due, dedupe, sending) lives server-side
+# in src/app/api/reminders/run/route.ts.
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch: {}
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger reminder check
+        run: |
+          curl -fsS -X POST \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            "https://edustyle.vercel.app/api/reminders/run"
