@@ -55,7 +55,8 @@ export async function POST(req: NextRequest) {
     const firstName = e.clientName.split(" ")[0] || e.clientName;
     const body =
       `Hola ${firstName}! Te recordamos tu cita en Eduardo Style hoy a las ` +
-      `${startLocal.toFormat("HH:mm")}. Si necesitas cambiarla, escríbenos por WhatsApp.`;
+      `${startLocal.toFormat("HH:mm")}. Si necesitas cambiarla, escríbenos por WhatsApp.\n\n` +
+      `Este es un mensaje automático, no respondas a este número.`;
     const ok = await sendSms(to, body);
     if (ok) {
       sent++;
