@@ -52,7 +52,7 @@ export default function LegalNotice() {
               <p className="mt-3 leading-relaxed">
                 Este sitio tiene carácter informativo sobre los servicios de
                 barbería de Eduardo Style (cortes de pelo, arreglo de barba, afeitado
-                y otros servicios) y facilita la reserva de citas por WhatsApp o
+                y otros servicios) y facilita la reserva de citas online o por
                 teléfono.
               </p>
             </section>
@@ -62,8 +62,8 @@ export default function LegalNotice() {
                 3. Reservas y precios
               </h2>
               <p className="mt-3 leading-relaxed">
-                Las reservas se gestionan por WhatsApp o teléfono; la cita se
-                considera confirmada cuando te respondemos. Los precios mostrados
+                Las reservas se gestionan online o por teléfono; la cita se
+                considera confirmada al recibir la confirmación. Los precios mostrados
                 son orientativos y pueden variar según el servicio y el largo del
                 pelo. Te rogamos que avises con antelación si no vas a poder
                 acudir a tu cita.

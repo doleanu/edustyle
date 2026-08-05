@@ -160,8 +160,8 @@ export default function AdminPage() {
             <p className="mt-2 text-sm text-amber-900/80">
               Faltan las credenciales de Google Calendar y del almacenamiento.
               Una vez añadidas en Vercel, esta página permitirá conectar el
-              calendario y gestionar el horario. Mientras tanto, la web sigue
-              funcionando con reservas por WhatsApp con normalidad.
+              calendario y gestionar el horario. Mientras tanto, la reserva
+              online en la web mostrará un aviso de no disponible.
             </p>
           </div>
         )}

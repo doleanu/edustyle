@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: "%s | Eduardo Style",
   },
   description:
-    "Barbería Eduardo Style en Tenerife: cortes de pelo, arreglo de barba, afeitado clásico a navaja y diseños. Reserva por WhatsApp: +34 694 20 07 78.",
+    "Barbería Eduardo Style en Tenerife: cortes de pelo, arreglo de barba, afeitado clásico a navaja y diseños. Reserva tu cita online.",
   keywords: [
     "barbería Tenerife",
     "barbero Tenerife",
