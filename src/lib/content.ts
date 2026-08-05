@@ -54,7 +54,7 @@ export const content = {
       title: "No es solo un corte. Es tu imagen.",
       p1: "En Eduardo Style tratamos cada cliente como se merece: sin prisas, escuchando lo que buscas y cuidando cada detalle. Cortes de pelo, arreglo de barba, afeitado clásico a navaja y diseños personalizados, todo en un ambiente cercano y relajado.",
       p2: "Da igual si vienes a por tu corte de siempre o quieres cambiar de look por completo: te aconsejamos lo que mejor te queda y lo hacemos con la técnica y el mimo que se merece tu imagen.",
-      p3strong: "Reservar es fácil: un mensaje de WhatsApp y listo.",
+      p3strong: "Reservar es fácil: elige tu hora online y listo.",
       values: [
         { icon: "UserCog", title: "Oficio", description: "Años detrás de la silla. Cada corte, cada barba y cada degradado hecho con técnica y buen pulso." },
         { icon: "HeartHandshake", title: "Cercanía", description: "Aquí no eres un número. Te escuchamos, entendemos tu estilo y te aconsejamos lo que de verdad te queda bien." },
@@ -148,10 +148,10 @@ export const content = {
       eyebrow: "Preguntas frecuentes",
       title: "Preguntas frecuentes. Respuestas claras.",
       subtitle:
-        "Respuestas rápidas a lo que más nos preguntan. ¿No encuentras lo que buscas? Escríbenos por WhatsApp.",
+        "Respuestas rápidas a lo que más nos preguntan. ¿No encuentras lo que buscas? Llámanos.",
       items: [
-        { question: "¿Necesito pedir cita o puedo ir directamente?", answer: "Puedes pasarte sin cita, pero para no esperar te recomendamos reservar por WhatsApp. Te confirmamos la hora en minutos y te guardamos el hueco." },
-        { question: "¿Cómo reservo una cita?", answer: "Lo más rápido es por WhatsApp al +34 694 20 07 78. También puedes llamarnos directamente. Solemos responder en pocos minutos durante el horario de apertura." },
+        { question: "¿Necesito pedir cita o puedo ir directamente?", answer: "Puedes pasarte sin cita, pero para no esperar te recomendamos reservar online. Te confirmamos la hora al instante y te guardamos el hueco." },
+        { question: "¿Cómo reservo una cita?", answer: "Lo más rápido es reservar online: eliges servicio, día y hora, y te llega un recordatorio por SMS una hora antes. También puedes llamarnos directamente al +34 694 20 07 78." },
         { question: "¿Cuánto cuesta un corte?", answer: "Un corte de caballero cuesta 13 € y el pack corte + barba 20 €. Los niños 10 €. Tienes la lista completa en la sección de Precios. El precio final puede variar según el largo del pelo." },
         { question: "¿Cortáis a niños?", answer: "Sí. Hacemos cortes para niños con mucha paciencia y buen ambiente, para que la experiencia sea fácil y agradable también para los más pequeños." },
         { question: "¿Hacéis afeitado a navaja?", answer: "Sí. Ofrecemos el afeitado clásico a navaja con toalla caliente: apurado, relajante y con un acabado perfecto. Todo un clásico que merece la pena probar." },
@@ -238,7 +238,7 @@ export const content = {
       title: "It's not just a haircut. It's your look.",
       p1: "At Eduardo Style we treat every client the way they deserve: no rush, listening to what you want and taking care of every detail. Haircuts, beard trims, classic straight-razor shaves and custom designs, all in a friendly, relaxed atmosphere.",
       p2: "Whether you come for your usual cut or want a complete change of look, we advise you on what suits you best and do it with the skill and care your image deserves.",
-      p3strong: "Booking is easy: one WhatsApp message and you're done.",
+      p3strong: "Booking is easy: pick your time online and you're done.",
       values: [
         { icon: "UserCog", title: "Craft", description: "Years behind the chair. Every cut, beard and fade done with technique and a steady hand." },
         { icon: "HeartHandshake", title: "Personal", description: "Here you're not a number. We listen, understand your style and advise you on what really suits you." },
@@ -332,10 +332,10 @@ export const content = {
       eyebrow: "FAQ",
       title: "Frequently asked questions.",
       subtitle:
-        "Quick answers to what people ask us most. Can't find what you're looking for? Message us on WhatsApp.",
+        "Quick answers to what people ask us most. Can't find what you're looking for? Give us a call.",
       items: [
-        { question: "Do I need an appointment or can I just walk in?", answer: "You're welcome to walk in, but to avoid waiting we recommend booking on WhatsApp. We confirm your time within minutes and hold your slot." },
-        { question: "How do I book an appointment?", answer: "The fastest way is WhatsApp at +34 694 20 07 78. You can also call us directly. We usually reply within a few minutes during opening hours." },
+        { question: "Do I need an appointment or can I just walk in?", answer: "You're welcome to walk in, but to avoid waiting we recommend booking online. We confirm your time instantly and hold your slot." },
+        { question: "How do I book an appointment?", answer: "The fastest way is booking online: pick a service, day and time, and we'll text you a reminder an hour ahead. You can also call us directly at +34 694 20 07 78." },
         { question: "How much is a haircut?", answer: "A men's cut is 13 € and the cut + beard package is 20 €. Kids' cuts are 10 €. You'll find the full list in the Prices section. The final price may vary with hair length." },
         { question: "Do you cut children's hair?", answer: "Yes. We do kids' cuts with plenty of patience and a friendly atmosphere, so it's easy and pleasant for the little ones too." },
         { question: "Do you do straight-razor shaves?", answer: "Yes. We offer the classic straight-razor shave with a hot towel: close, relaxing and with a perfect finish. A classic well worth trying." },
@@ -422,7 +422,7 @@ export const content = {
       title: "Ce n'est pas qu'une coupe. C'est votre image.",
       p1: "Chez Eduardo Style, chaque client est traité comme il le mérite : sans précipitation, en écoutant ce que vous recherchez et en soignant chaque détail. Coupes de cheveux, taille de barbe, rasage classique au coupe-chou et dessins personnalisés, le tout dans une ambiance conviviale et détendue.",
       p2: "Que vous veniez pour votre coupe habituelle ou pour changer complètement de style, nous vous conseillons ce qui vous va le mieux et le réalisons avec la technique et le soin que mérite votre image.",
-      p3strong: "Réserver est simple : un message WhatsApp suffit.",
+      p3strong: "Réserver est simple : choisissez votre heure en ligne.",
       values: [
         { icon: "UserCog", title: "Savoir-faire", description: "Des années derrière le fauteuil. Chaque coupe, chaque barbe et chaque dégradé réalisés avec technique et précision." },
         { icon: "HeartHandshake", title: "Proximité", description: "Ici, vous n'êtes pas un numéro. Nous vous écoutons, comprenons votre style et vous conseillons ce qui vous va vraiment bien." },
@@ -516,10 +516,10 @@ export const content = {
       eyebrow: "Questions fréquentes",
       title: "Questions fréquentes. Réponses claires.",
       subtitle:
-        "Réponses rapides aux questions les plus posées. Vous ne trouvez pas ce que vous cherchez ? Écrivez-nous sur WhatsApp.",
+        "Réponses rapides aux questions les plus posées. Vous ne trouvez pas ce que vous cherchez ? Appelez-nous.",
       items: [
-        { question: "Dois-je prendre rendez-vous ou puis-je venir directement ?", answer: "Vous pouvez venir sans rendez-vous, mais pour éviter l'attente nous vous recommandons de réserver sur WhatsApp. Nous confirmons l'heure en quelques minutes et vous gardons votre créneau." },
-        { question: "Comment réserver un rendez-vous ?", answer: "Le plus rapide est WhatsApp au +34 694 20 07 78. Vous pouvez aussi nous appeler directement. Nous répondons généralement en quelques minutes pendant les horaires d'ouverture." },
+        { question: "Dois-je prendre rendez-vous ou puis-je venir directement ?", answer: "Vous pouvez venir sans rendez-vous, mais pour éviter l'attente nous vous recommandons de réserver en ligne. Nous confirmons l'heure à l'instant et vous gardons votre créneau." },
+        { question: "Comment réserver un rendez-vous ?", answer: "Le plus rapide est de réserver en ligne : choisissez un service, un jour et une heure, et nous vous enverrons un rappel par SMS une heure avant. Vous pouvez aussi nous appeler directement au +34 694 20 07 78." },
         { question: "Combien coûte une coupe ?", answer: "Une coupe homme coûte 13 € et la formule coupe + barbe 20 €. Pour les enfants, 10 €. Retrouvez la liste complète dans la section Tarifs. Le prix final peut varier selon la longueur des cheveux." },
         { question: "Faites-vous les coupes pour enfants ?", answer: "Oui. Nous coupons les cheveux des enfants avec beaucoup de patience et de bonne humeur, pour que ce soit facile et agréable aussi pour les plus petits." },
         { question: "Faites-vous le rasage au coupe-chou ?", answer: "Oui. Nous proposons le rasage classique au coupe-chou avec serviette chaude : net, relaxant et avec une finition parfaite. Un classique qui vaut vraiment le détour." },
@@ -606,7 +606,7 @@ export const content = {
       title: "Es ist nicht nur ein Haarschnitt. Es ist Ihr Look.",
       p1: "Bei Eduardo Style wird jeder Kunde so behandelt, wie er es verdient: ohne Eile, mit einem offenen Ohr für Ihre Wünsche und mit Liebe zum Detail. Haarschnitte, Bartpflege, klassische Rasur mit dem Rasiermesser und individuelle Designs, alles in entspannter, familiärer Atmosphäre.",
       p2: "Ob Sie für Ihren gewohnten Schnitt kommen oder komplett neu aussehen möchten: Wir beraten Sie, was am besten zu Ihnen passt, und setzen es mit der Technik und Sorgfalt um, die Ihr Look verdient.",
-      p3strong: "Buchen ist einfach: eine WhatsApp-Nachricht genügt.",
+      p3strong: "Buchen ist einfach: Zeit online wählen, fertig.",
       values: [
         { icon: "UserCog", title: "Handwerk", description: "Jahrelange Erfahrung auf dem Stuhl. Jeder Schnitt, jeder Bart und jeder Fade mit Technik und ruhiger Hand." },
         { icon: "HeartHandshake", title: "Nähe", description: "Hier sind Sie keine Nummer. Wir hören zu, verstehen Ihren Stil und beraten Sie ehrlich, was wirklich zu Ihnen passt." },
@@ -700,10 +700,10 @@ export const content = {
       eyebrow: "Häufige Fragen",
       title: "Häufige Fragen. Klare Antworten.",
       subtitle:
-        "Schnelle Antworten auf die häufigsten Fragen. Nicht gefunden, was Sie suchen? Schreiben Sie uns per WhatsApp.",
+        "Schnelle Antworten auf die häufigsten Fragen. Nicht gefunden, was Sie suchen? Rufen Sie uns an.",
       items: [
-        { question: "Brauche ich einen Termin oder kann ich einfach vorbeikommen?", answer: "Sie können gerne ohne Termin vorbeikommen, aber um Wartezeit zu vermeiden, empfehlen wir eine Buchung per WhatsApp. Wir bestätigen Ihre Zeit innerhalb von Minuten und reservieren Ihren Platz." },
-        { question: "Wie buche ich einen Termin?", answer: "Am schnellsten geht es per WhatsApp unter +34 694 20 07 78. Sie können uns auch direkt anrufen. Wir antworten während der Öffnungszeiten meist innerhalb weniger Minuten." },
+        { question: "Brauche ich einen Termin oder kann ich einfach vorbeikommen?", answer: "Sie können gerne ohne Termin vorbeikommen, aber um Wartezeit zu vermeiden, empfehlen wir eine Online-Buchung. Wir bestätigen Ihre Zeit sofort und reservieren Ihren Platz." },
+        { question: "Wie buche ich einen Termin?", answer: "Am schnellsten geht es online: Leistung, Tag und Uhrzeit wählen, und Sie erhalten eine Stunde vorher eine SMS-Erinnerung. Sie können uns auch direkt unter +34 694 20 07 78 anrufen." },
         { question: "Was kostet ein Haarschnitt?", answer: "Ein Herrenhaarschnitt kostet 13 € und das Paket Schnitt + Bart 20 €. Für Kinder 10 €. Die vollständige Liste finden Sie im Bereich Preise. Der Endpreis kann je nach Haarlänge variieren." },
         { question: "Schneiden Sie auch Kinderhaare?", answer: "Ja. Wir schneiden Kinderhaare mit viel Geduld und guter Atmosphäre, damit es auch für die Kleinsten einfach und angenehm ist." },
         { question: "Bieten Sie Rasur mit dem Rasiermesser an?", answer: "Ja. Wir bieten die klassische Rasur mit dem Rasiermesser und warmem Handtuch: gründlich, entspannend und mit perfektem Finish. Ein Klassiker, den man ausprobiert haben sollte." },
