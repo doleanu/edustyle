@@ -3,8 +3,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { Check, Loader2 } from "lucide-react";
 import clsx from "clsx";
-import { business } from "@/lib/business";
 import { content, type Lang } from "@/lib/content";
+import { DatePicker, LOCALES } from "@/components/DatePicker";
 
 // The calendar backend (see src/lib/booking) is the only booking path now —
 // it shows REAL availability from Google Calendar, takes the client's name +
@@ -12,61 +12,20 @@ import { content, type Lang } from "@/lib/content";
 // ever comes back false (env vars missing, API blip), this shows a plain
 // "unavailable, message us" note rather than a parallel WhatsApp booking flow —
 // clients only ever see the one real way to book.
+//
+// The day field is a calendar popover (see DatePicker.tsx) rather than a
+// curated list of the next few open days — some clients book a month or more
+// ahead, so it opens up to CALENDAR_DAYS_AHEAD days, only greying out closed
+// weekdays and past dates.
+const CALENDAR_DAYS_AHEAD = 60;
 
-// Maps JS Date#getDay() (0 = Sunday) to the Spanish day keys used in business.hours.
-const DAY_KEYS = [
-  "Domingo",
-  "Lunes",
-  "Martes",
-  "Miércoles",
-  "Jueves",
-  "Viernes",
-  "Sábado",
-] as const;
-
-const LOCALES: Record<Lang, string> = {
-  es: "es-ES",
-  en: "en-GB",
-  fr: "fr-FR",
-  de: "de-DE",
-};
-
-type DayOption = {
-  iso: string; // YYYY-MM-DD
-  label: string;
-  open: string;
-  close: string;
-};
-
-function isoOf(date: Date): string {
-  const y = date.getFullYear();
-  const m = String(date.getMonth() + 1).padStart(2, "0");
-  const d = String(date.getDate()).padStart(2, "0");
-  return `${y}-${m}-${d}`;
-}
-
-function buildOpenDays(lang: Lang): DayOption[] {
-  const locale = LOCALES[lang];
-  const days: DayOption[] = [];
-  // Look 21 days ahead to find the next 7 open days (handles the closed Sunday).
-  for (let i = 0; i < 21 && days.length < 7; i++) {
-    const date = new Date();
-    date.setDate(date.getDate() + i);
-    const hours = business.hours.find((h) => h.day === DAY_KEYS[date.getDay()]);
-    if (!hours?.open || !hours.close) continue;
-    const rawLabel = date.toLocaleDateString(locale, {
-      weekday: "long",
-      day: "numeric",
-      month: "short",
-    });
-    days.push({
-      iso: isoOf(date),
-      label: rawLabel.charAt(0).toUpperCase() + rawLabel.slice(1),
-      open: hours.open,
-      close: hours.close,
-    });
-  }
-  return days;
+function formatDayLabel(iso: string, lang: Lang): string {
+  const raw = new Date(`${iso}T00:00:00`).toLocaleDateString(LOCALES[lang], {
+    weekday: "long",
+    day: "numeric",
+    month: "short",
+  });
+  return raw.charAt(0).toUpperCase() + raw.slice(1);
 }
 
 type SubmitState = "idle" | "submitting" | "success" | "error" | "taken";
@@ -77,8 +36,6 @@ export function Booking({ lang }: { lang: Lang }) {
     () => content[lang].prices.groups.flatMap((group) => group.items.map((item) => item.name)),
     [lang]
   );
-  const days = useMemo(() => buildOpenDays(lang), [lang]);
-
   // null while probing; true = real calendar backend; false = WhatsApp fallback.
   const [backend, setBackend] = useState<boolean | null>(null);
 
@@ -92,8 +49,6 @@ export function Booking({ lang }: { lang: Lang }) {
   const [apiSlots, setApiSlots] = useState<string[]>([]);
   const [slotsLoading, setSlotsLoading] = useState(false);
   const [submit, setSubmit] = useState<SubmitState>("idle");
-
-  const selectedDay = days.find((d) => d.iso === dayIso);
 
   // Probe once on mount to decide backend vs fallback.
   useEffect(() => {
@@ -138,23 +93,23 @@ export function Booking({ lang }: { lang: Lang }) {
 
   const slots = apiSlots;
 
-  const bookingComplete = Boolean(service && selectedDay && time && name.trim() && phone.trim());
+  const bookingComplete = Boolean(service && dayIso && time && name.trim() && phone.trim());
 
   async function handleBook() {
-    if (!bookingComplete || !selectedDay) return;
+    if (!bookingComplete) return;
     setSubmit("submitting");
     try {
       const res = await fetch("/api/book", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, phone, service, date: selectedDay.iso, time, company }),
+        body: JSON.stringify({ name, phone, service, date: dayIso, time, company }),
       });
       if (res.ok) {
         setSubmit("success");
       } else if (res.status === 409) {
         setSubmit("taken");
         // refresh availability so the taken slot disappears
-        const d = await fetch(`/api/availability?date=${selectedDay.iso}`).then((r) => r.json());
+        const d = await fetch(`/api/availability?date=${dayIso}`).then((r) => r.json());
         setApiSlots(Array.isArray(d?.slots) ? d.slots : []);
         setTime("");
       } else {
@@ -199,7 +154,7 @@ export function Booking({ lang }: { lang: Lang }) {
               </h3>
               <p className="mt-2 text-teal-800/80">
                 {t.successBody
-                  .replace("{day}", selectedDay?.label ?? "")
+                  .replace("{day}", dayIso ? formatDayLabel(dayIso, lang) : "")
                   .replace("{time}", time)}
               </p>
               <div className="mt-6 flex justify-center">
@@ -240,21 +195,16 @@ export function Booking({ lang }: { lang: Lang }) {
 
                 <label className="flex flex-col gap-2 text-sm font-medium text-teal-900">
                   {t.dayLabel}
-                  <select
+                  <DatePicker
+                    lang={lang}
                     value={dayIso}
-                    onChange={(e) => {
-                      setDayIso(e.target.value);
+                    onChange={(iso) => {
+                      setDayIso(iso);
                       setTime("");
                     }}
-                    className={selectClass}
-                  >
-                    <option value="">{t.dayPlaceholder}</option>
-                    {days.map((d) => (
-                      <option key={d.iso} value={d.iso}>
-                        {d.label}
-                      </option>
-                    ))}
-                  </select>
+                    placeholder={t.dayPlaceholder}
+                    maxDaysAhead={CALENDAR_DAYS_AHEAD}
+                  />
                 </label>
 
                 <label className="flex flex-col gap-2 text-sm font-medium text-teal-900">
@@ -262,7 +212,7 @@ export function Booking({ lang }: { lang: Lang }) {
                   <select
                     value={time}
                     onChange={(e) => setTime(e.target.value)}
-                    disabled={!selectedDay || slotsLoading}
+                    disabled={!dayIso || slotsLoading}
                     className={selectClass}
                   >
                     <option value="">
@@ -277,7 +227,7 @@ export function Booking({ lang }: { lang: Lang }) {
                 </label>
               </div>
 
-              {selectedDay && !slotsLoading && slots.length === 0 && (
+              {dayIso && !slotsLoading && slots.length === 0 && (
                 <p className="mt-4 text-center text-sm text-teal-800/70">{t.noSlots}</p>
               )}
 
