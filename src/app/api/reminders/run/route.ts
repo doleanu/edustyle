@@ -19,14 +19,23 @@ const LEAD_MINUTES = 60;
 // across runs harmless, never a double text.
 const LOOKAHEAD_MINUTES = 75;
 
-// Triggered by the external scheduler, not a human — guarded by a shared
-// secret instead of the /admin session cookie.
-export async function POST(req: NextRequest) {
+// Triggered by an external scheduler, not a human — guarded by a shared
+// secret instead of the /admin session cookie. Accepts the secret either as
+// "Authorization: Bearer <secret>" (GitHub Actions) or "?secret=<secret>"
+// (simpler free-tier pingers like cron-job.org that don't offer custom
+// headers) — either scheduler can hit this without code changes.
+function authorized(req: NextRequest): boolean {
+  const auth = req.headers.get("authorization") ?? "";
+  if (auth === `Bearer ${cronSecret()}`) return true;
+  const qs = req.nextUrl.searchParams.get("secret") ?? "";
+  return Boolean(cronSecret()) && qs === cronSecret();
+}
+
+async function handle(req: NextRequest) {
   if (!hasReminders()) {
     return NextResponse.json({ error: "not_configured" }, { status: 503 });
   }
-  const auth = req.headers.get("authorization") ?? "";
-  if (auth !== `Bearer ${cronSecret()}`) {
+  if (!authorized(req)) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
   if (!(await getRefreshToken())) {
@@ -67,4 +76,15 @@ export async function POST(req: NextRequest) {
   }
 
   return NextResponse.json({ ok: true, checked: events.length, sent, failed });
+}
+
+// GET so a plain URL-hit pinger (cron-job.org's simplest mode) works too;
+// POST kept for GitHub Actions / anything that prefers it. Same handler,
+// same auth check either way.
+export async function GET(req: NextRequest) {
+  return handle(req);
+}
+
+export async function POST(req: NextRequest) {
+  return handle(req);
 }
