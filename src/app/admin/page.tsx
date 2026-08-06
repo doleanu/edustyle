@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, type FormEvent } from "react";
 import {
   CalendarCheck,
   Clock,
@@ -11,11 +11,15 @@ import {
   Scissors,
   Plus,
   X,
+  Lock,
 } from "lucide-react";
 
-// Owner-facing dashboard (Spanish only — this is for Edu). Gated by the Google
-// sign-in behind /api/settings: 503 = backend not set up yet, 401 = not signed
-// in, 200 = signed in (renders the settings form).
+// Owner-facing dashboard (Spanish only — this is for Edu). Gated by an
+// email+password login (POST /api/auth/login) behind /api/settings: 503 =
+// backend not set up yet, 401 = not signed in, 200 = signed in (renders the
+// settings form). Connecting the Google Calendar itself is a SEPARATE step
+// inside the "ready" state — the login here just controls who can view/edit
+// the dashboard, not which Google account owns the calendar.
 
 type TimeRange = { open: string; close: string };
 type DayConfig = { enabled: boolean; ranges: TimeRange[] };
@@ -43,6 +47,10 @@ export default function AdminPage() {
   const [state, setState] = useState<State>({ kind: "loading" });
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  const [loginError, setLoginError] = useState(false);
+  const [loggingIn, setLoggingIn] = useState(false);
 
   const load = useCallback(async () => {
     try {
@@ -129,6 +137,29 @@ export default function AdminPage() {
     setState({ kind: "signedout" });
   }
 
+  async function login(e: FormEvent) {
+    e.preventDefault();
+    setLoggingIn(true);
+    setLoginError(false);
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: loginEmail, password: loginPassword }),
+      });
+      if (res.ok) {
+        setLoginPassword("");
+        await load();
+      } else {
+        setLoginError(true);
+      }
+    } catch {
+      setLoginError(true);
+    } finally {
+      setLoggingIn(false);
+    }
+  }
+
   return (
     <main className="min-h-screen bg-cream-50 py-10 sm:py-16">
       <div className="container-tight max-w-3xl">
@@ -167,24 +198,54 @@ export default function AdminPage() {
         )}
 
         {state.kind === "signedout" && (
-          <div className="rounded-3xl bg-cream-100 p-8 text-center shadow-sm">
+          <div className="mx-auto max-w-sm rounded-3xl bg-cream-100 p-8 shadow-sm">
             <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-teal-800/10 text-teal-800">
-              <CalendarCheck className="h-7 w-7" />
+              <Lock className="h-6 w-6" />
             </span>
-            <h2 className="mt-4 font-serif text-xl uppercase tracking-wide text-teal-900">
-              Conecta tu Google Calendar
+            <h2 className="mt-4 text-center font-serif text-xl uppercase tracking-wide text-teal-900">
+              Iniciar sesión
             </h2>
-            <p className="mx-auto mt-2 max-w-md text-sm text-teal-800/70">
-              Inicia sesión con tu cuenta de Google. Tus citas se guardarán en tu
-              calendario y los clientes solo verán los huecos libres.
+            <p className="mx-auto mt-2 max-w-xs text-center text-sm text-teal-800/70">
+              Accede con tu email y contraseña para ver tus citas y horario.
             </p>
-            <a
-              href="/api/auth/google"
-              className="btn-primary mx-auto mt-6 inline-flex"
-            >
-              <CalendarCheck className="h-4 w-4" />
-              Conectar con Google
-            </a>
+
+            <form onSubmit={login} className="mt-6 space-y-3">
+              <label className="flex flex-col gap-1.5 text-sm font-medium text-teal-900">
+                Email
+                <input
+                  type="email"
+                  autoComplete="email"
+                  value={loginEmail}
+                  onChange={(e) => setLoginEmail(e.target.value)}
+                  className="rounded-xl border border-teal-100 bg-cream-50 px-3 py-2.5 text-sm text-teal-900 focus:border-terracotta-400 focus:outline-none focus:ring-2 focus:ring-terracotta-400/30"
+                />
+              </label>
+              <label className="flex flex-col gap-1.5 text-sm font-medium text-teal-900">
+                Contraseña
+                <input
+                  type="password"
+                  autoComplete="current-password"
+                  value={loginPassword}
+                  onChange={(e) => setLoginPassword(e.target.value)}
+                  className="rounded-xl border border-teal-100 bg-cream-50 px-3 py-2.5 text-sm text-teal-900 focus:border-terracotta-400 focus:outline-none focus:ring-2 focus:ring-terracotta-400/30"
+                />
+              </label>
+
+              {loginError && (
+                <p className="rounded-xl bg-terracotta-500/10 px-4 py-2.5 text-center text-sm text-terracotta-700">
+                  Email o contraseña incorrectos.
+                </p>
+              )}
+
+              <button
+                type="submit"
+                disabled={loggingIn}
+                className="btn-primary mt-2 w-full justify-center disabled:opacity-60"
+              >
+                {loggingIn ? <Loader2 className="h-4 w-4 animate-spin" /> : <Lock className="h-4 w-4" />}
+                Entrar
+              </button>
+            </form>
           </div>
         )}
 

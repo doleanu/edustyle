@@ -47,6 +47,13 @@ export function sessionSecret() {
   return process.env.SESSION_SECRET ?? "";
 }
 
+// The /admin login password. Deliberately simple (the site's own domain) —
+// this gates a low-stakes single-owner settings panel, not the calendar
+// itself (that's still real Google OAuth, triggered separately once inside).
+export function adminPassword() {
+  return process.env.ADMIN_PASSWORD ?? "";
+}
+
 // True only when every piece the backend needs is present.
 export function hasBookingBackend() {
   return Boolean(
