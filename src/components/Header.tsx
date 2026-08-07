@@ -8,7 +8,7 @@ import clsx from "clsx";
 
 const LANGS = Object.keys(LANG_PATHS) as Lang[];
 
-function LangSwitch({ lang }: { lang: Lang }) {
+function LangSwitch({ lang, paths }: { lang: Lang; paths: Record<Lang, string> }) {
   const base =
     "px-2 py-1 text-[11px] font-semibold uppercase transition-colors rounded-full";
   return (
@@ -16,7 +16,7 @@ function LangSwitch({ lang }: { lang: Lang }) {
       {LANGS.map((code) => (
         <a
           key={code}
-          href={LANG_PATHS[code]}
+          href={paths[code]}
           className={clsx(
             base,
             lang === code ? "bg-teal-800 text-cream-50" : "text-teal-800/70 hover:text-teal-900"
@@ -29,7 +29,18 @@ function LangSwitch({ lang }: { lang: Lang }) {
   );
 }
 
-export function Header({ lang, minimal = false }: { lang: Lang; minimal?: boolean }) {
+export function Header({
+  lang,
+  minimal = false,
+  langPaths = LANG_PATHS,
+}: {
+  lang: Lang;
+  minimal?: boolean;
+  // Override where the language switcher links to — defaults to the
+  // homepage in each language, but e.g. legal pages pass their own
+  // per-language URLs so switching language stays on the same document.
+  langPaths?: Record<Lang, string>;
+}) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const t = content[lang];
@@ -83,7 +94,7 @@ export function Header({ lang, minimal = false }: { lang: Lang; minimal?: boolea
                   {link.label}
                 </a>
               ))}
-              <LangSwitch lang={lang} />
+              <LangSwitch lang={lang} paths={langPaths} />
               <a href="#reserva" className="btn-primary">
                 <CalendarCheck className="h-4 w-4" />
                 {t.navReserve}
@@ -91,7 +102,7 @@ export function Header({ lang, minimal = false }: { lang: Lang; minimal?: boolea
             </nav>
 
             <div className="flex items-center gap-2 lg:hidden">
-              <LangSwitch lang={lang} />
+              <LangSwitch lang={lang} paths={langPaths} />
               <button
                 type="button"
                 onClick={() => setOpen(!open)}
@@ -105,7 +116,7 @@ export function Header({ lang, minimal = false }: { lang: Lang; minimal?: boolea
           </>
         )}
 
-        {minimal && <LangSwitch lang={lang} />}
+        {minimal && <LangSwitch lang={lang} paths={langPaths} />}
       </div>
 
       {!minimal && open && (

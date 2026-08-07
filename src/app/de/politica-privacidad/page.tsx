@@ -5,7 +5,7 @@ import { PoliticaPrivacidadBody } from "@/components/LegalPageBody";
 import { legalContent, legalPath } from "@/lib/legal";
 import { type Lang } from "@/lib/content";
 
-const t = legalContent.es.politicaPrivacidad;
+const t = legalContent.de.politicaPrivacidad;
 const langPaths: Record<Lang, string> = {
   es: legalPath("politica-privacidad", "es"),
   en: legalPath("politica-privacidad", "en"),
@@ -18,19 +18,19 @@ export const metadata: Metadata = {
   description: t.metaDescription,
   robots: { index: true, follow: true },
   alternates: {
-    canonical: langPaths.es,
+    canonical: langPaths.de,
     languages: { es: langPaths.es, en: langPaths.en, fr: langPaths.fr, de: langPaths.de },
   },
 };
 
-export default function PrivacyPolicy() {
+export default function PrivacyPolicyDe() {
   return (
     <>
-      <Header lang="es" minimal langPaths={langPaths} />
+      <Header lang="de" minimal langPaths={langPaths} />
       <main className="pt-24 sm:pt-32">
-        <PoliticaPrivacidadBody lang="es" />
+        <PoliticaPrivacidadBody lang="de" />
       </main>
-      <Footer lang="es" />
+      <Footer lang="de" />
     </>
   );
 }

@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Instagram, MapPin, Phone, Mail } from "lucide-react";
 import { business } from "@/lib/business";
 import { content, type Lang } from "@/lib/content";
+import { legalPath } from "@/lib/legal";
 
 export function Footer({ lang }: { lang: Lang }) {
   const t = content[lang].footer;
@@ -112,10 +113,10 @@ export function Footer({ lang }: { lang: Lang }) {
             &copy; {new Date().getFullYear()} {business.name}. {t.rights}
           </p>
           <div className="flex gap-6">
-            <a href="/politica-privacidad" className="hover:text-cream-50">
+            <a href={legalPath("politica-privacidad", lang)} className="hover:text-cream-50">
               {t.privacy}
             </a>
-            <a href="/aviso-legal" className="hover:text-cream-50">
+            <a href={legalPath("aviso-legal", lang)} className="hover:text-cream-50">
               {t.legal}
             </a>
           </div>

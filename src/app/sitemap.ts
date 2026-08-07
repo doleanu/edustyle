@@ -1,46 +1,36 @@
 import type { MetadataRoute } from "next";
 import { business } from "@/lib/business";
+import { legalPath } from "@/lib/legal";
+import { type Lang } from "@/lib/content";
+
+const LANGS: Lang[] = ["es", "en", "fr", "de"];
+const HOME_PRIORITY: Record<Lang, number> = { es: 1, en: 0.9, fr: 0.8, de: 0.8 };
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = business.siteUrl;
   const lastModified = new Date();
 
-  return [
+  const homes = LANGS.map((lang) => ({
+    url: lang === "es" ? `${base}/` : `${base}/${lang}`,
+    lastModified,
+    changeFrequency: "weekly" as const,
+    priority: HOME_PRIORITY[lang],
+  }));
+
+  const legalPages = LANGS.flatMap((lang) => [
     {
-      url: `${base}/`,
+      url: `${base}${legalPath("politica-privacidad", lang)}`,
       lastModified,
-      changeFrequency: "weekly",
-      priority: 1,
-    },
-    {
-      url: `${base}/en`,
-      lastModified,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${base}/fr`,
-      lastModified,
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${base}/de`,
-      lastModified,
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${base}/politica-privacidad`,
-      lastModified,
-      changeFrequency: "yearly",
+      changeFrequency: "yearly" as const,
       priority: 0.3,
     },
     {
-      url: `${base}/aviso-legal`,
+      url: `${base}${legalPath("aviso-legal", lang)}`,
       lastModified,
-      changeFrequency: "yearly",
+      changeFrequency: "yearly" as const,
       priority: 0.3,
     },
-  ];
+  ]);
+
+  return [...homes, ...legalPages];
 }
