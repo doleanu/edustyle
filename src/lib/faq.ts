@@ -1,17 +1,17 @@
-// Single source of truth for FAQ items (used by FAQ.tsx and FAQPage JSON-LD).
-//
-// ⚠️ TODO(edu): confirmar horario, precios, formas de pago y dirección reales.
+// Single source of truth for the JSON-LD FAQPage schema (FAQ.tsx renders the
+// per-language versions from content.ts directly — this file mirrors the
+// Spanish ones so the two never diverge again).
 
 export const faqs = [
   {
     question: "¿Necesito pedir cita o puedo ir directamente?",
     answer:
-      "Puedes pasarte sin cita, pero para no esperar te recomendamos reservar por WhatsApp. Te confirmamos la hora en minutos y te guardamos el hueco.",
+      "Puedes pasarte sin cita, pero para no esperar te recomendamos reservar online. Te confirmamos la hora al instante y te guardamos el hueco.",
   },
   {
     question: "¿Cómo reservo una cita?",
     answer:
-      "Lo más rápido es por WhatsApp al +34 694 20 07 78. También puedes llamarnos directamente. Solemos responder en pocos minutos durante el horario de apertura.",
+      "Lo más rápido es reservar online: eliges servicio, día y hora, y te llega un recordatorio por SMS una hora antes. También puedes llamarnos directamente al +34 694 20 07 78.",
   },
   {
     question: "¿Cuánto cuesta un corte?",
@@ -36,7 +36,7 @@ export const faqs = [
   {
     question: "¿Dónde estáis y qué horario tenéis?",
     answer:
-      "Estamos en la zona de Golf del Sur (San Miguel de Abona), en el sur de Tenerife. El horario es de Lunes a Viernes de 10:00 a 19:00 y Sábados de 10:00 a 16:00. Los Domingos permanecemos cerrados.",
+      "Estamos en Los Abrigos, en el sur de Tenerife, en la Calle La Marina, Local 1 (38618). El horario es de Lunes a Viernes de 10:00 a 14:00 y de 15:00 a 19:00, y Sábados de 07:00 a 14:00. Los Domingos permanecemos cerrados.",
   },
 ] as const;
 
