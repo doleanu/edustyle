@@ -69,7 +69,9 @@ export function Location({ lang }: { lang: Lang }) {
                       <li key={h.day} className="flex justify-between gap-3">
                         <span>{days[h.day] ?? h.day}</span>
                         <span className="font-medium">
-                          {h.open && h.close ? `${h.open} - ${h.close}` : t.closed}
+                          {h.ranges.length
+                            ? h.ranges.map((r) => `${r.open} - ${r.close}`).join(" / ")
+                            : t.closed}
                         </span>
                       </li>
                     ))}

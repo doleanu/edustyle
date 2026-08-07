@@ -14,14 +14,14 @@ export function JsonLd() {
     Domingo: "Sunday",
   };
 
-  const openingHoursSpec = business.hours
-    .filter((h) => h.open && h.close)
-    .map((h) => ({
+  const openingHoursSpec = business.hours.flatMap((h) =>
+    h.ranges.map((r) => ({
       "@type": "OpeningHoursSpecification",
       dayOfWeek: dayMap[h.day],
-      opens: h.open,
-      closes: h.close,
-    }));
+      opens: r.open,
+      closes: r.close,
+    }))
+  );
 
   const data = {
     "@context": "https://schema.org",

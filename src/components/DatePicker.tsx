@@ -37,7 +37,7 @@ export function isoOf(date: Date): string {
 
 export function isDayOpen(date: Date): boolean {
   const hours = business.hours.find((h) => h.day === DAY_KEYS[date.getDay()]);
-  return Boolean(hours?.open && hours?.close);
+  return Boolean(hours?.ranges.length);
 }
 
 function startOfDay(date: Date): Date {

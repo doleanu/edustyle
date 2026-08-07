@@ -36,10 +36,9 @@ export const DEFAULT_SETTINGS: Settings = {
     for (const h of business.hours) {
       const wd = DAY_TO_WEEKDAY[h.day];
       if (!wd) continue;
-      wh[wd] =
-        h.open && h.close
-          ? { enabled: true, ranges: [{ open: h.open, close: h.close }] }
-          : { enabled: false, ranges: [{ open: "10:00", close: "19:00" }] };
+      wh[wd] = h.ranges.length
+        ? { enabled: true, ranges: h.ranges.map((r) => ({ ...r })) }
+        : { enabled: false, ranges: [{ open: "10:00", close: "19:00" }] };
     }
     return wh;
   })(),

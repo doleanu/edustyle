@@ -30,14 +30,15 @@ export const business = {
     longitude: -16.5941873,
   },
   hours: [
-    // Horario confirmado (sesión previa con Edu).
-    { day: "Lunes", open: "10:00", close: "19:00" },
-    { day: "Martes", open: "10:00", close: "19:00" },
-    { day: "Miércoles", open: "10:00", close: "19:00" },
-    { day: "Jueves", open: "10:00", close: "19:00" },
-    { day: "Viernes", open: "10:00", close: "19:00" },
-    { day: "Sábado", open: "07:00", close: "14:00" },
-    { day: "Domingo", open: null, close: null }, // Cerrado
+    // Horario real, sincronizado con /admin (incluye el descanso de mediodía
+    // entre semana). Cada día puede tener varios tramos — lista vacía = cerrado.
+    { day: "Lunes", ranges: [{ open: "10:00", close: "14:00" }, { open: "15:00", close: "19:00" }] },
+    { day: "Martes", ranges: [{ open: "10:00", close: "14:00" }, { open: "15:00", close: "19:00" }] },
+    { day: "Miércoles", ranges: [{ open: "10:00", close: "14:00" }, { open: "15:00", close: "19:00" }] },
+    { day: "Jueves", ranges: [{ open: "10:00", close: "14:00" }, { open: "15:00", close: "19:00" }] },
+    { day: "Viernes", ranges: [{ open: "10:00", close: "14:00" }, { open: "15:00", close: "19:00" }] },
+    { day: "Sábado", ranges: [{ open: "07:00", close: "14:00" }] },
+    { day: "Domingo", ranges: [] }, // Cerrado
   ],
   social: {
     instagram: "https://www.instagram.com/edustyle4/",

@@ -156,7 +156,7 @@ export const content = {
         { question: "¿Cortáis a niños?", answer: "Sí. Hacemos cortes para niños con mucha paciencia y buen ambiente, para que la experiencia sea fácil y agradable también para los más pequeños." },
         { question: "¿Hacéis afeitado a navaja?", answer: "Sí. Ofrecemos el afeitado clásico a navaja con toalla caliente: apurado, relajante y con un acabado perfecto. Todo un clásico que merece la pena probar." },
         { question: "¿Qué formas de pago aceptáis?", answer: "Aceptamos pago en efectivo y con tarjeta, lo que te resulte más cómodo." },
-        { question: "¿Dónde estáis y qué horario tenéis?", answer: "Estamos en Los Abrigos, en el sur de Tenerife, en la Calle La Marina, Local 1 (38618). El horario es de Lunes a Viernes de 10:00 a 19:00 y Sábados de 10:00 a 16:00. Los Domingos permanecemos cerrados." },
+        { question: "¿Dónde estáis y qué horario tenéis?", answer: "Estamos en Los Abrigos, en el sur de Tenerife, en la Calle La Marina, Local 1 (38618). El horario es de Lunes a Viernes de 10:00 a 14:00 y de 15:00 a 19:00, y Sábados de 07:00 a 14:00. Los Domingos permanecemos cerrados." },
       ],
     },
     location: {
@@ -340,7 +340,7 @@ export const content = {
         { question: "Do you cut children's hair?", answer: "Yes. We do kids' cuts with plenty of patience and a friendly atmosphere, so it's easy and pleasant for the little ones too." },
         { question: "Do you do straight-razor shaves?", answer: "Yes. We offer the classic straight-razor shave with a hot towel: close, relaxing and with a perfect finish. A classic well worth trying." },
         { question: "What payment methods do you accept?", answer: "We accept both cash and card, whatever is most convenient for you." },
-        { question: "Where are you and what are your hours?", answer: "We're in Los Abrigos, in the south of Tenerife, at Calle La Marina, Local 1 (38618). Hours are Monday to Friday 10:00–19:00 and Saturday 10:00–16:00. We're closed on Sundays." },
+        { question: "Where are you and what are your hours?", answer: "We're in Los Abrigos, in the south of Tenerife, at Calle La Marina, Local 1 (38618). Hours are Monday to Friday 10:00–14:00 and 15:00–19:00, and Saturday 07:00–14:00. We're closed on Sundays." },
       ],
     },
     location: {
@@ -524,7 +524,7 @@ export const content = {
         { question: "Faites-vous les coupes pour enfants ?", answer: "Oui. Nous coupons les cheveux des enfants avec beaucoup de patience et de bonne humeur, pour que ce soit facile et agréable aussi pour les plus petits." },
         { question: "Faites-vous le rasage au coupe-chou ?", answer: "Oui. Nous proposons le rasage classique au coupe-chou avec serviette chaude : net, relaxant et avec une finition parfaite. Un classique qui vaut vraiment le détour." },
         { question: "Quels moyens de paiement acceptez-vous ?", answer: "Nous acceptons les paiements en espèces et par carte, selon ce qui vous arrange le mieux." },
-        { question: "Où êtes-vous situés et quels sont vos horaires ?", answer: "Nous sommes à Los Abrigos, dans le sud de Tenerife, Calle La Marina, Local 1 (38618). Horaires : du lundi au vendredi de 10h00 à 19h00, le samedi de 10h00 à 16h00. Fermé le dimanche." },
+        { question: "Où êtes-vous situés et quels sont vos horaires ?", answer: "Nous sommes à Los Abrigos, dans le sud de Tenerife, Calle La Marina, Local 1 (38618). Horaires : du lundi au vendredi de 10h00 à 14h00 et de 15h00 à 19h00, et le samedi de 07h00 à 14h00. Fermé le dimanche." },
       ],
     },
     location: {
@@ -708,7 +708,7 @@ export const content = {
         { question: "Schneiden Sie auch Kinderhaare?", answer: "Ja. Wir schneiden Kinderhaare mit viel Geduld und guter Atmosphäre, damit es auch für die Kleinsten einfach und angenehm ist." },
         { question: "Bieten Sie Rasur mit dem Rasiermesser an?", answer: "Ja. Wir bieten die klassische Rasur mit dem Rasiermesser und warmem Handtuch: gründlich, entspannend und mit perfektem Finish. Ein Klassiker, den man ausprobiert haben sollte." },
         { question: "Welche Zahlungsmethoden akzeptieren Sie?", answer: "Wir akzeptieren Barzahlung und Kartenzahlung, ganz wie es Ihnen am liebsten ist." },
-        { question: "Wo befindet ihr euch und welche Öffnungszeiten habt ihr?", answer: "Wir befinden uns in Los Abrigos, im Süden von Teneriffa, Calle La Marina, Local 1 (38618). Öffnungszeiten: Montag bis Freitag 10:00–19:00 Uhr, Samstag 10:00–16:00 Uhr. Sonntags geschlossen." },
+        { question: "Wo befindet ihr euch und welche Öffnungszeiten habt ihr?", answer: "Wir befinden uns in Los Abrigos, im Süden von Teneriffa, Calle La Marina, Local 1 (38618). Öffnungszeiten: Montag bis Freitag 10:00–14:00 und 15:00–19:00 Uhr, Samstag 07:00–14:00 Uhr. Sonntags geschlossen." },
       ],
     },
     location: {
