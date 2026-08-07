@@ -52,15 +52,18 @@ export default function PrivacyPolicy() {
                 2. Qué datos recogemos
               </h2>
               <p className="mt-3 leading-relaxed">
-                Este sitio web no recoge datos de forma automática ni utiliza
-                formularios. Los datos que nos facilitas voluntariamente por
-                WhatsApp, teléfono o email pueden incluir:
+                Este sitio web tiene un formulario de reserva de citas online.
+                Al reservar, recogemos:
               </p>
               <ul className="mt-3 list-disc space-y-1 pl-6">
                 <li>Nombre</li>
                 <li>Número de teléfono</li>
-                <li>La información que decidas compartir al pedir tu cita</li>
+                <li>El servicio, día y hora que elijas</li>
               </ul>
+              <p className="mt-3 leading-relaxed">
+                También podemos recibir tus datos si nos contactas
+                directamente por teléfono o email.
+              </p>
             </section>
 
             <section>
@@ -70,11 +73,17 @@ export default function PrivacyPolicy() {
               <p className="mt-3 leading-relaxed">Usamos tus datos únicamente para:</p>
               <ul className="mt-3 list-disc space-y-1 pl-6">
                 <li>Gestionar y confirmar tu cita</li>
+                <li>Enviarte un recordatorio automático de tu cita por SMS</li>
                 <li>Responder a tus consultas sobre nuestros servicios</li>
               </ul>
               <p className="mt-3 leading-relaxed">
-                No usamos tus datos para marketing sin tu consentimiento ni los
-                compartimos con terceros con fines comerciales.
+                Los datos de tu cita se guardan en el Google Calendar del
+                negocio y el recordatorio se envía a través de Twilio Inc.,
+                nuestro proveedor de mensajería SMS — ambos actúan como
+                encargados del tratamiento, únicamente para prestar este
+                servicio. No usamos tus datos para marketing sin tu
+                consentimiento ni los compartimos con terceros con fines
+                comerciales.
               </p>
             </section>
 
