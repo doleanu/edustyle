@@ -1,7 +1,5 @@
 // Single source of truth for business details, used by JSON-LD, footer, etc.
 // Update once here, propagates everywhere.
-//
-// ⚠️ PLACEHOLDER DATA flagged with TODO(edu) — confirm with the client before launch.
 
 export const business = {
   name: "Eduardo Style",
@@ -10,7 +8,7 @@ export const business = {
     "Barbería en Tenerife. Cortes de pelo, arreglo de barba y afeitado clásico a navaja. Reserva tu cita online.",
   longDescription:
     "En Eduardo Style cuidamos tu imagen como se merece. Cortes de pelo, arreglo de barba, afeitado clásico a navaja y diseños personalizados, en un ambiente cercano y relajado en Tenerife. Reserva tu cita online en segundos.",
-  email: "reservas.edustyle@gmail.com", // TODO(edu): confirmar email real (o quitar)
+  email: "eduardosaiz46@gmail.com",
   phone: "+34 694 20 07 78",
   phoneE164: "+34694200778",
   whatsapp: {
@@ -46,7 +44,7 @@ export const business = {
     googleMaps: "https://maps.app.goo.gl/GH1yP5RzL4Cbe8oP6",
     facebook: "",
   },
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "https://edustyle.es", // TODO(edu): dominio final
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.barberiaeduardostyle.es",
 } as const;
 
 export const services = [
