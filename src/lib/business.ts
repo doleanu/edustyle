@@ -36,7 +36,7 @@ export const business = {
     { day: "Miércoles", open: "10:00", close: "19:00" },
     { day: "Jueves", open: "10:00", close: "19:00" },
     { day: "Viernes", open: "10:00", close: "19:00" },
-    { day: "Sábado", open: "10:00", close: "16:00" },
+    { day: "Sábado", open: "07:00", close: "14:00" },
     { day: "Domingo", open: null, close: null }, // Cerrado
   ],
   social: {
