@@ -4,6 +4,7 @@ import { hasBookingBackend } from "@/lib/booking/config";
 import { getSettings, getRefreshToken } from "@/lib/booking/store";
 import { DEFAULT_SETTINGS, candidateSlots, slotInstants } from "@/lib/booking/settings";
 import { getBusy, createEvent } from "@/lib/booking/google";
+import { toE164 } from "@/lib/booking/sms";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -49,6 +50,12 @@ export async function POST(req: NextRequest) {
     !/^\d{2}:\d{2}$/.test(time)
   ) {
     return NextResponse.json({ error: "invalid" }, { status: 400 });
+  }
+  // Reject unparseable phone numbers here rather than accepting a mistyped
+  // one and having the SMS reminder silently fail on every cron cycle —
+  // give the client a chance to fix it while they're still on the form.
+  if (!toE164(phone)) {
+    return NextResponse.json({ error: "invalid_phone" }, { status: 400 });
   }
 
   const settings = (await getSettings()) ?? DEFAULT_SETTINGS;

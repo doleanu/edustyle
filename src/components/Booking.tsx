@@ -28,7 +28,7 @@ function formatDayLabel(iso: string, lang: Lang): string {
   return raw.charAt(0).toUpperCase() + raw.slice(1);
 }
 
-type SubmitState = "idle" | "submitting" | "success" | "error" | "taken";
+type SubmitState = "idle" | "submitting" | "success" | "error" | "taken" | "invalid_phone";
 
 export function Booking({ lang }: { lang: Lang }) {
   const t = content[lang].booking;
@@ -113,7 +113,8 @@ export function Booking({ lang }: { lang: Lang }) {
         setApiSlots(Array.isArray(d?.slots) ? d.slots : []);
         setTime("");
       } else {
-        setSubmit("error");
+        const data = await res.json().catch(() => null);
+        setSubmit(data?.error === "invalid_phone" ? "invalid_phone" : "error");
       }
     } catch {
       setSubmit("error");
@@ -247,7 +248,10 @@ export function Booking({ lang }: { lang: Lang }) {
                   <input
                     type="tel"
                     value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
+                    onChange={(e) => {
+                      setPhone(e.target.value);
+                      if (submit === "invalid_phone") setSubmit("idle");
+                    }}
                     placeholder={t.phonePlaceholder}
                     className={selectClass}
                   />
@@ -264,9 +268,13 @@ export function Booking({ lang }: { lang: Lang }) {
                 />
               </div>
 
-              {(submit === "taken" || submit === "error") && (
+              {(submit === "taken" || submit === "error" || submit === "invalid_phone") && (
                 <p className="mt-4 rounded-xl bg-terracotta-500/10 px-4 py-3 text-center text-sm text-terracotta-700">
-                  {submit === "taken" ? t.takenMsg : t.errorMsg}
+                  {submit === "taken"
+                    ? t.takenMsg
+                    : submit === "invalid_phone"
+                    ? t.invalidPhoneMsg
+                    : t.errorMsg}
                 </p>
               )}
 

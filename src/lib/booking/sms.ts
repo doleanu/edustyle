@@ -11,8 +11,14 @@ export function toE164(raw: string): string | null {
   let digits = raw.replace(/[^\d+]/g, "");
   if (digits.startsWith("00")) digits = `+${digits.slice(2)}`;
   if (!digits.startsWith("+")) {
-    // Strip a leading trunk 0 some people type, then assume Spain.
-    digits = `+34${digits.replace(/^0+/, "")}`;
+    // No country code given — assume Spain. Spanish numbers are always
+    // exactly 9 digits nationally (6/7 mobile, 8/9 landline); reject
+    // anything else outright instead of blindly forwarding a mistyped
+    // number to Twilio, where it just fails silently every reminder cycle
+    // (e.g. a client who typed one digit too many).
+    const national = digits.replace(/^0+/, "");
+    if (!/^[6789]\d{8}$/.test(national)) return null;
+    digits = `+34${national}`;
   }
   // E.164: + followed by 8–15 digits.
   return /^\+\d{8,15}$/.test(digits) ? digits : null;

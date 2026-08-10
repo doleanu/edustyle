@@ -142,6 +142,7 @@ export const content = {
       successBody: "Te esperamos el {day} a las {time}.",
       againBtn: "Reservar otra cita",
       takenMsg: "Ese hueco se acaba de ocupar. Elige otra hora, por favor.",
+      invalidPhoneMsg: "Revisa tu número de teléfono, no parece correcto.",
       errorMsg: "No se pudo completar la reserva. Inténtalo de nuevo.",
     },
     faq: {
@@ -326,6 +327,7 @@ export const content = {
       successBody: "See you on {day} at {time}.",
       againBtn: "Book another appointment",
       takenMsg: "That slot was just taken. Please pick another time.",
+      invalidPhoneMsg: "Please check your phone number, it doesn't look right.",
       errorMsg: "We couldn't complete the booking. Please try again.",
     },
     faq: {
@@ -510,6 +512,7 @@ export const content = {
       successBody: "On vous attend le {day} à {time}.",
       againBtn: "Réserver un autre rendez-vous",
       takenMsg: "Ce créneau vient d'être pris. Choisissez une autre heure, s'il vous plaît.",
+      invalidPhoneMsg: "Vérifiez votre numéro de téléphone, il ne semble pas correct.",
       errorMsg: "La réservation n'a pas pu aboutir. Veuillez réessayer.",
     },
     faq: {
@@ -694,6 +697,7 @@ export const content = {
       successBody: "Wir sehen uns am {day} um {time}.",
       againBtn: "Weiteren Termin buchen",
       takenMsg: "Diese Zeit wurde gerade vergeben. Bitte wähl eine andere Uhrzeit.",
+      invalidPhoneMsg: "Bitte überprüfe deine Telefonnummer, sie scheint nicht korrekt zu sein.",
       errorMsg: "Die Buchung hat nicht geklappt. Bitte versuch es erneut.",
     },
     faq: {
