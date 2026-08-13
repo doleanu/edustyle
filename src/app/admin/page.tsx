@@ -277,12 +277,22 @@ export default function AdminPage() {
                 </div>
               </div>
               <div className="flex gap-2">
-                {!state.connected && (
-                  <a href="/api/auth/google" className="btn-primary text-sm">
-                    <CalendarCheck className="h-4 w-4" />
-                    Conectar
-                  </a>
-                )}
+                {/* Always available, even when "connected" — the stored
+                    token can go stale (e.g. Google's 7-day testing-mode
+                    expiry) without us knowing until a real API call fails,
+                    so hiding this button when connected===true left no way
+                    to reconnect without deleting the token by hand. */}
+                <a
+                  href="/api/auth/google"
+                  className={
+                    state.connected
+                      ? "inline-flex items-center gap-2 rounded-full border border-teal-800/20 px-4 py-2 text-sm text-teal-800 transition-colors hover:bg-cream-200"
+                      : "btn-primary text-sm"
+                  }
+                >
+                  <CalendarCheck className="h-4 w-4" />
+                  {state.connected ? "Reconectar" : "Conectar"}
+                </a>
                 <button
                   onClick={logout}
                   className="inline-flex items-center gap-2 rounded-full border border-teal-800/20 px-4 py-2 text-sm text-teal-800 transition-colors hover:bg-cream-200"
