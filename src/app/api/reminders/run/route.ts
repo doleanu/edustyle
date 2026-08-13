@@ -62,10 +62,14 @@ async function handle(req: NextRequest) {
     }
     const startLocal = DateTime.fromISO(e.startUTC).setZone(BOOKING_TZ);
     const firstName = e.clientName.split(" ")[0] || e.clientName;
+    // Deliberately accent-free: í/á/ú force UCS-2 encoding, which cuts the
+    // per-segment limit from 153 to 67 chars and was tripling every message
+    // to 3 segments (3x the cost) for no visible reason — this reads exactly
+    // the same to a Spanish speaker and fits in a single GSM-7 segment.
     const body =
       `Hola ${firstName}! Te recordamos tu cita en Eduardo Style hoy a las ` +
-      `${startLocal.toFormat("HH:mm")}. Si necesitas cambiarla, escríbenos por WhatsApp.\n\n` +
-      `Este es un mensaje automático, no respondas a este número.`;
+      `${startLocal.toFormat("HH:mm")}. Para cambios, escribenos por WhatsApp ` +
+      `(no respondas a este numero).`;
     const ok = await sendSms(to, body);
     if (ok) {
       sent++;
