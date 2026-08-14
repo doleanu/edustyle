@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { DateTime } from "luxon";
 import { hasBookingBackend, BOOKING_TZ } from "@/lib/booking/config";
 import { getSettings, getRefreshToken } from "@/lib/booking/store";
-import { DEFAULT_SETTINGS, candidateSlots, slotInstants } from "@/lib/booking/settings";
+import { DEFAULT_SETTINGS, candidateSlots, slotInstants, isDateClosed } from "@/lib/booking/settings";
 import { getBusy } from "@/lib/booking/google";
 
 export const runtime = "nodejs";
@@ -21,11 +21,21 @@ export async function GET(req: NextRequest) {
 
   const date = req.nextUrl.searchParams.get("date");
   if (!date || !/^\d{4}-\d{2}-\d{2}$/.test(date)) {
-    // Configured, but no (valid) date yet — used as the initial probe.
-    return NextResponse.json({ configured: true, slots: [] });
+    // Configured, but no (valid) date yet — used as the initial probe. Also
+    // hands back the owner's vacation/holiday ranges so the client-side
+    // calendar can grey them out before the client even tries to pick one.
+    const settings = (await getSettings()) ?? DEFAULT_SETTINGS;
+    return NextResponse.json({
+      configured: true,
+      slots: [],
+      closedRanges: settings.closedRanges.map(({ start, end }) => ({ start, end })),
+    });
   }
 
   const settings = (await getSettings()) ?? DEFAULT_SETTINGS;
+  if (isDateClosed(date, settings)) {
+    return NextResponse.json({ configured: true, slots: [] });
+  }
   const candidates = candidateSlots(date, settings);
   if (candidates.length === 0) {
     return NextResponse.json({ configured: true, slots: [] });

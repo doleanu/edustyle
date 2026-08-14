@@ -40,6 +40,12 @@ export function isDayOpen(date: Date): boolean {
   return Boolean(hours?.ranges.length);
 }
 
+export type ClosedRange = { start: string; end: string };
+
+export function isDateClosed(iso: string, ranges: ClosedRange[]): boolean {
+  return ranges.some((r) => iso >= r.start && iso <= r.end);
+}
+
 function startOfDay(date: Date): Date {
   const d = new Date(date);
   d.setHours(0, 0, 0, 0);
@@ -65,12 +71,14 @@ export function DatePicker({
   onChange,
   placeholder,
   maxDaysAhead = 60,
+  closedRanges = [],
 }: {
   lang: Lang;
   value: string; // ISO "YYYY-MM-DD", or ""
   onChange: (iso: string) => void;
   placeholder: string;
   maxDaysAhead?: number;
+  closedRanges?: ClosedRange[]; // owner's vacation/holiday dates — greyed out same as closed weekdays
 }) {
   const locale = LOCALES[lang];
   const today = startOfDay(new Date());
@@ -188,7 +196,11 @@ export function DatePicker({
             {cells.map((date, i) => {
               if (!date) return <span key={`blank-${i}`} />;
               const iso = isoOf(date);
-              const disabled = date < today || date > maxDate || !isDayOpen(date);
+              const disabled =
+                date < today ||
+                date > maxDate ||
+                !isDayOpen(date) ||
+                isDateClosed(iso, closedRanges);
               const isSelected = iso === value;
               const isToday = iso === isoOf(today);
               return (

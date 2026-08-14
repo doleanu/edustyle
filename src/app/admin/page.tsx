@@ -12,6 +12,7 @@ import {
   Plus,
   X,
   Lock,
+  Palmtree,
 } from "lucide-react";
 
 // Owner-facing dashboard (Spanish only — this is for Edu). Gated by an
@@ -23,7 +24,12 @@ import {
 
 type TimeRange = { open: string; close: string };
 type DayConfig = { enabled: boolean; ranges: TimeRange[] };
-type Settings = { slotMinutes: number; weeklyHours: Record<number, DayConfig> };
+type ClosedRange = { start: string; end: string; label?: string };
+type Settings = {
+  slotMinutes: number;
+  weeklyHours: Record<number, DayConfig>;
+  closedRanges: ClosedRange[];
+};
 
 type State =
   | { kind: "loading" }
@@ -43,6 +49,13 @@ const DAY_NAMES: Record<number, string> = {
 
 const SLOT_OPTIONS = [20, 30, 40, 45, 60];
 
+// "2026-08-20" -> "20 ago 2026", for the owner-facing vacation list.
+function formatEs(iso: string): string {
+  const d = new Date(`${iso}T00:00:00`);
+  const raw = d.toLocaleDateString("es-ES", { day: "numeric", month: "short", year: "numeric" });
+  return raw.replace(/\.$/, "");
+}
+
 export default function AdminPage() {
   const [state, setState] = useState<State>({ kind: "loading" });
   const [saving, setSaving] = useState(false);
@@ -51,6 +64,9 @@ export default function AdminPage() {
   const [loginPassword, setLoginPassword] = useState("");
   const [loginError, setLoginError] = useState(false);
   const [loggingIn, setLoggingIn] = useState(false);
+  const [vacStart, setVacStart] = useState("");
+  const [vacEnd, setVacEnd] = useState("");
+  const [vacLabel, setVacLabel] = useState("");
 
   const load = useCallback(async () => {
     try {
@@ -115,6 +131,43 @@ export default function AdminPage() {
       ...c,
       ranges: c.ranges.filter((_, i) => i !== idx),
     }));
+
+  function addVacation() {
+    if (!vacStart || !vacEnd || vacEnd < vacStart) return;
+    setState((s) =>
+      s.kind === "ready"
+        ? {
+            ...s,
+            settings: {
+              ...s.settings,
+              closedRanges: [
+                ...(s.settings.closedRanges ?? []),
+                { start: vacStart, end: vacEnd, ...(vacLabel.trim() ? { label: vacLabel.trim() } : {}) },
+              ].sort((a, b) => a.start.localeCompare(b.start)),
+            },
+          }
+        : s
+    );
+    setVacStart("");
+    setVacEnd("");
+    setVacLabel("");
+    setSaved(false);
+  }
+
+  function removeVacation(idx: number) {
+    setState((s) =>
+      s.kind === "ready"
+        ? {
+            ...s,
+            settings: {
+              ...s.settings,
+              closedRanges: (s.settings.closedRanges ?? []).filter((_, i) => i !== idx),
+            },
+          }
+        : s
+    );
+    setSaved(false);
+  }
 
   async function save() {
     if (state.kind !== "ready") return;
@@ -403,34 +456,116 @@ export default function AdminPage() {
                   ))}
                 </select>
               </div>
+            </div>
 
-              <div className="mt-6 flex items-center gap-3">
+            {/* Vacation / closed dates */}
+            <div className="rounded-3xl bg-cream-100 p-6 shadow-sm sm:p-8">
+              <h2 className="flex items-center gap-2 font-serif text-lg uppercase tracking-wide text-teal-900">
+                <Palmtree className="h-5 w-5 text-terracotta-500" />
+                Vacaciones y días cerrados
+              </h2>
+              <p className="mt-1 text-sm text-teal-800/60">
+                Añade un rango de fechas y los clientes no podrán reservar ese
+                periodo — verán esos días tachados en el calendario de la web,
+                así no llegan mensajes ni llamadas preguntando.
+              </p>
+
+              {state.settings.closedRanges?.length > 0 && (
+                <div className="mt-5 space-y-2">
+                  {state.settings.closedRanges.map((r, idx) => (
+                    <div
+                      key={`${r.start}-${r.end}-${idx}`}
+                      className="flex items-center justify-between gap-3 rounded-xl bg-cream-50 px-4 py-3"
+                    >
+                      <div className="text-sm">
+                        <span className="font-medium text-teal-900">
+                          {formatEs(r.start)}
+                          {r.end !== r.start ? ` – ${formatEs(r.end)}` : ""}
+                        </span>
+                        {r.label && (
+                          <span className="ml-2 text-teal-800/60">{r.label}</span>
+                        )}
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => removeVacation(idx)}
+                        aria-label="Quitar"
+                        className="rounded-md p-1 text-teal-800/50 transition-colors hover:bg-cream-200 hover:text-terracotta-600"
+                      >
+                        <X className="h-4 w-4" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              <div className="mt-5 flex flex-wrap items-end gap-3">
+                <label className="flex flex-col gap-1.5 text-xs font-medium text-teal-900">
+                  Desde
+                  <input
+                    type="date"
+                    value={vacStart}
+                    onChange={(e) => setVacStart(e.target.value)}
+                    className="rounded-lg border border-teal-100 bg-cream-50 px-2 py-1.5 text-sm text-teal-900"
+                  />
+                </label>
+                <label className="flex flex-col gap-1.5 text-xs font-medium text-teal-900">
+                  Hasta
+                  <input
+                    type="date"
+                    value={vacEnd}
+                    onChange={(e) => setVacEnd(e.target.value)}
+                    className="rounded-lg border border-teal-100 bg-cream-50 px-2 py-1.5 text-sm text-teal-900"
+                  />
+                </label>
+                <label className="flex flex-1 flex-col gap-1.5 text-xs font-medium text-teal-900">
+                  Nota (opcional, solo para ti)
+                  <input
+                    type="text"
+                    value={vacLabel}
+                    onChange={(e) => setVacLabel(e.target.value)}
+                    placeholder="Ej. Vacaciones"
+                    className="rounded-lg border border-teal-100 bg-cream-50 px-2 py-1.5 text-sm text-teal-900"
+                  />
+                </label>
                 <button
-                  onClick={save}
-                  disabled={saving}
-                  className="btn-primary disabled:opacity-60"
+                  type="button"
+                  onClick={addVacation}
+                  disabled={!vacStart || !vacEnd || vacEnd < vacStart}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-teal-800/20 px-4 py-2 text-sm font-medium text-teal-800 transition-colors hover:bg-cream-200 disabled:cursor-not-allowed disabled:opacity-40"
                 >
-                  {saving ? (
-                    <Loader2 className="h-4 w-4 animate-spin" />
-                  ) : (
-                    <Check className="h-4 w-4" />
-                  )}
-                  Guardar cambios
+                  <Plus className="h-3.5 w-3.5" /> Añadir
                 </button>
-                {saved && (
-                  <span className="text-sm font-medium text-green-700">
-                    Guardado ✓
-                  </span>
-                )}
               </div>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <button
+                onClick={save}
+                disabled={saving}
+                className="btn-primary disabled:opacity-60"
+              >
+                {saving ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  <Check className="h-4 w-4" />
+                )}
+                Guardar cambios
+              </button>
+              {saved && (
+                <span className="text-sm font-medium text-green-700">
+                  Guardado ✓
+                </span>
+              )}
             </div>
 
             {/* How to block time */}
             <div className="rounded-2xl border-l-4 border-terracotta-500 bg-cream-100 px-5 py-4 text-sm text-teal-800/85">
-              <strong className="text-teal-900">¿Necesitas bloquear un rato?</strong>{" "}
-              Crea un evento en tu Google Calendar (una comida, un recado, lo que
-              sea) y esas horas dejarán de aparecer disponibles para los clientes
-              automáticamente.
+              <strong className="text-teal-900">¿Necesitas bloquear un rato suelto?</strong>{" "}
+              Para una comida o un recado, crea un evento en tu Google Calendar
+              y esas horas dejarán de aparecer disponibles automáticamente. Para
+              varios días seguidos (vacaciones, fiestas), usa la sección de
+              arriba — es más claro para los clientes.
             </div>
 
             <div className="text-center">

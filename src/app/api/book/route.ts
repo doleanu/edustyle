@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { DateTime } from "luxon";
 import { hasBookingBackend } from "@/lib/booking/config";
 import { getSettings, getRefreshToken } from "@/lib/booking/store";
-import { DEFAULT_SETTINGS, candidateSlots, slotInstants } from "@/lib/booking/settings";
+import { DEFAULT_SETTINGS, candidateSlots, slotInstants, isDateClosed } from "@/lib/booking/settings";
 import { getBusy, createEvent } from "@/lib/booking/google";
 import { toE164 } from "@/lib/booking/sms";
 
@@ -59,6 +59,12 @@ export async function POST(req: NextRequest) {
   }
 
   const settings = (await getSettings()) ?? DEFAULT_SETTINGS;
+  // Reject bookings inside a vacation/holiday range even if a stale client
+  // (cached page, old date-picker state) still posts one — the DatePicker
+  // greys these out, but the server is the real gate.
+  if (isDateClosed(date, settings)) {
+    return NextResponse.json({ error: "closed" }, { status: 400 });
+  }
   // The posted time must be a real bookable slot for that date (inside the
   // day's working ranges, on the slot grid) — blocks booking during a break.
   if (!candidateSlots(date, settings).includes(time)) {

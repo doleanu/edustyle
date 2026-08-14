@@ -50,7 +50,8 @@ export async function PUT(req: NextRequest) {
   ) {
     return NextResponse.json({ error: "invalid" }, { status: 400 });
   }
-  // Normalize before persisting so the stored shape is always clean/current.
+  // normalizeSettings() drops any malformed closedRanges entries on its own
+  // (bad dates, end < start), so no extra validation needed here.
   await saveSettings(normalizeSettings(body));
   return NextResponse.json({ ok: true });
 }

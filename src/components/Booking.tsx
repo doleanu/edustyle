@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Check, Loader2 } from "lucide-react";
 import clsx from "clsx";
 import { content, type Lang } from "@/lib/content";
-import { DatePicker, LOCALES } from "@/components/DatePicker";
+import { DatePicker, LOCALES, type ClosedRange } from "@/components/DatePicker";
 
 // The calendar backend (see src/lib/booking) is the only booking path now —
 // it shows REAL availability from Google Calendar, takes the client's name +
@@ -38,6 +38,7 @@ export function Booking({ lang }: { lang: Lang }) {
   );
   // null while probing; true = real calendar backend; false = WhatsApp fallback.
   const [backend, setBackend] = useState<boolean | null>(null);
+  const [closedRanges, setClosedRanges] = useState<ClosedRange[]>([]);
 
   const [service, setService] = useState("");
   const [dayIso, setDayIso] = useState("");
@@ -56,7 +57,10 @@ export function Booking({ lang }: { lang: Lang }) {
     fetch("/api/availability")
       .then((r) => r.json())
       .then((d) => {
-        if (!cancelled) setBackend(Boolean(d?.configured));
+        if (!cancelled) {
+          setBackend(Boolean(d?.configured));
+          setClosedRanges(Array.isArray(d?.closedRanges) ? d.closedRanges : []);
+        }
       })
       .catch(() => {
         if (!cancelled) setBackend(false);
@@ -205,6 +209,7 @@ export function Booking({ lang }: { lang: Lang }) {
                     }}
                     placeholder={t.dayPlaceholder}
                     maxDaysAhead={CALENDAR_DAYS_AHEAD}
+                    closedRanges={closedRanges}
                   />
                 </label>
 

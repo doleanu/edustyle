@@ -8,9 +8,15 @@ import { business } from "@/lib/business";
 export type TimeRange = { open: string; close: string };
 export type DayConfig = { enabled: boolean; ranges: TimeRange[] };
 
+// A closed date range for holidays/vacation — inclusive on both ends, ISO
+// "YYYY-MM-DD" so plain string comparison sorts/matches chronologically.
+// `label` is just a note for the owner ("Vacaciones") — never shown to clients.
+export type ClosedRange = { start: string; end: string; label?: string };
+
 export type Settings = {
   slotMinutes: number;
   weeklyHours: Record<number, DayConfig>;
+  closedRanges: ClosedRange[];
 };
 
 // Spanish day names in business.hours -> Luxon weekday numbers.
@@ -42,6 +48,7 @@ export const DEFAULT_SETTINGS: Settings = {
     }
     return wh;
   })(),
+  closedRanges: [],
 };
 
 // Accepts either the old single-range shape ({ enabled, open, close }) or the
@@ -59,9 +66,29 @@ export function normalizeSettings(raw: unknown): Settings {
         ranges?: { open?: string; close?: string }[];
       }
     >;
+    closedRanges?: { start?: string; end?: string; label?: string }[];
   };
   const slotMinutes =
     typeof obj.slotMinutes === "number" ? obj.slotMinutes : DEFAULT_SETTINGS.slotMinutes;
+
+  const isoDate = /^\d{4}-\d{2}-\d{2}$/;
+  const closedRanges: ClosedRange[] = Array.isArray(obj.closedRanges)
+    ? obj.closedRanges
+        .filter(
+          (r) =>
+            r &&
+            typeof r.start === "string" &&
+            typeof r.end === "string" &&
+            isoDate.test(r.start) &&
+            isoDate.test(r.end) &&
+            r.end >= r.start
+        )
+        .map((r) => ({
+          start: r.start as string,
+          end: r.end as string,
+          ...(r.label?.trim() ? { label: r.label.trim().slice(0, 60) } : {}),
+        }))
+    : [];
 
   const wh: Record<number, DayConfig> = {};
   for (let d = 1; d <= 7; d++) {
@@ -79,7 +106,13 @@ export function normalizeSettings(raw: unknown): Settings {
     if (ranges.length === 0) ranges = [{ open: "10:00", close: "19:00" }];
     wh[d] = { enabled: Boolean(src?.enabled), ranges };
   }
-  return { slotMinutes, weeklyHours: wh };
+  return { slotMinutes, weeklyHours: wh, closedRanges };
+}
+
+// Is this ISO date inside one of the owner's closed (vacation/holiday) ranges?
+// Returns the matching range (so callers can surface its label) or undefined.
+export function isDateClosed(dateISO: string, settings: Settings): ClosedRange | undefined {
+  return settings.closedRanges?.find((r) => dateISO >= r.start && dateISO <= r.end);
 }
 
 export type Slot = string; // "HH:mm" wall-clock in BOOKING_TZ
