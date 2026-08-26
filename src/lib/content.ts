@@ -22,6 +22,7 @@ export const content = {
   es: {
     nav: [
       { href: "#sobre", label: "Sobre" },
+      { href: "#especialidades", label: "Especialidades" },
       { href: "#precios", label: "Precios" },
       { href: "#reserva", label: "Reservar" },
       { href: "#por-que", label: "Por qué" },
@@ -59,6 +60,15 @@ export const content = {
         { icon: "UserCog", title: "Oficio", description: "Años detrás de la silla. Cada corte, cada barba y cada degradado hecho con técnica y buen pulso." },
         { icon: "HeartHandshake", title: "Cercanía", description: "Aquí no eres un número. Te escuchamos, entendemos tu estilo y te aconsejamos lo que de verdad te queda bien." },
         { icon: "Sparkles", title: "Detalle", description: "Toalla caliente, líneas limpias y acabados cuidados. Sales con la sensación de haberte cuidado de verdad." },
+      ],
+    },
+    specialties: {
+      eyebrow: "Nuestras especialidades",
+      title: "Lo que más nos piden en Tenerife",
+      items: [
+        { icon: "Wand2", title: "Diseños y arreglos de barba en Tenerife", description: "Perfilado, arreglo a navaja y máquina, y diseños de barba adaptados a la forma de tu cara. Uno de los servicios que más pedimos en la barbería." },
+        { icon: "Waves", title: "Peinados a la moda para hombre en Tenerife", description: "Degradados, texturizados y los estilos que se llevan ahora, adaptados a tu tipo de pelo y a tu día a día." },
+        { icon: "Ruler", title: "Cortes de pelo personalizados en Tenerife", description: "Nada de cortes genéricos: estudiamos la forma de tu cara y tu pelo para darte un corte hecho a tu medida." },
       ],
     },
     whyUs: {
@@ -207,6 +217,7 @@ export const content = {
   en: {
     nav: [
       { href: "#sobre", label: "About" },
+      { href: "#especialidades", label: "Specialties" },
       { href: "#precios", label: "Prices" },
       { href: "#reserva", label: "Book" },
       { href: "#por-que", label: "Why us" },
@@ -244,6 +255,15 @@ export const content = {
         { icon: "UserCog", title: "Craft", description: "Years behind the chair. Every cut, beard and fade done with technique and a steady hand." },
         { icon: "HeartHandshake", title: "Personal", description: "Here you're not a number. We listen, understand your style and advise you on what really suits you." },
         { icon: "Sparkles", title: "Detail", description: "Hot towel, clean lines and careful finishes. You leave feeling genuinely looked after." },
+      ],
+    },
+    specialties: {
+      eyebrow: "Our specialties",
+      title: "What we're asked for most in Tenerife",
+      items: [
+        { icon: "Wand2", title: "Beard grooming and designs in Tenerife", description: "Shaping, razor and clipper work, and beard designs tailored to your face shape. One of the most requested services at the barbershop." },
+        { icon: "Waves", title: "Trendy men's hairstyles in Tenerife", description: "Fades, texture cuts and the styles people are wearing right now, adapted to your hair type and everyday life." },
+        { icon: "Ruler", title: "Personalised haircuts in Tenerife", description: "No generic cuts: we study your face shape and hair to give you a cut made to fit you." },
       ],
     },
     whyUs: {
@@ -392,6 +412,7 @@ export const content = {
   fr: {
     nav: [
       { href: "#sobre", label: "À propos" },
+      { href: "#especialidades", label: "Spécialités" },
       { href: "#precios", label: "Tarifs" },
       { href: "#reserva", label: "Réserver" },
       { href: "#por-que", label: "Pourquoi nous" },
@@ -429,6 +450,15 @@ export const content = {
         { icon: "UserCog", title: "Savoir-faire", description: "Des années derrière le fauteuil. Chaque coupe, chaque barbe et chaque dégradé réalisés avec technique et précision." },
         { icon: "HeartHandshake", title: "Proximité", description: "Ici, vous n'êtes pas un numéro. Nous vous écoutons, comprenons votre style et vous conseillons ce qui vous va vraiment bien." },
         { icon: "Sparkles", title: "Le détail", description: "Serviette chaude, lignes nettes et finitions soignées. Vous repartez avec la sensation d'avoir été vraiment pris en charge." },
+      ],
+    },
+    specialties: {
+      eyebrow: "Nos spécialités",
+      title: "Ce qu'on nous demande le plus à Tenerife",
+      items: [
+        { icon: "Wand2", title: "Taille et dessins de barbe à Tenerife", description: "Contour, taille au coupe-chou et à la tondeuse, et dessins de barbe adaptés à la forme de votre visage. L'un des services les plus demandés de la barbería." },
+        { icon: "Waves", title: "Coiffures tendance homme à Tenerife", description: "Dégradés, coupes texturées et les styles du moment, adaptés à votre type de cheveux et à votre quotidien." },
+        { icon: "Ruler", title: "Coupes de cheveux personnalisées à Tenerife", description: "Pas de coupe générique : on étudie la forme de votre visage et vos cheveux pour une coupe faite sur mesure." },
       ],
     },
     whyUs: {
@@ -577,6 +607,7 @@ export const content = {
   de: {
     nav: [
       { href: "#sobre", label: "Über uns" },
+      { href: "#especialidades", label: "Spezialgebiete" },
       { href: "#precios", label: "Preise" },
       { href: "#reserva", label: "Termin buchen" },
       { href: "#por-que", label: "Warum wir" },
@@ -614,6 +645,15 @@ export const content = {
         { icon: "UserCog", title: "Handwerk", description: "Jahrelange Erfahrung auf dem Stuhl. Jeder Schnitt, jeder Bart und jeder Fade mit Technik und ruhiger Hand." },
         { icon: "HeartHandshake", title: "Nähe", description: "Hier sind Sie keine Nummer. Wir hören zu, verstehen Ihren Stil und beraten Sie ehrlich, was wirklich zu Ihnen passt." },
         { icon: "Sparkles", title: "Liebe zum Detail", description: "Warmes Handtuch, saubere Linien und sorgfältige Finishes. Sie gehen mit dem Gefühl, wirklich umsorgt worden zu sein." },
+      ],
+    },
+    specialties: {
+      eyebrow: "Unsere Spezialgebiete",
+      title: "Das wird bei uns auf Teneriffa am häufigsten gefragt",
+      items: [
+        { icon: "Wand2", title: "Bartpflege und Bartdesign auf Teneriffa", description: "Konturenschnitt, Rasiermesser und Maschine, sowie Bartdesigns passend zu Ihrer Gesichtsform. Einer der meistgefragten Services im Barbershop." },
+        { icon: "Waves", title: "Angesagte Herrenfrisuren auf Teneriffa", description: "Fades, texturierte Schnitte und die Styles, die gerade angesagt sind, angepasst an Ihren Haartyp und Alltag." },
+        { icon: "Ruler", title: "Individuelle Haarschnitte auf Teneriffa", description: "Kein Schnitt von der Stange: Wir analysieren Ihre Gesichtsform und Ihr Haar für einen Schnitt, der wirklich zu Ihnen passt." },
       ],
     },
     whyUs: {
