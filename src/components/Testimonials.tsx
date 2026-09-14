@@ -1,7 +1,6 @@
 import { Star, Quote } from "lucide-react";
 import { content, type Lang } from "@/lib/content";
 
-// TODO(edu): sustituir por reseñas reales del perfil de Google Business.
 export function Testimonials({ lang }: { lang: Lang }) {
   const t = content[lang].testimonials;
   return (

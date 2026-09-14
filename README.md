@@ -138,7 +138,7 @@ Open [http://localhost:3000](http://localhost:3000) — the site is live.
   - `favicon.ico` (32x32)
   - `apple-touch-icon.png` (180x180)
   - `og-image.jpg` (1200x630) — used in social media previews
-- [ ] **Replace placeholder testimonials** in `src/components/Testimonials.tsx` with real Google reviews
+- [x] **Replace placeholder testimonials** in `src/components/Testimonials.tsx` with real Google reviews (done 2026-09-11, sourced from the business's live Google Business Profile — 6 reviews × 4 locales in `src/lib/content.ts`)
 - [ ] **Verify business hours** in `src/lib/business.ts` (`business.hours`) match Google Business Profile exactly
 - [ ] **Verify Instagram handle** is `revital_therapy_` (link in `business.social.instagram`)
 - [ ] **Add Facebook URL** in `business.social.facebook` if applicable

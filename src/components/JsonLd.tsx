@@ -48,6 +48,12 @@ export function JsonLd() {
       longitude: business.geo.longitude,
     },
     openingHoursSpecification: openingHoursSpec,
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5.0",
+      bestRating: "5",
+      reviewCount: "31",
+    },
     sameAs: [business.social.instagram, business.social.googleMaps].filter(
       Boolean
     ),
