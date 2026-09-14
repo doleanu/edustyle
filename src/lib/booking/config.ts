@@ -127,3 +127,12 @@ export function hasReminders() {
       cronSecret()
   );
 }
+
+// Same Twilio pieces as hasReminders(), minus cronSecret — that one only
+// gates the external-scheduler-triggered reminder endpoint, irrelevant to
+// sending a confirmation text right after a booking is created server-side.
+export function hasSms() {
+  return Boolean(
+    hasBookingBackend() && twilioAccountSid() && twilioAuthPair() && twilioFrom()
+  );
+}

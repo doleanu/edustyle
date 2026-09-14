@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { DateTime } from "luxon";
-import { hasBookingBackend } from "@/lib/booking/config";
+import { hasBookingBackend, hasSms } from "@/lib/booking/config";
 import { getSettings, getRefreshToken } from "@/lib/booking/store";
 import { DEFAULT_SETTINGS, candidateSlots, slotInstants, isDateClosed } from "@/lib/booking/settings";
 import { getBusy, createEvent } from "@/lib/booking/google";
-import { toE164 } from "@/lib/booking/sms";
+import { toE164, sendSms } from "@/lib/booking/sms";
 import { getServiceRule } from "@/lib/booking/serviceRules";
 
 export const runtime = "nodejs";
@@ -55,7 +55,8 @@ export async function POST(req: NextRequest) {
   // Reject unparseable phone numbers here rather than accepting a mistyped
   // one and having the SMS reminder silently fail on every cron cycle —
   // give the client a chance to fix it while they're still on the form.
-  if (!toE164(phone)) {
+  const smsTo = toE164(phone);
+  if (!smsTo) {
     return NextResponse.json({ error: "invalid_phone" }, { status: 400 });
   }
 
@@ -99,5 +100,20 @@ export async function POST(req: NextRequest) {
     clientPhone: phone,
   });
   if (!ok) return NextResponse.json({ error: "failed" }, { status: 500 });
+
+  // Confirmation text, sent right away (separate from the reminder cron,
+  // which only fires ~1h before). Best-effort: never fail the booking over
+  // an SMS problem — the calendar event is already the source of truth.
+  if (hasSms()) {
+    const firstName = name.split(" ")[0] || name;
+    // Accent-free like the reminder body — keeps it on the cheaper GSM-7
+    // encoding instead of tripling the segment count for no visible reason.
+    const body =
+      `Hola ${firstName}! Cita confirmada en Eduardo Style: ${service}, ` +
+      `${start.toFormat("dd/LL")} a las ${start.toFormat("HH:mm")}. Te avisaremos ` +
+      `por SMS 1h antes. Para cambios, escribenos por WhatsApp (no respondas a este numero).`;
+    await sendSms(smsTo, body).catch(() => false);
+  }
+
   return NextResponse.json({ ok: true });
 }
