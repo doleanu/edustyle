@@ -1,6 +1,7 @@
 import { DateTime } from "luxon";
 import { BOOKING_TZ } from "./config";
 import { business } from "@/lib/business";
+import type { ServiceRule } from "./serviceRules";
 
 // Owner-configurable scheduling settings. Weekday uses Luxon numbering:
 // 1 = Monday … 7 = Sunday. Each day can have MULTIPLE time ranges so split
@@ -119,11 +120,29 @@ export type Slot = string; // "HH:mm" wall-clock in BOOKING_TZ
 
 // Pure generator: candidate wall-clock slots for an ISO date (YYYY-MM-DD),
 // across ALL of the day's ranges. No calendar filtering happens here.
-export function candidateSlots(dateISO: string, settings: Settings): Slot[] {
+//
+// When `rule` is given, the day's normal slot grid is ignored entirely —
+// instead the rule's own fixed start times are offered, on any day whose
+// hours reach into the evening (so a Saturday that closes at 14:00 never
+// gets an 18:00 option). This lets a special service run past the day's
+// usual closing time, which candidateSlots' regular fit-before-close check
+// would otherwise reject.
+export function candidateSlots(dateISO: string, settings: Settings, rule?: ServiceRule): Slot[] {
   const day = DateTime.fromISO(dateISO, { zone: BOOKING_TZ });
   if (!day.isValid) return [];
   const cfg = settings.weeklyHours[day.weekday];
   if (!cfg?.enabled || !cfg.ranges?.length) return [];
+
+  if (rule) {
+    const toMinutes = (hhmm: string) => {
+      const [h, m] = hhmm.split(":").map(Number);
+      return h * 60 + m;
+    };
+    const earliestAllowed = Math.min(...rule.allowedStartTimes.map(toMinutes));
+    const reachesEvening = cfg.ranges.some((r) => toMinutes(r.close) >= earliestAllowed);
+    if (!reachesEvening) return [];
+    return [...rule.allowedStartTimes].sort();
+  }
 
   const set = new Set<string>();
   for (const range of cfg.ranges) {

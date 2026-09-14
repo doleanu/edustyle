@@ -4,6 +4,7 @@ import { hasBookingBackend, BOOKING_TZ } from "@/lib/booking/config";
 import { getSettings, getRefreshToken } from "@/lib/booking/store";
 import { DEFAULT_SETTINGS, candidateSlots, slotInstants, isDateClosed } from "@/lib/booking/settings";
 import { getBusy } from "@/lib/booking/google";
+import { getServiceRule } from "@/lib/booking/serviceRules";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -36,7 +37,9 @@ export async function GET(req: NextRequest) {
   if (isDateClosed(date, settings)) {
     return NextResponse.json({ configured: true, slots: [] });
   }
-  const candidates = candidateSlots(date, settings);
+  const service = req.nextUrl.searchParams.get("service") ?? "";
+  const rule = getServiceRule(service);
+  const candidates = candidateSlots(date, settings, rule);
   if (candidates.length === 0) {
     return NextResponse.json({ configured: true, slots: [] });
   }
@@ -51,8 +54,9 @@ export async function GET(req: NextRequest) {
   }));
 
   const now = DateTime.utc();
+  const slotMinutes = rule?.durationMinutes ?? settings.slotMinutes;
   const free = candidates.filter((slot) => {
-    const { start, end } = slotInstants(date, slot, settings.slotMinutes);
+    const { start, end } = slotInstants(date, slot, slotMinutes);
     const startU = start.toUTC();
     const endU = end.toUTC();
     if (startU <= now) return false; // no slots in the past

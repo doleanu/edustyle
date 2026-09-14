@@ -70,7 +70,9 @@ export function Booking({ lang }: { lang: Lang }) {
     };
   }, []);
 
-  // In backend mode, load real slots whenever the day changes.
+  // In backend mode, load real slots whenever the day OR the service changes —
+  // some services (e.g. Pack completo) have their own duration and fixed
+  // start times, so the slot list genuinely depends on which one is picked.
   useEffect(() => {
     if (backend !== true || !dayIso) {
       setApiSlots([]);
@@ -79,7 +81,10 @@ export function Booking({ lang }: { lang: Lang }) {
     let cancelled = false;
     setSlotsLoading(true);
     setTime("");
-    fetch(`/api/availability?date=${dayIso}`)
+    const url = `/api/availability?date=${dayIso}${
+      service ? `&service=${encodeURIComponent(service)}` : ""
+    }`;
+    fetch(url)
       .then((r) => r.json())
       .then((d) => {
         if (!cancelled) setApiSlots(Array.isArray(d?.slots) ? d.slots : []);
@@ -93,7 +98,7 @@ export function Booking({ lang }: { lang: Lang }) {
     return () => {
       cancelled = true;
     };
-  }, [backend, dayIso]);
+  }, [backend, dayIso, service]);
 
   const slots = apiSlots;
 

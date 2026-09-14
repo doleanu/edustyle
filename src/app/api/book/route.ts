@@ -5,6 +5,7 @@ import { getSettings, getRefreshToken } from "@/lib/booking/store";
 import { DEFAULT_SETTINGS, candidateSlots, slotInstants, isDateClosed } from "@/lib/booking/settings";
 import { getBusy, createEvent } from "@/lib/booking/google";
 import { toE164 } from "@/lib/booking/sms";
+import { getServiceRule } from "@/lib/booking/serviceRules";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -66,11 +67,14 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "closed" }, { status: 400 });
   }
   // The posted time must be a real bookable slot for that date (inside the
-  // day's working ranges, on the slot grid) — blocks booking during a break.
-  if (!candidateSlots(date, settings).includes(time)) {
+  // day's working ranges, on the slot grid — or, for a service with its own
+  // rule, one of that rule's fixed start times) — blocks booking during a
+  // break, or a "Pack completo" outside its 18:00/18:30 window.
+  const rule = getServiceRule(service);
+  if (!candidateSlots(date, settings, rule).includes(time)) {
     return NextResponse.json({ error: "invalid_slot" }, { status: 400 });
   }
-  const { start, end } = slotInstants(date, time, settings.slotMinutes);
+  const { start, end } = slotInstants(date, time, rule?.durationMinutes ?? settings.slotMinutes);
   if (!start.isValid || start.toUTC() <= DateTime.utc()) {
     return NextResponse.json({ error: "past" }, { status: 400 });
   }
