@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { SiteBody } from "@/components/SiteBody";
 
 export const metadata: Metadata = {
-  title: "Eduardo Style – Barbier à Tenerife | Coupes, Barbe et Rasage",
+  title: "Eduardo Style – Barbier à Los Abrigos, Tenerife",
   description:
-    "Barbier Eduardo Style à Tenerife : coupes de cheveux, taille de barbe, rasage classique au coupe-chou et dessins. Réservez votre rendez-vous en ligne.",
+    "Barbier à Los Abrigos, sud de Tenerife : coupes de cheveux, taille de barbe, rasage classique au coupe-chou et dessins. Réservez votre rendez-vous en ligne.",
   alternates: {
     canonical: "/fr",
     languages: { es: "/", en: "/en", fr: "/fr", de: "/de" },
@@ -12,9 +12,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "fr_FR",
-    title: "Eduardo Style – Barbier à Tenerife",
+    title: "Eduardo Style – Barbier à Los Abrigos, Tenerife",
     description:
-      "Coupes, taille de barbe, rasage classique et dessins à Tenerife. Réservez en ligne.",
+      "Coupes, taille de barbe, rasage classique et dessins à Los Abrigos, Tenerife. Réservez en ligne.",
   },
 };
 

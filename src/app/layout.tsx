@@ -18,12 +18,14 @@ const oswald = Oswald({
 export const metadata: Metadata = {
   metadataBase: new URL(business.siteUrl),
   title: {
-    default: "Eduardo Style – Barbería en Tenerife | Cortes, Barba y Afeitado",
+    default: "Eduardo Style – Barbería en Los Abrigos, Tenerife",
     template: "%s | Eduardo Style",
   },
   description:
-    "Barbería Eduardo Style en Tenerife: cortes de pelo, arreglo de barba, afeitado clásico a navaja y diseños. Reserva tu cita online.",
+    "Barbería en Los Abrigos, sur de Tenerife: cortes de pelo, arreglo de barba, diseños y afeitado clásico a navaja. Reserva tu cita online en segundos.",
   keywords: [
+    "barbería Los Abrigos",
+    "peluquería Los Abrigos",
     "barbería Tenerife",
     "barbero Tenerife",
     "corte de pelo Tenerife",
@@ -47,13 +49,13 @@ export const metadata: Metadata = {
     locale: "es_ES",
     url: business.siteUrl,
     siteName: business.name,
-    title: "Eduardo Style – Barbería en Tenerife | Cortes, Barba y Afeitado",
+    title: "Eduardo Style – Barbería en Los Abrigos, Tenerife",
     description: business.description,
     // og image auto-generated from src/app/opengraph-image.png
   },
   twitter: {
     card: "summary_large_image",
-    title: "Eduardo Style – Barbería en Tenerife",
+    title: "Eduardo Style – Barbería en Los Abrigos, Tenerife",
     description: business.description,
   },
   robots: {

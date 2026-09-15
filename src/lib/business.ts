@@ -5,9 +5,9 @@ export const business = {
   name: "Eduardo Style",
   legalName: "Eduardo Style Barbería",
   description:
-    "Barbería en Tenerife. Cortes de pelo, arreglo de barba y afeitado clásico a navaja. Reserva tu cita online.",
+    "Barbería en Los Abrigos, Tenerife. Cortes de pelo, arreglo de barba y afeitado clásico a navaja. Reserva tu cita online.",
   longDescription:
-    "En Eduardo Style cuidamos tu imagen como se merece. Cortes de pelo, arreglo de barba, afeitado clásico a navaja y diseños personalizados, en un ambiente cercano y relajado en Tenerife. Reserva tu cita online en segundos.",
+    "En Eduardo Style cuidamos tu imagen como se merece. Cortes de pelo, arreglo de barba, afeitado clásico a navaja y diseños personalizados, en un ambiente cercano y relajado en Los Abrigos, sur de Tenerife. Reserva tu cita online en segundos.",
   email: "eduardosaiz46@gmail.com",
   phone: "+34 694 20 07 78",
   phoneE164: "+34694200778",
