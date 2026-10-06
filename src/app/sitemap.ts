@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
 import { business } from "@/lib/business";
-import { legalPath } from "@/lib/legal";
 import { type Lang } from "@/lib/content";
 
 const LANGS: Lang[] = ["es", "en", "fr", "de"];
@@ -17,20 +16,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: HOME_PRIORITY[lang],
   }));
 
-  const legalPages = LANGS.flatMap((lang) => [
-    {
-      url: `${base}${legalPath("politica-privacidad", lang)}`,
-      lastModified,
-      changeFrequency: "yearly" as const,
-      priority: 0.3,
-    },
-    {
-      url: `${base}${legalPath("aviso-legal", lang)}`,
-      lastModified,
-      changeFrequency: "yearly" as const,
-      priority: 0.3,
-    },
-  ]);
-
-  return [...homes, ...legalPages];
+  // Legal pages are noindex (see their page metadata), so keep them out of the sitemap.
+  return homes;
 }

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { SiteBody } from "@/components/SiteBody";
 
 export const metadata: Metadata = {
-  title: "Eduardo Style – Barbier à Los Abrigos, Tenerife",
+  title: { absolute: "Eduardo Style – Barbier à Los Abrigos, Tenerife" },
   description:
     "Barbier à Los Abrigos, sud de Tenerife : coupes de cheveux, taille de barbe, rasage classique au coupe-chou et dessins. Réservez votre rendez-vous en ligne.",
   alternates: {

@@ -16,7 +16,7 @@ const langPaths: Record<Lang, string> = {
 export const metadata: Metadata = {
   title: t.metaTitle,
   description: t.metaDescription,
-  robots: { index: true, follow: true },
+  robots: { index: false, follow: true },
   alternates: {
     canonical: langPaths.es,
     languages: { es: langPaths.es, en: langPaths.en, fr: langPaths.fr, de: langPaths.de },

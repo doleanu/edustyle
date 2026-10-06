@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { SiteBody } from "@/components/SiteBody";
 
 export const metadata: Metadata = {
-  title: "Eduardo Style – Barbershop in Los Abrigos, Tenerife",
+  title: { absolute: "Eduardo Style – Barbershop in Los Abrigos, Tenerife" },
   description:
     "Barbershop in Los Abrigos, south Tenerife: haircuts, beard trims, classic straight-razor shave and designs. Book your appointment online.",
   alternates: {

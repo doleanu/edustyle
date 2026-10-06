@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { SiteBody } from "@/components/SiteBody";
 
 export const metadata: Metadata = {
-  title: "Eduardo Style – Barbershop in Los Abrigos, Teneriffa",
+  title: { absolute: "Eduardo Style – Barbershop in Los Abrigos, Teneriffa" },
   description:
     "Barbershop in Los Abrigos, Süden von Teneriffa: Haarschnitt, Bartpflege, klassische Rasur mit dem Rasiermesser und Designs. Jetzt online buchen.",
   alternates: {
