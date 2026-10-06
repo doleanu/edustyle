@@ -10,7 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
 
   const homes = LANGS.map((lang) => ({
-    url: lang === "es" ? `${base}/` : `${base}/${lang}`,
+    url: lang === "es" ? base : `${base}/${lang}`,
     lastModified,
     changeFrequency: "weekly" as const,
     priority: HOME_PRIORITY[lang],

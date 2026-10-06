@@ -18,7 +18,7 @@ import { type Lang } from "@/lib/content";
 export function SiteBody({ lang }: { lang: Lang }) {
   return (
     <>
-      <JsonLd />
+      <JsonLd lang={lang} />
       <Header lang={lang} />
       <main>
         <Hero lang={lang} />
