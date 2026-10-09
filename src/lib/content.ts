@@ -71,6 +71,20 @@ export const content = {
         { icon: "Ruler", title: "Cortes de pelo personalizados en Tenerife", description: "Nada de cortes genéricos: estudiamos la forma de tu cara y tu pelo para darte un corte hecho a tu medida." },
       ],
     },
+    gallery: {
+      eyebrow: "Nuestro trabajo",
+      title: "Cortes reales, hechos en el salón",
+      subtitle: "Fotos de clientes de Eduardo Style en Los Abrigos. Hay mucho más en nuestro Instagram.",
+      cta: "Ver más en @edustyle4",
+      items: [
+        { src: "/gallery/fade-nino-diseno.jpg", alt: "Corte de niño con degradado y diseño de líneas" },
+        { src: "/gallery/degradado-navaja.jpg", alt: "Degradado con línea de navaja en la nuca" },
+        { src: "/gallery/skin-fade-perfil.jpg", alt: "Skin fade de perfil, acabado limpio" },
+        { src: "/gallery/low-fade.jpg", alt: "Degradado bajo con textura arriba" },
+        { src: "/gallery/color-azul-mohicano.jpg", alt: "Cresta teñida de azul con laterales rapados" },
+        { src: "/gallery/corte-nino-taper.jpg", alt: "Corte de niño con degradado y moño" },
+      ],
+    },
     whyUs: {
       eyebrow: "Por qué Eduardo Style",
       title: "Cuatro razones para sentarte en nuestra silla",
@@ -264,6 +278,20 @@ export const content = {
         { icon: "Wand2", title: "Beard grooming and designs in Tenerife", description: "Shaping, razor and clipper work, and beard designs tailored to your face shape. One of the most requested services at the barbershop." },
         { icon: "Waves", title: "Trendy men's hairstyles in Tenerife", description: "Fades, texture cuts and the styles people are wearing right now, adapted to your hair type and everyday life." },
         { icon: "Ruler", title: "Personalised haircuts in Tenerife", description: "No generic cuts: we study your face shape and hair to give you a cut made to fit you." },
+      ],
+    },
+    gallery: {
+      eyebrow: "Our work",
+      title: "Real cuts, done in the shop",
+      subtitle: "Photos of Eduardo Style clients in Los Abrigos. There is plenty more on our Instagram.",
+      cta: "See more on @edustyle4",
+      items: [
+        { src: "/gallery/fade-nino-diseno.jpg", alt: "Kid's fade with a line design" },
+        { src: "/gallery/degradado-navaja.jpg", alt: "Fade with a razor line at the nape" },
+        { src: "/gallery/skin-fade-perfil.jpg", alt: "Skin fade in profile, clean finish" },
+        { src: "/gallery/low-fade.jpg", alt: "Low fade with texture on top" },
+        { src: "/gallery/color-azul-mohicano.jpg", alt: "Mohawk dyed blue with shaved sides" },
+        { src: "/gallery/corte-nino-taper.jpg", alt: "Kid's fade with a top knot" },
       ],
     },
     whyUs: {
@@ -461,6 +489,20 @@ export const content = {
         { icon: "Ruler", title: "Coupes de cheveux personnalisées à Tenerife", description: "Pas de coupe générique : on étudie la forme de votre visage et vos cheveux pour une coupe faite sur mesure." },
       ],
     },
+    gallery: {
+      eyebrow: "Notre travail",
+      title: "De vraies coupes, réalisées au salon",
+      subtitle: "Photos de clients d'Eduardo Style à Los Abrigos. Beaucoup d'autres sur notre Instagram.",
+      cta: "Voir plus sur @edustyle4",
+      items: [
+        { src: "/gallery/fade-nino-diseno.jpg", alt: "Coupe enfant avec dégradé et dessin de lignes" },
+        { src: "/gallery/degradado-navaja.jpg", alt: "Dégradé avec ligne au rasoir sur la nuque" },
+        { src: "/gallery/skin-fade-perfil.jpg", alt: "Skin fade de profil, finition nette" },
+        { src: "/gallery/low-fade.jpg", alt: "Dégradé bas avec texture sur le dessus" },
+        { src: "/gallery/color-azul-mohicano.jpg", alt: "Crête teinte en bleu avec côtés rasés" },
+        { src: "/gallery/corte-nino-taper.jpg", alt: "Coupe enfant avec dégradé et chignon" },
+      ],
+    },
     whyUs: {
       eyebrow: "Pourquoi Eduardo Style",
       title: "Quatre raisons de vous asseoir dans notre fauteuil",
@@ -654,6 +696,20 @@ export const content = {
         { icon: "Wand2", title: "Bartpflege und Bartdesign auf Teneriffa", description: "Konturenschnitt, Rasiermesser und Maschine, sowie Bartdesigns passend zu Ihrer Gesichtsform. Einer der meistgefragten Services im Barbershop." },
         { icon: "Waves", title: "Angesagte Herrenfrisuren auf Teneriffa", description: "Fades, texturierte Schnitte und die Styles, die gerade angesagt sind, angepasst an Ihren Haartyp und Alltag." },
         { icon: "Ruler", title: "Individuelle Haarschnitte auf Teneriffa", description: "Kein Schnitt von der Stange: Wir analysieren Ihre Gesichtsform und Ihr Haar für einen Schnitt, der wirklich zu Ihnen passt." },
+      ],
+    },
+    gallery: {
+      eyebrow: "Unsere Arbeit",
+      title: "Echte Schnitte, im Salon gemacht",
+      subtitle: "Fotos von Eduardo-Style-Kunden in Los Abrigos. Viel mehr gibt es auf unserem Instagram.",
+      cta: "Mehr auf @edustyle4 ansehen",
+      items: [
+        { src: "/gallery/fade-nino-diseno.jpg", alt: "Kinderhaarschnitt mit Fade und Linienmuster" },
+        { src: "/gallery/degradado-navaja.jpg", alt: "Fade mit Rasiermesserlinie im Nacken" },
+        { src: "/gallery/skin-fade-perfil.jpg", alt: "Skin Fade im Profil, saubere Kante" },
+        { src: "/gallery/low-fade.jpg", alt: "Low Fade mit Textur oben" },
+        { src: "/gallery/color-azul-mohicano.jpg", alt: "Blau gefärbter Irokesenschnitt mit rasierten Seiten" },
+        { src: "/gallery/corte-nino-taper.jpg", alt: "Kinderhaarschnitt mit Fade und Dutt" },
       ],
     },
     whyUs: {

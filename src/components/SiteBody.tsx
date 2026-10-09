@@ -3,6 +3,7 @@ import { Hero } from "@/components/Hero";
 import { Video } from "@/components/Video";
 import { About } from "@/components/About";
 import { Specialties } from "@/components/Specialties";
+import { Gallery } from "@/components/Gallery";
 import { WhyUs } from "@/components/WhyUs";
 import { Testimonials } from "@/components/Testimonials";
 import { Prices } from "@/components/Prices";
@@ -27,6 +28,7 @@ export function SiteBody({ lang }: { lang: Lang }) {
         <Video lang={lang} />
         <About lang={lang} />
         <Specialties lang={lang} />
+        <Gallery lang={lang} />
         <Prices lang={lang} />
         <Booking lang={lang} />
         <WhyUs lang={lang} />

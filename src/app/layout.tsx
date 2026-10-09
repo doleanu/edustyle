@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Oswald } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { business } from "@/lib/business";
 import "./globals.css";
 
@@ -78,7 +79,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" className={`${inter.variable} ${oswald.variable}`}>
-      <body>{children}</body>
+      <body>
+        {children}
+        {/* Vercel Web Analytics: cookieless, aggregate-only (no personal data). */}
+        <Analytics />
+      </body>
     </html>
   );
 }

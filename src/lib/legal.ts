@@ -115,7 +115,7 @@ export const legalContent: Record<Lang, LegalContent> = {
       },
       p6: {
         title: "6. Cookies",
-        body: "Este sitio no utiliza cookies de seguimiento ni de publicidad. Únicamente se emplean las cookies técnicas imprescindibles para su funcionamiento.",
+        body: "Este sitio no utiliza cookies de seguimiento ni de publicidad. Únicamente se emplean las cookies técnicas imprescindibles para su funcionamiento. Para conocer cuántas personas visitan la web usamos Vercel Web Analytics, que genera estadísticas agregadas y anónimas sin cookies ni datos personales.",
       },
     },
   },
@@ -185,7 +185,7 @@ export const legalContent: Record<Lang, LegalContent> = {
       },
       p6: {
         title: "6. Cookies",
-        body: "This site does not use tracking or advertising cookies. Only the technical cookies strictly necessary for it to function are used.",
+        body: "This site does not use tracking or advertising cookies. Only the technical cookies strictly necessary for it to function are used. To learn how many people visit the site we use Vercel Web Analytics, which produces aggregate, anonymous statistics without cookies or personal data.",
       },
     },
   },
@@ -255,7 +255,7 @@ export const legalContent: Record<Lang, LegalContent> = {
       },
       p6: {
         title: "6. Cookies",
-        body: "Ce site n'utilise pas de cookies de suivi ni de publicité. Seuls les cookies techniques indispensables à son fonctionnement sont utilisés.",
+        body: "Ce site n'utilise pas de cookies de suivi ni de publicité. Seuls les cookies techniques indispensables à son fonctionnement sont utilisés. Pour connaître la fréquentation du site, nous utilisons Vercel Web Analytics, qui produit des statistiques agrégées et anonymes, sans cookies ni données personnelles.",
       },
     },
   },
@@ -325,7 +325,7 @@ export const legalContent: Record<Lang, LegalContent> = {
       },
       p6: {
         title: "6. Cookies",
-        body: "Diese Website verwendet keine Tracking- oder Werbe-Cookies. Es werden ausschließlich technisch notwendige Cookies für den Betrieb der Website eingesetzt.",
+        body: "Diese Website verwendet keine Tracking- oder Werbe-Cookies. Es werden ausschließlich technisch notwendige Cookies für den Betrieb der Website eingesetzt. Um zu erfahren, wie viele Personen die Website besuchen, nutzen wir Vercel Web Analytics, das aggregierte, anonyme Statistiken ohne Cookies und ohne personenbezogene Daten erzeugt.",
       },
     },
   },
