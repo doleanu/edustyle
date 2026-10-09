@@ -26,9 +26,9 @@ export function Footer({ lang }: { lang: Lang }) {
 
           {/* Navigation */}
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-cream-50">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-cream-50">
               {t.navTitle}
-            </h4>
+            </h3>
             <ul className="mt-4 space-y-2 text-sm">
               {t.nav.map((l) => (
                 <li key={l.href}>
@@ -42,9 +42,9 @@ export function Footer({ lang }: { lang: Lang }) {
 
           {/* Contact */}
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-cream-50">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-cream-50">
               {t.contactTitle}
-            </h4>
+            </h3>
             <ul className="mt-4 space-y-3 text-sm">
               <li className="flex gap-3">
                 <MapPin className="h-4 w-4 shrink-0 text-terracotta-400" />
@@ -82,9 +82,9 @@ export function Footer({ lang }: { lang: Lang }) {
 
           {/* Social */}
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-cream-50">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-cream-50">
               {t.followTitle}
-            </h4>
+            </h3>
             <div className="mt-4 flex gap-3">
               <a
                 href={business.social.instagram}

@@ -30,6 +30,7 @@ const config: Config = {
           400: "#D9B34C",
           500: "#C69A2E",
           600: "#A67F1F",
+          700: "#876614", // small text on bone/cream: 5.0:1 (500 is 2.45:1)
         },
       },
       fontFamily: {

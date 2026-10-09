@@ -12,12 +12,14 @@ import { Location } from "@/components/Location";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
+import { DocumentLang } from "@/components/DocumentLang";
 import { type Lang } from "@/lib/content";
 
 // Shared page body — the `/` (Spanish) and `/en` (English) routes both render this.
 export function SiteBody({ lang }: { lang: Lang }) {
   return (
     <>
+      <DocumentLang lang={lang} />
       <JsonLd lang={lang} />
       <Header lang={lang} />
       <main>

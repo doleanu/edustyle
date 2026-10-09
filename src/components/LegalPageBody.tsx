@@ -2,6 +2,7 @@ import Link from "next/link";
 import { business } from "@/lib/business";
 import { legalContent, type LegalSection, type LegalListSection } from "@/lib/legal";
 import { type Lang } from "@/lib/content";
+import { DocumentLang } from "@/components/DocumentLang";
 
 // Fills {legalName} {city} {country} {phone} tokens, then splits on {EMAIL}
 // so the caller can splice in a real <a mailto> link at that exact point.
@@ -77,6 +78,7 @@ export function AvisoLegalBody({ lang }: { lang: Lang }) {
   const t = legalContent[lang];
   return (
     <article className="container-tight py-12 sm:py-16">
+      <DocumentLang lang={lang} />
       <BackLink lang={lang} />
       <h1 className="mt-6 font-serif text-4xl uppercase tracking-wide text-teal-900 sm:text-5xl">
         {t.avisoLegal.pageTitle}
@@ -97,6 +99,7 @@ export function PoliticaPrivacidadBody({ lang }: { lang: Lang }) {
   const t = legalContent[lang];
   return (
     <article className="container-tight py-12 sm:py-16">
+      <DocumentLang lang={lang} />
       <BackLink lang={lang} />
       <h1 className="mt-6 font-serif text-4xl uppercase tracking-wide text-teal-900 sm:text-5xl">
         {t.politicaPrivacidad.pageTitle}

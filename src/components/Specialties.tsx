@@ -12,7 +12,7 @@ export function Specialties({ lang }: { lang: Lang }) {
     <section id="especialidades" className="section bg-cream-50">
       <div className="container-tight">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="text-xs font-semibold uppercase tracking-widest text-terracotta-500">
+          <span className="text-xs font-semibold uppercase tracking-widest text-terracotta-700">
             {t.eyebrow}
           </span>
           <h2 className="section-heading mt-3">{t.title}</h2>

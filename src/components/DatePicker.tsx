@@ -155,7 +155,7 @@ export function DatePicker({
         onClick={() => setOpen((o) => !o)}
         className={clsx(
           "flex w-full items-center justify-between gap-2 rounded-xl border border-teal-100 bg-cream-50 px-3 py-2.5 text-left text-sm focus:border-terracotta-400 focus:outline-none focus:ring-2 focus:ring-terracotta-400/30",
-          selectedDate ? "text-teal-900" : "text-teal-900/50"
+          selectedDate ? "text-teal-900" : "text-teal-900/70"
         )}
       >
         <span className="truncate">{label}</span>
@@ -216,7 +216,7 @@ export function DatePicker({
                     "flex h-9 w-9 items-center justify-center rounded-full text-sm transition-colors",
                     disabled && "cursor-not-allowed text-teal-900/20",
                     !disabled && !isSelected && "text-teal-900 hover:bg-cream-100",
-                    isSelected && "bg-terracotta-500 font-semibold text-white",
+                    isSelected && "bg-terracotta-500 font-semibold text-teal-900",
                     !isSelected && isToday && !disabled && "font-semibold text-terracotta-600"
                   )}
                 >

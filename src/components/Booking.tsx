@@ -146,7 +146,7 @@ export function Booking({ lang }: { lang: Lang }) {
     <section id="reserva" className="section bg-cream-50">
       <div className="container-tight">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="text-xs font-semibold uppercase tracking-widest text-terracotta-500">
+          <span className="text-xs font-semibold uppercase tracking-widest text-terracotta-700">
             {t.eyebrow}
           </span>
           <h2 className="section-heading mt-3">{t.title}</h2>
@@ -292,10 +292,10 @@ export function Booking({ lang }: { lang: Lang }) {
                 onClick={handleBook}
                 disabled={!bookingComplete || submit === "submitting"}
                 className={clsx(
-                  "mt-6 flex w-full items-center justify-center gap-3 rounded-full px-8 py-4 text-base font-medium text-white transition-all",
+                  "mt-6 flex w-full items-center justify-center gap-3 rounded-full px-8 py-4 text-base font-medium transition-all",
                   bookingComplete && submit !== "submitting"
-                    ? "bg-terracotta-500 hover:bg-terracotta-600 hover:shadow-xl active:scale-95"
-                    : "cursor-not-allowed bg-teal-400/40"
+                    ? "bg-terracotta-500 text-teal-900 hover:bg-terracotta-400 hover:shadow-xl active:scale-95"
+                    : "cursor-not-allowed bg-teal-400/40 text-white"
                 )}
               >
                 {submit === "submitting" ? (
@@ -307,7 +307,7 @@ export function Booking({ lang }: { lang: Lang }) {
               </button>
 
               {!bookingComplete && (
-                <p className="mt-3 text-center text-xs text-teal-700/60">{t.incompleteHint}</p>
+                <p className="mt-3 text-center text-xs text-teal-700/75">{t.incompleteHint}</p>
               )}
             </>
           )}

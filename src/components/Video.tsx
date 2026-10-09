@@ -15,7 +15,7 @@ export function Video({ lang }: { lang: Lang }) {
         <div className="grid items-center gap-10 lg:grid-cols-[1fr_360px] lg:gap-16">
           {/* Text side */}
           <div className="text-center lg:text-left">
-            <span className="text-xs font-semibold uppercase tracking-widest text-terracotta-500">
+            <span className="text-xs font-semibold uppercase tracking-widest text-terracotta-700">
               {t.eyebrow}
             </span>
             <h2 className="section-heading mt-3">{t.title}</h2>

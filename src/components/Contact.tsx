@@ -34,7 +34,7 @@ export function Contact({ lang }: { lang: Lang }) {
           <div className="mt-10 flex flex-col items-stretch justify-center gap-3 sm:flex-row">
             <a
               href="#reserva"
-              className="group inline-flex items-center justify-center gap-3 rounded-full bg-terracotta-500 px-8 py-4 text-base font-medium text-white transition-all hover:bg-terracotta-600 hover:shadow-xl active:scale-95"
+              className="group inline-flex items-center justify-center gap-3 rounded-full bg-terracotta-500 px-8 py-4 text-base font-medium text-teal-900 transition-all hover:bg-terracotta-600 hover:shadow-xl active:scale-95"
             >
               <CalendarCheck className="h-5 w-5 transition-transform group-hover:scale-110" />
               <span>{t.reserveBtn}</span>

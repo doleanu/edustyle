@@ -36,7 +36,7 @@
   }
 
   .btn-accent {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-terracotta-500 px-6 py-3 text-sm font-medium text-white transition-all hover:bg-terracotta-600 active:scale-95;
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-terracotta-500 px-6 py-3 text-sm font-medium text-teal-900 transition-all hover:bg-terracotta-400 active:scale-95;
   }
 
   .section {

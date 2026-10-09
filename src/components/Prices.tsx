@@ -8,7 +8,7 @@ export function Prices({ lang }: { lang: Lang }) {
     <section id="precios" className="section bg-cream-100">
       <div className="container-tight">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="text-xs font-semibold uppercase tracking-widest text-terracotta-500">
+          <span className="text-xs font-semibold uppercase tracking-widest text-terracotta-700">
             {t.eyebrow}
           </span>
           <h2 className="section-heading mt-3">{t.title}</h2>
@@ -38,12 +38,12 @@ export function Prices({ lang }: { lang: Lang }) {
                     <div className="min-w-0">
                       <div className="font-medium text-teal-900">{item.name}</div>
                       {item.desc && (
-                        <div className="mt-0.5 text-xs leading-snug text-teal-700/60">
+                        <div className="mt-0.5 text-xs leading-snug text-teal-700/75">
                           {item.desc}
                         </div>
                       )}
                     </div>
-                    <div className="shrink-0 font-serif text-xl text-terracotta-600">
+                    <div className="shrink-0 font-serif text-xl text-terracotta-700">
                       {item.price}
                     </div>
                   </li>

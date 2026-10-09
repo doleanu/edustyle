@@ -10,7 +10,7 @@ export function About({ lang }: { lang: Lang }) {
       <div className="container-tight">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
-            <span className="text-xs font-semibold uppercase tracking-widest text-terracotta-500">
+            <span className="text-xs font-semibold uppercase tracking-widest text-terracotta-700">
               {t.eyebrow}
             </span>
             <h2 className="section-heading mt-3">{t.title}</h2>
