@@ -24,6 +24,19 @@ export function toE164(raw: string): string | null {
   return /^\+\d{8,15}$/.test(digits) ? digits : null;
 }
 
+// Twilio bills per SEGMENT: 160 chars (153 when split) in the GSM-7 alphabet,
+// but a single accented character outside it (í, ó, ú, á...) flips the whole
+// message to UCS-2, which is only 70 (67 split) per segment — a 135-char text
+// to "María" cost 3 segments instead of 1. Client names and service names are
+// free text, so fold them to plain ASCII before they go into any SMS body.
+export function gsmSafe(text: string): string {
+  return text
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^\x20-\x7E]/g, "")
+    .trim();
+}
+
 export async function sendSms(to: string, body: string): Promise<boolean> {
   // The URL path always takes the real Account SID ("AC…") — even when
   // authenticating with an API Key, which is a separate credential ("SK…")

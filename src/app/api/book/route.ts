@@ -4,7 +4,7 @@ import { hasBookingBackend, hasSms } from "@/lib/booking/config";
 import { getSettings, getRefreshToken } from "@/lib/booking/store";
 import { DEFAULT_SETTINGS, candidateSlots, slotInstants, isDateClosed } from "@/lib/booking/settings";
 import { getBusy, createEvent } from "@/lib/booking/google";
-import { toE164, sendSms } from "@/lib/booking/sms";
+import { toE164, sendSms, gsmSafe } from "@/lib/booking/sms";
 import { getServiceRule } from "@/lib/booking/serviceRules";
 
 export const runtime = "nodejs";
@@ -105,13 +105,14 @@ export async function POST(req: NextRequest) {
   // which only fires ~1h before). Best-effort: never fail the booking over
   // an SMS problem — the calendar event is already the source of truth.
   if (hasSms()) {
-    const firstName = name.split(" ")[0] || name;
-    // Accent-free like the reminder body — keeps it on the cheaper GSM-7
-    // encoding instead of tripling the segment count for no visible reason.
+    const firstName = gsmSafe((name.split(" ")[0] || name).slice(0, 12));
+    // One GSM-7 segment on purpose (<=160 chars, ASCII only): the first
+    // version of this text was ~185 chars, i.e. 2-3 billed segments per booking
+    // on top of the reminder. Reminder + this text now cost 1 segment each.
     const body =
-      `Hola ${firstName}! Cita confirmada en Eduardo Style: ${service}, ` +
-      `${start.toFormat("dd/LL")} a las ${start.toFormat("HH:mm")}. Te avisaremos ` +
-      `por SMS 1h antes. Para cambios, escribenos por WhatsApp (no respondas a este numero).`;
+      `Hola ${firstName}! Cita confirmada en Eduardo Style: ${gsmSafe(service)}, ` +
+      `${start.toFormat("dd/LL")} ${start.toFormat("HH:mm")}. ` +
+      `Cambios por WhatsApp (no respondas a este numero).`;
     await sendSms(smsTo, body).catch(() => false);
   }
 
