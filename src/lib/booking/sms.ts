@@ -1,7 +1,7 @@
 // Thin wrapper around Twilio's REST API — no SDK dependency, same pattern as
 // google.ts (raw HTTP call with the auth handled inline).
 
-import { twilioAccountSid, twilioAuthPair, twilioFrom } from "./config";
+import { twilioAccountSid, twilioAuthPair, twilioFrom, waAccountSid } from "./config";
 
 // Clients type their phone however they like ("612 345 678", "+34612345678",
 // "0034…"). Twilio needs strict E.164. Assume Spain (+34) when no country
@@ -37,11 +37,15 @@ export function gsmSafe(text: string): string {
     .trim();
 }
 
-async function twilioPost(params: URLSearchParams): Promise<Response | null> {
+async function twilioPost(
+  params: URLSearchParams,
+  pathAccountSid?: string
+): Promise<Response | null> {
   // The URL path always takes the real Account SID ("AC…") — even when
   // authenticating with an API Key, which is a separate credential ("SK…")
-  // that isn't itself an account.
-  const accountSid = twilioAccountSid();
+  // that isn't itself an account. `pathAccountSid` targets a subaccount;
+  // the parent's credentials authenticate it.
+  const accountSid = pathAccountSid || twilioAccountSid();
   const auth = twilioAuthPair();
   if (!accountSid || !auth) return null;
   return fetch(
@@ -86,6 +90,6 @@ export async function sendWhatsAppTemplate(opts: {
     ContentVariables: JSON.stringify(opts.variables),
   });
   if (opts.statusCallback) params.set("StatusCallback", opts.statusCallback);
-  const res = await twilioPost(params);
+  const res = await twilioPost(params, waAccountSid());
   return Boolean(res?.ok);
 }

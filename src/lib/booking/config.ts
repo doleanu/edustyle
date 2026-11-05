@@ -151,6 +151,14 @@ export function waFrom() {
   return raw.startsWith("whatsapp:") ? raw : `whatsapp:${raw}`;
 }
 
+// The WhatsApp sender + templates live in their own Twilio SUBACCOUNT (kept
+// apart from other businesses on the same login), so the Messages call must
+// target that account's path. The parent account's credentials authenticate
+// it, so no extra secret is needed. Unset = same account as SMS.
+export function waAccountSid() {
+  return (process.env.TWILIO_WA_ACCOUNT_SID ?? "").trim();
+}
+
 // Twilio Content Template SIDs ("HX…") — one per message, approved by Meta.
 export function waConfirmSid() {
   return (process.env.TWILIO_WA_CONFIRM_SID ?? "").trim();
