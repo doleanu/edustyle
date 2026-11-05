@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Menu, X, CalendarCheck } from "lucide-react";
 import Image from "next/image";
 import { content, LANG_LABELS, LANG_PATHS, type Lang } from "@/lib/content";
+import { Logo } from "@/components/Logo";
 import clsx from "clsx";
 
 const LANGS = Object.keys(LANG_PATHS) as Lang[];
@@ -69,27 +70,37 @@ export function Header({
         <a
           href={home}
           onClick={handleLogoClick}
-          className="flex items-center"
+          className="flex shrink-0 items-center gap-2.5"
           aria-label="Eduardo Style"
         >
+          {/* El logotipo original es un bloque apilado (pelo / nombre / barba):
+              a la altura de una cabecera su texto queda ilegible. Aquí se usa
+              solo la cara como icono y el nombre va en tipografía, que sí se
+              lee a 44 px. El logotipo completo sigue en el pie. */}
           <Image
-            src="/logo-dark.png"
-            alt="Eduardo Style Barber Shop"
-            width={1042}
-            height={844}
+            src="/marca-dark.png"
+            alt=""
+            aria-hidden="true"
+            width={600}
+            height={600}
             priority
-            className="h-16 w-auto sm:h-20"
+            className="h-11 w-11 shrink-0 sm:h-12 sm:w-12"
           />
+          {/* El nav completo (9 enlaces + idiomas + CTA) ocupa 983 px de los
+              1152 del contenedor, así que a partir de xl solo cabe el icono.
+              En móvil tampoco cabe: el nombre empujaba el botón de menú fuera
+              de la pantalla. Queda visible en la franja de en medio. */}
+          <Logo tone="dark" className="hidden sm:block xl:hidden" />
         </a>
 
         {!minimal && (
           <>
-            <nav className="hidden items-center gap-6 lg:flex">
+            <nav className="hidden shrink-0 items-center gap-5 xl:flex">
               {t.nav.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  className="text-sm text-teal-800/80 transition-colors hover:text-teal-800"
+                  className="whitespace-nowrap text-[13px] text-teal-800/80 transition-colors hover:text-teal-800"
                 >
                   {link.label}
                 </a>
@@ -101,7 +112,7 @@ export function Header({
               </a>
             </nav>
 
-            <div className="flex items-center gap-2 lg:hidden">
+            <div className="flex items-center gap-2 xl:hidden">
               <LangSwitch lang={lang} paths={langPaths} />
               <button
                 type="button"
@@ -120,7 +131,7 @@ export function Header({
       </div>
 
       {!minimal && open && (
-        <div className="border-t border-cream-200 bg-cream-50 lg:hidden">
+        <div className="border-t border-cream-200 bg-cream-50 xl:hidden">
           <nav className="container-tight flex flex-col gap-1 py-4">
             {t.nav.map((link) => (
               <a
