@@ -4,7 +4,8 @@ import { hasBookingBackend, hasSms } from "@/lib/booking/config";
 import { getSettings, getRefreshToken } from "@/lib/booking/store";
 import { DEFAULT_SETTINGS, candidateSlots, slotInstants, isDateClosed } from "@/lib/booking/settings";
 import { getBusy, createEvent } from "@/lib/booking/google";
-import { toE164, sendSms, gsmSafe } from "@/lib/booking/sms";
+import { toE164 } from "@/lib/booking/sms";
+import { notify } from "@/lib/booking/notify";
 import { getServiceRule } from "@/lib/booking/serviceRules";
 
 export const runtime = "nodejs";
@@ -111,15 +112,14 @@ export async function POST(req: NextRequest) {
   // which only fires ~1h before). Best-effort: never fail the booking over
   // an SMS problem — the calendar event is already the source of truth.
   if (hasSms()) {
-    const firstName = gsmSafe((name.split(" ")[0] || name).slice(0, 12));
-    // One GSM-7 segment on purpose (<=160 chars, ASCII only): the first
-    // version of this text was ~185 chars, i.e. 2-3 billed segments per booking
-    // on top of the reminder. Reminder + this text now cost 1 segment each.
-    const body =
-      `Hola ${firstName}! Cita confirmada en Eduardo Style: ${gsmSafe(service)}, ` +
-      `${start.toFormat("dd/LL")} ${start.toFormat("HH:mm")}. ` +
-      `Cambios por WhatsApp (no respondas a este numero).`;
-    await sendSms(smsTo, body).catch(() => false);
+    await notify({
+      kind: "confirm",
+      to: smsTo,
+      firstName: name.split(" ")[0] || name,
+      service,
+      day: start.toFormat("dd/LL"),
+      time: start.toFormat("HH:mm"),
+    });
   }
 
   return NextResponse.json({ ok: true });

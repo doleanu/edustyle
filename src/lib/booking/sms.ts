@@ -37,20 +37,14 @@ export function gsmSafe(text: string): string {
     .trim();
 }
 
-export async function sendSms(to: string, body: string): Promise<boolean> {
+async function twilioPost(params: URLSearchParams): Promise<Response | null> {
   // The URL path always takes the real Account SID ("AC…") — even when
   // authenticating with an API Key, which is a separate credential ("SK…")
   // that isn't itself an account.
   const accountSid = twilioAccountSid();
   const auth = twilioAuthPair();
-  const from = twilioFrom();
-  if (!accountSid || !auth || !from) return false;
-
-  const params = new URLSearchParams({ To: to, Body: body });
-  // A Messaging Service SID (starts "MG…") replaces a single From number.
-  params.set(from.startsWith("MG") ? "MessagingServiceSid" : "From", from);
-
-  const res = await fetch(
+  if (!accountSid || !auth) return null;
+  return fetch(
     `https://api.twilio.com/2010-04-01/Accounts/${accountSid}/Messages.json`,
     {
       method: "POST",
@@ -63,5 +57,35 @@ export async function sendSms(to: string, body: string): Promise<boolean> {
       body: params.toString(),
     }
   );
-  return res.ok;
+}
+
+export async function sendSms(to: string, body: string): Promise<boolean> {
+  const from = twilioFrom();
+  if (!from) return false;
+  const params = new URLSearchParams({ To: to, Body: body });
+  // A Messaging Service SID (starts "MG…") replaces a single From number.
+  params.set(from.startsWith("MG") ? "MessagingServiceSid" : "From", from);
+  const res = await twilioPost(params);
+  return Boolean(res?.ok);
+}
+
+// Sends an approved WhatsApp template. A 2xx only means Twilio accepted it:
+// "this number isn't on WhatsApp" etc. fail asynchronously, which is what
+// `statusCallback` is for (see /api/twilio/status — it falls back to SMS).
+export async function sendWhatsAppTemplate(opts: {
+  to: string; // E.164, no "whatsapp:" prefix
+  from: string; // "whatsapp:+…"
+  contentSid: string;
+  variables: Record<string, string>;
+  statusCallback?: string;
+}): Promise<boolean> {
+  const params = new URLSearchParams({
+    To: `whatsapp:${opts.to}`,
+    From: opts.from,
+    ContentSid: opts.contentSid,
+    ContentVariables: JSON.stringify(opts.variables),
+  });
+  if (opts.statusCallback) params.set("StatusCallback", opts.statusCallback);
+  const res = await twilioPost(params);
+  return Boolean(res?.ok);
 }

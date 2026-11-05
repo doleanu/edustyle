@@ -136,3 +136,29 @@ export function hasSms() {
     hasBookingBackend() && twilioAccountSid() && twilioAuthPair() && twilioFrom()
   );
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WhatsApp (Twilio, approved utility templates). Optional on top of SMS: when
+// all three are set, confirmations/reminders go out on WhatsApp (~$0.025 each
+// in Spain vs $0.0875 per SMS segment) and SMS is only the fallback for people
+// WhatsApp can't reach. Unset = pure SMS, exactly as before.
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Sender, e.g. "+19315349955" or "whatsapp:+19315349955" (prefix optional).
+export function waFrom() {
+  const raw = (process.env.TWILIO_WHATSAPP_FROM ?? "").trim();
+  if (!raw) return "";
+  return raw.startsWith("whatsapp:") ? raw : `whatsapp:${raw}`;
+}
+
+// Twilio Content Template SIDs ("HX…") — one per message, approved by Meta.
+export function waConfirmSid() {
+  return (process.env.TWILIO_WA_CONFIRM_SID ?? "").trim();
+}
+export function waReminderSid() {
+  return (process.env.TWILIO_WA_REMINDER_SID ?? "").trim();
+}
+
+export function hasWhatsApp() {
+  return Boolean(hasSms() && waFrom() && waConfirmSid() && waReminderSid());
+}

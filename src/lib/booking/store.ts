@@ -56,3 +56,13 @@ export async function getSettings(): Promise<Settings | null> {
   const parsed = typeof raw === "string" ? JSON.parse(raw) : raw;
   return normalizeSettings(parsed);
 }
+
+// True the first time `key` is claimed within `ttlSeconds`, false after that.
+// Used to make webhook handlers idempotent (Twilio may repeat a callback) and
+// to cap anything a stranger could otherwise trigger repeatedly.
+export async function claimOnce(key: string, ttlSeconds: number): Promise<boolean> {
+  const r = redis();
+  if (!r) return false;
+  const res = await r.set(`edustyle:once:${key}`, "1", { nx: true, ex: ttlSeconds });
+  return res === "OK";
+}

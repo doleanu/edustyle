@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { DateTime } from "luxon";
 import { BOOKING_TZ, cronSecret, hasReminders } from "@/lib/booking/config";
 import { listUpcomingUnreminded, markReminderSent } from "@/lib/booking/google";
-import { sendSms, toE164, gsmSafe } from "@/lib/booking/sms";
+import { toE164 } from "@/lib/booking/sms";
+import { notify } from "@/lib/booking/notify";
 import { getRefreshToken } from "@/lib/booking/store";
 
 export const runtime = "nodejs";
@@ -61,16 +62,12 @@ async function handle(req: NextRequest) {
       continue;
     }
     const startLocal = DateTime.fromISO(e.startUTC).setZone(BOOKING_TZ);
-    const firstName = gsmSafe((e.clientName.split(" ")[0] || e.clientName).slice(0, 12));
-    // Deliberately accent-free: í/á/ú force UCS-2 encoding, which cuts the
-    // per-segment limit from 153 to 67 chars and was tripling every message
-    // to 3 segments (3x the cost) for no visible reason — this reads exactly
-    // the same to a Spanish speaker and fits in a single GSM-7 segment.
-    const body =
-      `Hola ${firstName}! Te recordamos tu cita en Eduardo Style hoy a las ` +
-      `${startLocal.toFormat("HH:mm")}. Para cambios, escribenos por WhatsApp ` +
-      `(no respondas a este numero).`;
-    const ok = await sendSms(to, body);
+    const ok = await notify({
+      kind: "reminder",
+      to,
+      firstName: e.clientName.split(" ")[0] || e.clientName,
+      time: startLocal.toFormat("HH:mm"),
+    });
     if (ok) {
       sent++;
       await markReminderSent(e.id);
