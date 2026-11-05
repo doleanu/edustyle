@@ -91,7 +91,13 @@ export async function POST(req: NextRequest) {
 
   const startWall = start.toFormat("yyyy-LL-dd'T'HH:mm:ss");
   const endWall = end.toFormat("yyyy-LL-dd'T'HH:mm:ss");
+  // Booked for later today / within ~90 min: the confirmation text we send
+  // just below already IS the "your appointment is soon" notice, and the
+  // reminder cron would fire it again minutes later (2 billed texts, 0 new
+  // information). Only skip it when the confirmation will actually be sent.
+  const skipReminder = hasSms() && start.diff(DateTime.now(), "minutes").minutes <= 90;
   const ok = await createEvent({
+    skipReminder,
     summary: `${service} — ${name}`,
     description: `Reserva online\nCliente: ${name}\nTeléfono: ${phone}\nServicio: ${service}`,
     startWall,

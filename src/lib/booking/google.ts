@@ -93,6 +93,10 @@ export async function createEvent(opts: {
   endWall: string;
   clientName?: string;
   clientPhone?: string;
+  // Start the event as already-reminded (the 1h-before text never goes out).
+  // Used when the confirmation text just went out for an appointment that's
+  // less than ~90 min away: a second text minutes later says nothing new.
+  skipReminder?: boolean;
 }): Promise<boolean> {
   const client = await ownerClient();
   if (!client) return false;
@@ -108,7 +112,7 @@ export async function createEvent(opts: {
         ? {
             extendedProperties: {
               private: {
-                reminderSent: "false",
+                reminderSent: opts.skipReminder ? "true" : "false",
                 clientPhone: opts.clientPhone,
                 clientName: opts.clientName ?? "",
               },
