@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Check, Loader2 } from "lucide-react";
+import { CalendarX, Check, Loader2 } from "lucide-react";
 import clsx from "clsx";
 import { content, type Lang } from "@/lib/content";
 import { DatePicker, LOCALES, type ClosedRange } from "@/components/DatePicker";
@@ -235,7 +235,18 @@ export function Booking({ lang, services }: { lang: Lang; services: string[] }) 
               </div>
 
               {dayIso && !slotsLoading && slots.length === 0 && (
-                <p className="mt-4 text-center text-sm text-teal-800/70">{t.noSlots}</p>
+                <div
+                  role="alert"
+                  className="mt-4 flex items-start gap-3 rounded-2xl border-2 border-terracotta-500 bg-terracotta-500/10 px-4 py-3.5 text-left"
+                >
+                  <CalendarX className="mt-0.5 h-6 w-6 shrink-0 text-terracotta-700" />
+                  <div>
+                    <p className="text-base font-semibold text-terracotta-700">
+                      {t.noSlotsTitle} · {formatDayLabel(dayIso, lang)}
+                    </p>
+                    <p className="mt-0.5 text-sm text-teal-900">{t.noSlots}</p>
+                  </div>
+                </div>
               )}
 
               <div className="mt-5 grid gap-5 sm:grid-cols-2">
