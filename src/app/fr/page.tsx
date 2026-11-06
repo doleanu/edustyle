@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function HomeFr() {
+// Refreshed on demand when the owner saves in /admin/precios; this is only the daily safety net.
+export const revalidate = 86400;
+
+export default async function HomeFr() {
   return <SiteBody lang="fr" />;
 }

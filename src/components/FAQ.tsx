@@ -3,9 +3,10 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { content, type Lang } from "@/lib/content";
+import { fillPriceTokens } from "@/lib/priceTokens";
 import clsx from "clsx";
 
-export function FAQ({ lang }: { lang: Lang }) {
+export function FAQ({ lang, prices }: { lang: Lang; prices: Record<string, string> }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   const t = content[lang].faq;
 
@@ -65,7 +66,7 @@ export function FAQ({ lang }: { lang: Lang }) {
                 >
                   <div className="overflow-hidden">
                     <p className="px-5 pb-5 leading-relaxed text-teal-800/85 sm:px-6 sm:pb-6 sm:text-lg">
-                      {faq.answer}
+                      {fillPriceTokens(faq.answer, prices)}
                     </p>
                   </div>
                 </div>

@@ -1,12 +1,13 @@
 import { business, services } from "@/lib/business";
 import { content, type Lang } from "@/lib/content";
+import { fillPriceTokens } from "@/lib/priceTokens";
 
 // Schema.org structured data: helps Google understand the business
 // for the Knowledge Panel, rich results, and local search. FAQPage entity
 // is built from the same per-language content the visible FAQ section
 // renders (content[lang].faq.items), so it never ships mismatched-language
 // structured data on the /en, /fr, /de routes.
-export function JsonLd({ lang }: { lang: Lang }) {
+export function JsonLd({ lang, prices }: { lang: Lang; prices: Record<string, string> }) {
   const dayMap: Record<string, string> = {
     Lunes: "Monday",
     Martes: "Tuesday",
@@ -86,7 +87,7 @@ export function JsonLd({ lang }: { lang: Lang }) {
       name: f.question,
       acceptedAnswer: {
         "@type": "Answer",
-        text: f.answer,
+        text: fillPriceTokens(f.answer, prices),
       },
     })),
   };

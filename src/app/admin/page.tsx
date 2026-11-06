@@ -329,7 +329,14 @@ export default function AdminPage() {
                   <div className="text-teal-800/60">{state.email}</div>
                 </div>
               </div>
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2">
+                <a
+                  href="/admin/precios"
+                  className="inline-flex items-center gap-2 rounded-full border border-teal-800/20 px-4 py-2 text-sm text-teal-800 transition-colors hover:bg-cream-200"
+                >
+                  <Scissors className="h-4 w-4" />
+                  Precios y servicios
+                </a>
                 {/* Always available, even when "connected" — the stored
                     token can go stale (e.g. Google's 7-day testing-mode
                     expiry) without us knowing until a real API call fails,

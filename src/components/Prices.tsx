@@ -1,8 +1,9 @@
 import { CalendarCheck } from "lucide-react";
 import { content, type Lang } from "@/lib/content";
+import type { PriceGroup } from "@/lib/pricelist/render";
 import clsx from "clsx";
 
-export function Prices({ lang }: { lang: Lang }) {
+export function Prices({ lang, groups }: { lang: Lang; groups: PriceGroup[] }) {
   const t = content[lang].prices;
   return (
     <section id="precios" className="section bg-cream-100">
@@ -16,7 +17,7 @@ export function Prices({ lang }: { lang: Lang }) {
         </div>
 
         <div className="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-3">
-          {t.groups.map((group) => (
+          {groups.map((group) => (
             <div
               key={group.title}
               className="flex flex-col rounded-3xl bg-cream-50 p-6 shadow-sm sm:p-8"

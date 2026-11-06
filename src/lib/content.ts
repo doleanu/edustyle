@@ -177,7 +177,7 @@ export const content = {
       items: [
         { question: "¿Necesito pedir cita o puedo ir directamente?", answer: "Puedes pasarte sin cita, pero para no esperar te recomendamos reservar online. Te confirmamos la hora al instante y te guardamos el hueco." },
         { question: "¿Cómo reservo una cita?", answer: "Lo más rápido es reservar online: eliges servicio, día y hora, y te llega un recordatorio por SMS una hora antes. También puedes llamarnos directamente al +34 694 20 07 78." },
-        { question: "¿Cuánto cuesta un corte?", answer: "Un corte de caballero cuesta 13 € y el pack corte + barba 20 €. Los niños 10 €. Tienes la lista completa en la sección de Precios. El precio final puede variar según el largo del pelo." },
+        { question: "¿Cuánto cuesta un corte?", answer: "Un corte de caballero cuesta {{p:cortes-1}} y el pack corte + barba {{p:corte-barba-2}}. Los niños {{p:cortes-0}}. Tienes la lista completa en la sección de Precios. El precio final puede variar según el largo del pelo." },
         { question: "¿Cortáis a niños?", answer: "Sí. Hacemos cortes para niños con mucha paciencia y buen ambiente, para que la experiencia sea fácil y agradable también para los más pequeños." },
         { question: "¿Hacéis afeitado a navaja?", answer: "Sí. Ofrecemos el afeitado clásico a navaja con toalla caliente: apurado, relajante y con un acabado perfecto. Todo un clásico que merece la pena probar." },
         { question: "¿Qué formas de pago aceptáis?", answer: "Aceptamos pago en efectivo y con tarjeta, lo que te resulte más cómodo." },
@@ -386,7 +386,7 @@ export const content = {
       items: [
         { question: "Do I need an appointment or can I just walk in?", answer: "You're welcome to walk in, but to avoid waiting we recommend booking online. We confirm your time instantly and hold your slot." },
         { question: "How do I book an appointment?", answer: "The fastest way is booking online: pick a service, day and time, and we'll text you a reminder an hour ahead. You can also call us directly at +34 694 20 07 78." },
-        { question: "How much is a haircut?", answer: "A men's cut is 13 € and the cut + beard package is 20 €. Kids' cuts are 10 €. You'll find the full list in the Prices section. The final price may vary with hair length." },
+        { question: "How much is a haircut?", answer: "A men's cut is {{p:cortes-1}} and the cut + beard package is {{p:corte-barba-2}}. Kids' cuts are {{p:cortes-0}}. You'll find the full list in the Prices section. The final price may vary with hair length." },
         { question: "Do you cut children's hair?", answer: "Yes. We do kids' cuts with plenty of patience and a friendly atmosphere, so it's easy and pleasant for the little ones too." },
         { question: "Do you do straight-razor shaves?", answer: "Yes. We offer the classic straight-razor shave with a hot towel: close, relaxing and with a perfect finish. A classic well worth trying." },
         { question: "What payment methods do you accept?", answer: "We accept both cash and card, whatever is most convenient for you." },
@@ -595,7 +595,7 @@ export const content = {
       items: [
         { question: "Dois-je prendre rendez-vous ou puis-je venir directement ?", answer: "Vous pouvez venir sans rendez-vous, mais pour éviter l'attente nous vous recommandons de réserver en ligne. Nous confirmons l'heure à l'instant et vous gardons votre créneau." },
         { question: "Comment réserver un rendez-vous ?", answer: "Le plus rapide est de réserver en ligne : choisissez un service, un jour et une heure, et nous vous enverrons un rappel par SMS une heure avant. Vous pouvez aussi nous appeler directement au +34 694 20 07 78." },
-        { question: "Combien coûte une coupe ?", answer: "Une coupe homme coûte 13 € et la formule coupe + barbe 20 €. Pour les enfants, 10 €. Retrouvez la liste complète dans la section Tarifs. Le prix final peut varier selon la longueur des cheveux." },
+        { question: "Combien coûte une coupe ?", answer: "Une coupe homme coûte {{p:cortes-1}} et la formule coupe + barbe {{p:corte-barba-2}}. Pour les enfants, {{p:cortes-0}}. Retrouvez la liste complète dans la section Tarifs. Le prix final peut varier selon la longueur des cheveux." },
         { question: "Faites-vous les coupes pour enfants ?", answer: "Oui. Nous coupons les cheveux des enfants avec beaucoup de patience et de bonne humeur, pour que ce soit facile et agréable aussi pour les plus petits." },
         { question: "Faites-vous le rasage au coupe-chou ?", answer: "Oui. Nous proposons le rasage classique au coupe-chou avec serviette chaude : net, relaxant et avec une finition parfaite. Un classique qui vaut vraiment le détour." },
         { question: "Quels moyens de paiement acceptez-vous ?", answer: "Nous acceptons les paiements en espèces et par carte, selon ce qui vous arrange le mieux." },
@@ -804,7 +804,7 @@ export const content = {
       items: [
         { question: "Brauche ich einen Termin oder kann ich einfach vorbeikommen?", answer: "Sie können gerne ohne Termin vorbeikommen, aber um Wartezeit zu vermeiden, empfehlen wir eine Online-Buchung. Wir bestätigen Ihre Zeit sofort und reservieren Ihren Platz." },
         { question: "Wie buche ich einen Termin?", answer: "Am schnellsten geht es online: Leistung, Tag und Uhrzeit wählen, und Sie erhalten eine Stunde vorher eine SMS-Erinnerung. Sie können uns auch direkt unter +34 694 20 07 78 anrufen." },
-        { question: "Was kostet ein Haarschnitt?", answer: "Ein Herrenhaarschnitt kostet 13 € und das Paket Schnitt + Bart 20 €. Für Kinder 10 €. Die vollständige Liste finden Sie im Bereich Preise. Der Endpreis kann je nach Haarlänge variieren." },
+        { question: "Was kostet ein Haarschnitt?", answer: "Ein Herrenhaarschnitt kostet {{p:cortes-1}} und das Paket Schnitt + Bart {{p:corte-barba-2}}. Für Kinder {{p:cortes-0}}. Die vollständige Liste finden Sie im Bereich Preise. Der Endpreis kann je nach Haarlänge variieren." },
         { question: "Schneiden Sie auch Kinderhaare?", answer: "Ja. Wir schneiden Kinderhaare mit viel Geduld und guter Atmosphäre, damit es auch für die Kleinsten einfach und angenehm ist." },
         { question: "Bieten Sie Rasur mit dem Rasiermesser an?", answer: "Ja. Wir bieten die klassische Rasur mit dem Rasiermesser und warmem Handtuch: gründlich, entspannend und mit perfektem Finish. Ein Klassiker, den man ausprobiert haben sollte." },
         { question: "Welche Zahlungsmethoden akzeptieren Sie?", answer: "Wir akzeptieren Barzahlung und Kartenzahlung, ganz wie es Ihnen am liebsten ist." },

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Check, Loader2 } from "lucide-react";
 import clsx from "clsx";
 import { content, type Lang } from "@/lib/content";
@@ -30,12 +30,8 @@ function formatDayLabel(iso: string, lang: Lang): string {
 
 type SubmitState = "idle" | "submitting" | "success" | "error" | "taken" | "invalid_phone";
 
-export function Booking({ lang }: { lang: Lang }) {
+export function Booking({ lang, services }: { lang: Lang; services: string[] }) {
   const t = content[lang].booking;
-  const services = useMemo(
-    () => content[lang].prices.groups.flatMap((group) => group.items.map((item) => item.name)),
-    [lang]
-  );
   // null while probing; true = real calendar backend; false = WhatsApp fallback.
   const [backend, setBackend] = useState<boolean | null>(null);
   const [closedRanges, setClosedRanges] = useState<ClosedRange[]>([]);
